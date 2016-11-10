@@ -19,9 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 		
 		let notificationSettings = UIUserNotificationSettings(types: [.badge, .alert, .sound], categories: nil)
 		UIApplication.shared.registerUserNotificationSettings(notificationSettings)
-		
-		
-		
+
 		return true
 	}
 	

@@ -112,22 +112,17 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UICollectionV
 		UIView.animate(withDuration: 1) { [unowned self] in
 			switch distance {
 				case .unknown:
-					self.view.backgroundColor = UIColor.gray
-					self.distanceLabel.text = "LOST"
+					self.distanceLabel.text = "lost"
 					// self.createLocationNotification()
 				
 				case .far:
-					self.view.backgroundColor = UIColor.blue
-					self.distanceLabel.text = "FAR"
+					self.distanceLabel.text = "far"
 
 				case .near:
-					self.view.backgroundColor = UIColor.red
-					self.distanceLabel.text = "NEAR"
+					self.distanceLabel.text = "near"
 
 				case .immediate:
-					let mOrange = UIColor(rgb: 0x424242)
-					self.view.backgroundColor = mOrange
-					self.distanceLabel.text = "IMMEDIATE"
+					self.distanceLabel.text = "immediate"
 			}
 		}
 	}

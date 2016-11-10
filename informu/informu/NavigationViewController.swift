@@ -3,7 +3,7 @@
 
 import UIKit
 
-class NavigationVC: UINavigationController, UIViewControllerTransitioningDelegate {
+class NavigationViewController: UINavigationController, UIViewControllerTransitioningDelegate {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()

@@ -1,10 +1,8 @@
-//
-//  CollectionViewCell.swift
-//  informu
-//
-//  Created by Prayash Thapa on 11/9/16.
-//  Copyright © 2016 Prayash Thapa. All rights reserved.
-//
+// informu
+// CollectionViewCell.swift
+// This ViewCell shows a thumbnail of the tag for the main View.
+
+
 
 import UIKit
 

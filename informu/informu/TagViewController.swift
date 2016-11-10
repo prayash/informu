@@ -1,28 +1,28 @@
-//
-//  TagViewController.swift
-//  informu
-//
-//  Created by Prayash Thapa on 11/9/16.
-//  Copyright © 2016 Prayash Thapa. All rights reserved.
-//
+// informu
+// TagViewController.swift
+// This View shows details of the µ tag. It displays information about the specific tag.
+// It also shows the user's current location and the tag's location.
 
 import UIKit
+import MapKit
 
 class TagViewController: UIViewController {
 	@IBOutlet weak var tagImageView: UIImageView!
+	@IBOutlet weak var mapView: MKMapView!
 	
 	var image = UIImage()
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		self.tagImageView.image = self.image
-		// Do any additional setup after loading the view.
+		
+		// Show user location + zoom in
+		mapView.showsUserLocation = true
+		self.mapView.setUserTrackingMode(.follow, animated: true);
+		let userLocation = mapView.userLocation
+		print(userLocation)
+		
 	}
-	
-	override func didReceiveMemoryWarning() {
-		super.didReceiveMemoryWarning()
-		// Dispose of any resources that can be recreated.
-	}
-	
+
 	/*
 	// MARK: - Navigation
 	

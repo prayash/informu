@@ -17,6 +17,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UICollectionV
 	@IBAction func doneAddTag(_ sender: AnyObject) {
 		animateOut();
 	}
+	
 	@IBOutlet weak var tagCollectionView: UICollectionView!
 	
 	let tags = ["µ1", "µ2"]
@@ -26,25 +27,25 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UICollectionV
 	var locationManager: CLLocationManager!
 	
 	// Blur effect
-	var effect:UIVisualEffect!
+	var blurEffect:UIVisualEffect!
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
 		// Deactivate blur visual effect
-		effect = visualEffectView.effect
 		visualEffectView.effect = nil
 		
 		// Add corner radius to addTagPopUp
 		addTagPopUp.layer.cornerRadius = 5
 		
+		// Set navigation bar color
+		self.navigationController?.navigationBar.barTintColor = UIColor(rgb: 0xFF704C)
+		self.navigationController?.navigationBar.tintColor = UIColor(rgb: 0xFFFFFF)
+		
 		// Initialize locationManager
 		locationManager = CLLocationManager()
 		locationManager.delegate = self
 		locationManager.requestAlwaysAuthorization()
-		
-		// Set navigation bar color
-		self.navigationController?.navigationBar.barTintColor = UIColor(rgb: 0xff704c)
 	}
 	
 	// Animate addTagPopUp
@@ -59,7 +60,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UICollectionV
 		
 		UIView.animate(withDuration: 0.4) {
 			// Use self because we are within a closure
-			self.visualEffectView.effect = self.effect
+			self.visualEffectView.effect = UIBlurEffect(style: .light)
 			self.addTagPopUp.alpha = 1
 			self.addTagPopUp.transform = CGAffineTransform.identity
 		}
@@ -72,7 +73,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UICollectionV
 			self.addTagPopUp.alpha = 0
 			self.visualEffectView.effect = nil
 			}) { (success:Bool) in
-					self.addTagPopUp.removeFromSuperview()
+				self.addTagPopUp.removeFromSuperview()
 			}
 	}
 		
@@ -157,22 +158,25 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UICollectionV
 		return tag
 	}
 	
+	// When an item is tapped, we execute the showTag segue
+	// A segue defines a transition between two view controllers in your app’s storyboard file
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 		self.performSegue(withIdentifier: "showTag", sender: self)
 	}
 	
+	// Lets you pass data from the source ViewController to the destination ViewController
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if segue.identifier == "showTag" {
-			// Get # of items selected in collectioni view
+			// Get # of items selected in collectionView
 			let indexPaths = self.tagCollectionView!.indexPathsForSelectedItems!
 			
-			// Get first item and set that as index path
+			// Get first item and set that as indexPath
 			let indexPath = indexPaths[0] as NSIndexPath
 			
 			// Get the destination VC and cast it as new VC
 			let vc = segue.destination as! TagViewController
 			
-			// Set the respective parameters
+			// Set the respective parameters of the new view
 			vc.image = self.imageArray[indexPath.row]!
 			vc.title = self.tags[indexPath.row]
 		}

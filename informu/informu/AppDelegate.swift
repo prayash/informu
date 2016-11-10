@@ -1,10 +1,5 @@
-//
 //  AppDelegate.swift
-//  iBeacon
-//
-//  Created by Prayash Thapa on 10/28/16.
-//  Copyright © 2016 Prayash Thapa. All rights reserved.
-//
+//  informu
 
 import UIKit
 import CoreData

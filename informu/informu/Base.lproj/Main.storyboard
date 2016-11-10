@@ -18,15 +18,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <visualEffectView opaque="NO" contentMode="scaleAspectFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Dh-t0-A0x">
-                                <frame key="frameInset" minY="64" width="375" height="603"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" id="qLE-3J-t0a">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="lost" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IlY-uq-n2e">
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="40"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <visualEffectView opaque="NO" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Dh-t0-A0x">
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="qLE-3J-t0a">
                                     <frame key="frameInset"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="D77-lR-u48">
-                                            <frame key="frameInset" width="375" height="175"/>
+                                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="D77-lR-u48">
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="175" id="SSW-W9-y4Z"/>
@@ -83,17 +85,19 @@
                                     </constraints>
                                 </view>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <blurEffect style="light"/>
+                                <blurEffect style="regular"/>
                             </visualEffectView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="UNKNOWN" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IlY-uq-n2e">
-                                <frame key="frameInset" minX="86" minY="310" width="204" height="48"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="40"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.25882352941176467" green="0.25882352941176467" blue="0.25882352941176467" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="1" green="0.4392156862745098" blue="0.29803921568627451" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="5Dh-t0-A0x" secondAttribute="trailing" id="3DL-qW-1wu"/>
+                            <constraint firstItem="IlY-uq-n2e" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="3V5-mF-bdz"/>
+                            <constraint firstItem="5Dh-t0-A0x" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="5lT-8Z-Wfy"/>
+                            <constraint firstItem="5Dh-t0-A0x" firstAttribute="centerX" secondItem="IlY-uq-n2e" secondAttribute="centerX" id="fdv-9P-Yai"/>
+                            <constraint firstItem="IlY-uq-n2e" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="70" id="hvB-8g-g7A"/>
+                            <constraint firstItem="5Dh-t0-A0x" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="wZa-Sx-Eex"/>
+                            <constraint firstItem="5Dh-t0-A0x" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="y5K-hJ-LBr"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="3yf-9n-185">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="JE3-sh-ci3">
@@ -120,19 +124,21 @@
                             <frame key="frameInset" minX="50.00%" minY="20" width="98" height="28"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="23"/>
-                            <nil key="textColor"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fsz-5B-QDl">
                             <frame key="frameInset" minX="50.22%" width="75" height="30" maxY="11"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <state key="normal" title="Done"/>
+                            <state key="normal" title="Done">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
                             <connections>
                                 <action selector="doneAddTag:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ojB-wb-ijr"/>
                             </connections>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="0.84428879310344829" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="0.25882352941176467" green="0.25882352941176467" blue="0.25882352941176467" alpha="0.84428879310344829" colorSpace="calibratedRGB"/>
                 </view>
             </objects>
             <point key="canvasLocation" x="1076" y="138.98050974512745"/>
@@ -151,11 +157,11 @@
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UcV-HJ-Ohz"/>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="0.4392156862745098" blue="0.29803921568627451" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="ssJ-HI-Pfs" firstAttribute="top" secondItem="UcV-HJ-Ohz" secondAttribute="bottom" constant="332" id="JLa-dE-sYv"/>
+                            <constraint firstItem="ssJ-HI-Pfs" firstAttribute="top" secondItem="UcV-HJ-Ohz" secondAttribute="bottom" constant="350" id="JLa-dE-sYv"/>
                             <constraint firstAttribute="trailing" secondItem="UcV-HJ-Ohz" secondAttribute="trailing" id="Ljh-dm-JS4"/>
-                            <constraint firstItem="UcV-HJ-Ohz" firstAttribute="top" secondItem="7Hs-sQ-dCv" secondAttribute="bottom" constant="8" symbolic="YES" id="ejc-Pg-wZy"/>
+                            <constraint firstItem="UcV-HJ-Ohz" firstAttribute="top" secondItem="7Hs-sQ-dCv" secondAttribute="bottom" constant="-10" id="ejc-Pg-wZy"/>
                             <constraint firstItem="UcV-HJ-Ohz" firstAttribute="leading" secondItem="HV7-ER-GMa" secondAttribute="leading" id="kUN-Iu-5qW"/>
                         </constraints>
                     </view>
@@ -167,10 +173,10 @@
             </objects>
             <point key="canvasLocation" x="1837.5999999999999" y="138.98050974512745"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--NavigationVC-->
         <scene sceneID="0DA-8U-bpU">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="FO9-sH-IzH" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="FO9-sH-IzH" customClass="NavigationVC" customModule="informu" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="OjQ-Zd-3To">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>

@@ -5,7 +5,7 @@ import UIKit
 import CoreLocation
 import UserNotifications
 
-class ViewController: UIViewController, CLLocationManagerDelegate {
+class ViewController: UIViewController, CLLocationManagerDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
     
 	@IBOutlet weak var distanceLabel: UILabel!
 	@IBOutlet var addTagPopUp: UIView!
@@ -17,6 +17,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
 	@IBAction func doneAddTag(_ sender: AnyObject) {
 		animateOut();
 	}
+	@IBOutlet weak var tagCollectionView: UICollectionView!
+	
+	let tags = ["µ1", "µ2"]
+	let imageArray = [UIImage(named: "mu1"), UIImage(named: "mu2")]
 	
 	// Central point for configuring the delivery of location-related events to the application
 	var locationManager: CLLocationManager!
@@ -139,10 +143,39 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
 		localNotification.alertBody = "Lost!"
 		UIApplication.shared.scheduleLocalNotification(localNotification)
 	}
-
-	override func didReceiveMemoryWarning() {
-		super.didReceiveMemoryWarning()
-		// Dispose of any resources that can be recreated.
+	
+	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+		return self.tags.count
+	}
+	
+	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+		let tag = collectionView.dequeueReusableCell(withReuseIdentifier: "tag", for: indexPath) as! CollectionViewCell
+		tag.imageView?.image = self.imageArray[indexPath.row]
+		tag.tagName?.text = self.tags[indexPath.row]
+		
+		
+		return tag
+	}
+	
+	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+		self.performSegue(withIdentifier: "showTag", sender: self)
+	}
+	
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		if segue.identifier == "showTag" {
+			// Get # of items selected in collectioni view
+			let indexPaths = self.tagCollectionView!.indexPathsForSelectedItems!
+			
+			// Get first item and set that as index path
+			let indexPath = indexPaths[0] as NSIndexPath
+			
+			// Get the destination VC and cast it as new VC
+			let vc = segue.destination as! TagViewController
+			
+			// Set the respective parameters
+			vc.image = self.imageArray[indexPath.row]!
+			vc.title = self.tags[indexPath.row]
+		}
 	}
 
 }

@@ -7,21 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		ED72DDD61DD433DB00CAB3D4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED72DDD51DD433DB00CAB3D4 /* Assets.xcassets */; };
+		EDB785831DD42CB700312A41 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB785821DD42CB700312A41 /* CollectionViewCell.swift */; };
+		EDB785851DD42CD200312A41 /* TagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB785841DD42CD200312A41 /* TagViewController.swift */; };
 		EDE450CA1DC3F1B0006A6051 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE450C91DC3F1B0006A6051 /* AppDelegate.swift */; };
 		EDE450CC1DC3F1B0006A6051 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE450CB1DC3F1B0006A6051 /* ViewController.swift */; };
 		EDE450CF1DC3F1B0006A6051 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDE450CD1DC3F1B0006A6051 /* Main.storyboard */; };
 		EDE450D21DC3F1B0006A6051 /* iBeacon.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EDE450D01DC3F1B0006A6051 /* iBeacon.xcdatamodeld */; };
-		EDE450D41DC3F1B0006A6051 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EDE450D31DC3F1B0006A6051 /* Assets.xcassets */; };
 		EDE450D71DC3F1B0006A6051 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDE450D51DC3F1B0006A6051 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		ED72DDD51DD433DB00CAB3D4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EDB785821DD42CB700312A41 /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		EDB785841DD42CD200312A41 /* TagViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagViewController.swift; sourceTree = "<group>"; };
 		EDE450C61DC3F1B0006A6051 /* informu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = informu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDE450C91DC3F1B0006A6051 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EDE450CB1DC3F1B0006A6051 /* ViewController.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; tabWidth = 2; };
 		EDE450CE1DC3F1B0006A6051 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EDE450D11DC3F1B0006A6051 /* iBeacon.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = iBeacon.xcdatamodel; sourceTree = "<group>"; };
-		EDE450D31DC3F1B0006A6051 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EDE450D61DC3F1B0006A6051 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EDE450D81DC3F1B0006A6051 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -62,8 +66,10 @@
 				EDE450C91DC3F1B0006A6051 /* AppDelegate.swift */,
 				EDE450CB1DC3F1B0006A6051 /* ViewController.swift */,
 				EDE450CD1DC3F1B0006A6051 /* Main.storyboard */,
-				EDE450D31DC3F1B0006A6051 /* Assets.xcassets */,
+				EDB785821DD42CB700312A41 /* CollectionViewCell.swift */,
+				EDB785841DD42CD200312A41 /* TagViewController.swift */,
 				EDE450D51DC3F1B0006A6051 /* LaunchScreen.storyboard */,
+				ED72DDD51DD433DB00CAB3D4 /* Assets.xcassets */,
 				EDE450D81DC3F1B0006A6051 /* Info.plist */,
 				EDE450D01DC3F1B0006A6051 /* iBeacon.xcdatamodeld */,
 			);
@@ -136,7 +142,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EDE450D71DC3F1B0006A6051 /* LaunchScreen.storyboard in Resources */,
-				EDE450D41DC3F1B0006A6051 /* Assets.xcassets in Resources */,
+				ED72DDD61DD433DB00CAB3D4 /* Assets.xcassets in Resources */,
 				EDE450CF1DC3F1B0006A6051 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -150,6 +156,8 @@
 			files = (
 				EDE450D21DC3F1B0006A6051 /* iBeacon.xcdatamodeld in Sources */,
 				EDE450CC1DC3F1B0006A6051 /* ViewController.swift in Sources */,
+				EDB785851DD42CD200312A41 /* TagViewController.swift in Sources */,
+				EDB785831DD42CB700312A41 /* CollectionViewCell.swift in Sources */,
 				EDE450CA1DC3F1B0006A6051 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -6,6 +6,8 @@ import CoreData
 import CoreLocation
 import UserNotifications
 
+// ****************************************************************************************
+
 @available(iOS 10.0, *)
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate {

@@ -5,20 +5,16 @@ import UIKit
 import CoreLocation
 import UserNotifications
 
+// ****************************************************************************************
+
 class ViewController: UIViewController, CLLocationManagerDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
     
-	@IBOutlet weak var distanceLabel: UILabel!
 	@IBOutlet var addTagPopUp: UIView!
-	@IBOutlet weak var visualEffectView: UIVisualEffectView!
-	
-	@IBAction func addTag(_ sender: AnyObject) {
-		animateIn()
-	}
-	@IBAction func doneAddTag(_ sender: AnyObject) {
-		animateOut();
-	}
-	
+	@IBOutlet weak var distanceLabel: UILabel!
 	@IBOutlet weak var tagCollectionView: UICollectionView!
+	@IBOutlet weak var visualEffectView: UIVisualEffectView!
+	@IBAction func addTag(_ sender: AnyObject) { animateIn() }
+	@IBAction func doneAddTag(_ sender: AnyObject) { animateOut(); }
 	
 	let tags = ["Wallet", "MacBook"]
 	let imageArray = [UIImage(named: "mu1"), UIImage(named: "mu2")]
@@ -178,6 +174,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UICollectionV
 	}
 
 }
+
+// ****************************************************************************************
 
 // Extension to define colors using hex values
 extension UIColor {

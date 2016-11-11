@@ -10,6 +10,8 @@ class TagViewController: UIViewController {
 	@IBOutlet weak var tagImageView: UIImageView!
 	@IBOutlet weak var mapView: MKMapView!
 	@IBOutlet weak var tagName: UILabel!
+    @IBOutlet weak var tagStatus: UILabel!
+    @IBOutlet weak var tagLastSeen: UILabel!
 	
 	var image = UIImage()
 	override func viewDidLoad() {

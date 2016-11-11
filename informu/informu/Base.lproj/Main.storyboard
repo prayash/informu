@@ -6,7 +6,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--informµ-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="informu" customModuleProvider="target" sceneMemberID="viewController">
@@ -77,11 +77,21 @@
                                                 <outlet property="delegate" destination="BYZ-38-t0r" id="hfk-TS-TIZ"/>
                                             </connections>
                                         </collectionView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TAGS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Owz-7Z-dyP">
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="102" id="j0V-iE-83F"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="0.81368534482758625" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="trailing" secondItem="D77-lR-u48" secondAttribute="trailing" id="OgS-GJ-UeQ"/>
+                                        <constraint firstItem="Owz-7Z-dyP" firstAttribute="leading" secondItem="qLE-3J-t0a" secondAttribute="leadingMargin" id="aFk-cv-qf2"/>
                                         <constraint firstItem="D77-lR-u48" firstAttribute="leading" secondItem="qLE-3J-t0a" secondAttribute="leading" id="n7C-dW-YiN"/>
-                                        <constraint firstItem="D77-lR-u48" firstAttribute="top" secondItem="qLE-3J-t0a" secondAttribute="top" id="vkM-fM-f37"/>
+                                        <constraint firstItem="D77-lR-u48" firstAttribute="top" secondItem="Owz-7Z-dyP" secondAttribute="bottom" constant="1.5" id="uhh-G9-HBd"/>
+                                        <constraint firstItem="D77-lR-u48" firstAttribute="top" secondItem="qLE-3J-t0a" secondAttribute="top" constant="40" id="vkM-fM-f37"/>
                                     </constraints>
                                 </view>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -99,7 +109,7 @@
                             <constraint firstItem="5Dh-t0-A0x" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="y5K-hJ-LBr"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="3yf-9n-185">
+                    <navigationItem key="navigationItem" title="informµ" id="3yf-9n-185">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="JE3-sh-ci3">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
@@ -167,8 +177,15 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Status:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LSy-ki-G65">
+                                <frame key="frameInset" minX="146" minY="418" width="52" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Last Seen:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kbs-th-NRB">
-                                <frame key="frameInset" minX="146" minY="418" width="103" height="21"/>
+                                <frame key="frameInset" minX="146" minY="447" width="103" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -186,7 +203,9 @@
                     <connections>
                         <outlet property="mapView" destination="sPQ-w7-hxV" id="lxD-Df-rW8"/>
                         <outlet property="tagImageView" destination="UcV-HJ-Ohz" id="tXt-Pf-jyM"/>
+                        <outlet property="tagLastSeen" destination="Kbs-th-NRB" id="eMX-Bm-hzt"/>
                         <outlet property="tagName" destination="5np-ff-gb0" id="6Eg-PH-FAJ"/>
+                        <outlet property="tagStatus" destination="LSy-ki-G65" id="dp1-Ae-3R2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4bT-Ox-ijA" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -198,9 +217,15 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="FO9-sH-IzH" customClass="NavigationViewController" customModule="informu" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="OjQ-Zd-3To">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="OjQ-Zd-3To">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="1" green="0.43921568630000002" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="1" green="0.43921568630000002" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="textShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

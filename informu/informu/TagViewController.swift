@@ -9,11 +9,13 @@ import MapKit
 class TagViewController: UIViewController {
 	@IBOutlet weak var tagImageView: UIImageView!
 	@IBOutlet weak var mapView: MKMapView!
+	@IBOutlet weak var tagName: UILabel!
 	
 	var image = UIImage()
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		self.tagImageView.image = self.image
+		self.tagName.text = self.title
 		
 		// Show user location + zoom in
 		mapView.showsUserLocation = true

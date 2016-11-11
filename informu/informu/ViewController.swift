@@ -20,7 +20,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UICollectionV
 	
 	@IBOutlet weak var tagCollectionView: UICollectionView!
 	
-	let tags = ["µ1", "µ2"]
+	let tags = ["Wallet", "MacBook"]
 	let imageArray = [UIImage(named: "mu1"), UIImage(named: "mu2")]
 	
 	// Central point for configuring the delivery of location-related events to the application

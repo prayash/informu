@@ -20,7 +20,7 @@
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="lost" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IlY-uq-n2e">
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="40"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <visualEffectView opaque="NO" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Dh-t0-A0x">
@@ -51,8 +51,8 @@
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="µ1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yBh-Th-zLk">
-                                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
-                                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
+                                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
@@ -88,7 +88,7 @@
                                 <blurEffect style="regular"/>
                             </visualEffectView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="0.4392156862745098" blue="0.29803921568627451" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="5Dh-t0-A0x" secondAttribute="trailing" id="3DL-qW-1wu"/>
                             <constraint firstItem="IlY-uq-n2e" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="3V5-mF-bdz"/>
@@ -155,23 +155,38 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UcV-HJ-Ohz"/>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="sPQ-w7-hxV">
-                                <frame key="frameInset" minY="315" width="375" height="219"/>
+                                <frame key="frameInset" minY="64" width="375" height="307"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </mapView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UcV-HJ-Ohz"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Wallet" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5np-ff-gb0">
+                                <frame key="frameInset" minX="146" minY="389" width="82" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Last Seen:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kbs-th-NRB">
+                                <frame key="frameInset" minX="146" minY="418" width="103" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="0.4392156862745098" blue="0.29803921568627451" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="ssJ-HI-Pfs" firstAttribute="top" secondItem="UcV-HJ-Ohz" secondAttribute="bottom" constant="350" id="JLa-dE-sYv"/>
-                            <constraint firstAttribute="trailing" secondItem="UcV-HJ-Ohz" secondAttribute="trailing" id="Ljh-dm-JS4"/>
-                            <constraint firstItem="UcV-HJ-Ohz" firstAttribute="top" secondItem="7Hs-sQ-dCv" secondAttribute="bottom" constant="-10" id="ejc-Pg-wZy"/>
-                            <constraint firstItem="UcV-HJ-Ohz" firstAttribute="leading" secondItem="HV7-ER-GMa" secondAttribute="leading" id="kUN-Iu-5qW"/>
+                            <constraint firstItem="ssJ-HI-Pfs" firstAttribute="top" secondItem="UcV-HJ-Ohz" secondAttribute="bottom" constant="171" id="JLa-dE-sYv"/>
+                            <constraint firstAttribute="trailing" secondItem="UcV-HJ-Ohz" secondAttribute="trailing" constant="237" id="Ljh-dm-JS4"/>
+                            <constraint firstItem="UcV-HJ-Ohz" firstAttribute="top" secondItem="7Hs-sQ-dCv" secondAttribute="bottom" constant="315" id="ejc-Pg-wZy"/>
+                            <constraint firstItem="UcV-HJ-Ohz" firstAttribute="leading" secondItem="HV7-ER-GMa" secondAttribute="leading" constant="8" id="kUN-Iu-5qW"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="mapView" destination="sPQ-w7-hxV" id="lxD-Df-rW8"/>
                         <outlet property="tagImageView" destination="UcV-HJ-Ohz" id="tXt-Pf-jyM"/>
+                        <outlet property="tagName" destination="5np-ff-gb0" id="6Eg-PH-FAJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4bT-Ox-ijA" userLabel="First Responder" sceneMemberID="firstResponder"/>

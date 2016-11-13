@@ -1,0 +1,20 @@
+PODS:
+  - EZSwipeController (0.6.1)
+  - Material (2.3.8):
+    - Material/Core (= 2.3.8)
+  - Material/Core (2.3.8)
+  - Pulsator (0.2.0)
+
+DEPENDENCIES:
+  - EZSwipeController
+  - Material (~> 2.0)
+  - Pulsator (~> 0.2)
+
+SPEC CHECKSUMS:
+  EZSwipeController: 255b0f8aed31963b0236802c926e27dd006a2532
+  Material: d1141bd0cae4c423709349920c1ca541b0521d81
+  Pulsator: 0df1d24c09354555be8f4c386ba7c4df297690eb
+
+PODFILE CHECKSUM: f9a860df907efc89bc7784b94c1f32708b4b457e
+
+COCOAPODS: 1.1.1

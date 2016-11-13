@@ -42,6 +42,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UICollectionV
 		locationManager = CLLocationManager()
 		locationManager.delegate = self
 		locationManager.requestAlwaysAuthorization()
+		
 	}
 	
 	// Animate addTagPopUp
@@ -49,6 +50,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UICollectionV
 		// Enter view
 		self.view.addSubview(addTagPopUp)
 		addTagPopUp.center = self.view.center
+		let pulsator = Pulsator()
+		visualEffectView.layer.addSublayer(pulsator)
+		pulsator.start()
+		pulsator.numPulse = 3
+		pulsator.radius = 240.0
+		pulsator.backgroundColor = UIColor(red: 1, green: 1, blue: 0, alpha: 1).cgColor
 		
 		// Initial animation state
 		addTagPopUp.transform = CGAffineTransform.init(scaleX: 1.3, y: 1.3)

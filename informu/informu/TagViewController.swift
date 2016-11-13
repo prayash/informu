@@ -30,6 +30,10 @@ class TagViewController: UIViewController {
 		print(userLocation)
 		
 	}
+	
+	func animateView() {
+		
+	}
 
 	/*
 	// MARK: - Navigation

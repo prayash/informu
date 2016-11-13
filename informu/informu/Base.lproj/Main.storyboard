@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="FO9-sH-IzH">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Bvm-js-7JL">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--informµ-->
+        <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="informu" customModuleProvider="target" sceneMemberID="viewController">
@@ -109,7 +109,7 @@
                             <constraint firstItem="5Dh-t0-A0x" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="y5K-hJ-LBr"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="informµ" id="3yf-9n-185">
+                    <navigationItem key="navigationItem" id="3yf-9n-185">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="JE3-sh-ci3">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
@@ -212,12 +212,93 @@
             </objects>
             <point key="canvasLocation" x="1837.5999999999999" y="138.98050974512745"/>
         </scene>
+        <!--Login View Controller-->
+        <scene sceneID="60y-qL-1Gs">
+            <objects>
+                <viewController id="Bvm-js-7JL" customClass="LoginViewController" customModule="informu" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="1XQ-0r-8b0"/>
+                        <viewControllerLayoutGuide type="bottom" id="YfY-NY-6IM"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="muo-zs-pHS">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bgLogin" translatesAutoresizingMaskIntoConstraints="NO" id="drk-zs-Ffk">
+                                <frame key="frameInset" minY="-1"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bgCard" translatesAutoresizingMaskIntoConstraints="NO" id="7YZ-ax-1zr">
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="425" id="cwd-MU-Ruq"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="308" id="ebO-Sb-laL"/>
+                                    <constraint firstAttribute="height" constant="425" id="nSg-VJ-dUw"/>
+                                    <constraint firstAttribute="width" constant="308" id="q0S-Xp-YSd"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loginLogo" translatesAutoresizingMaskIntoConstraints="NO" id="2ak-Ll-2x7">
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="159" id="3vQ-lL-Glo"/>
+                                    <constraint firstAttribute="height" constant="85" id="Qep-zk-b2x"/>
+                                </constraints>
+                            </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" text="Prayash Thapa" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="L3X-TF-r4b" customClass="LoginTextField" customModule="informu" customModuleProvider="target">
+                                <frame key="frameInset" minX="86" minY="293" width="203" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="textColor" red="0.19607843137254902" green="0.19607843137254902" blue="0.19607843137254902" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="USERNAME" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9XR-9j-J6g">
+                                <frame key="frameInset" minX="95" minY="293" width="114" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="10"/>
+                                <color key="textColor" red="0.25882352941176467" green="0.25882352941176467" blue="0.25882352941176467" alpha="0.48149245689655173" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aws-xs-hSf">
+                                <frame key="frameInset" minX="86" minY="424" width="204" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.4392156862745098" blue="0.29803921568627451" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
+                                <state key="normal" title="REGISTER">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" text="*********" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OAU-dL-LSS" customClass="LoginTextField" customModule="informu" customModuleProvider="target">
+                                <frame key="frameInset" minX="86" minY="356" width="204" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="textColor" red="0.1960784314" green="0.1960784314" blue="0.1960784314" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="PASSWORD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z0X-yS-eVW">
+                                <frame key="frameInset" minX="95" minY="356" width="114" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="10"/>
+                                <color key="textColor" red="0.25882352939999997" green="0.25882352939999997" blue="0.25882352939999997" alpha="0.48149245689999998" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="7YZ-ax-1zr" firstAttribute="centerY" secondItem="muo-zs-pHS" secondAttribute="centerY" id="7ck-1S-qb6"/>
+                            <constraint firstItem="2ak-Ll-2x7" firstAttribute="centerX" secondItem="7YZ-ax-1zr" secondAttribute="centerX" id="YHA-5Q-lHD"/>
+                            <constraint firstItem="7YZ-ax-1zr" firstAttribute="centerX" secondItem="muo-zs-pHS" secondAttribute="centerX" id="Yb2-nI-Cds"/>
+                            <constraint firstItem="2ak-Ll-2x7" firstAttribute="centerY" secondItem="7YZ-ax-1zr" secondAttribute="centerY" constant="-109" id="ppO-tx-QBF"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mOY-DX-Vel" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1076" y="-510.49475262368821"/>
+        </scene>
         <!--Navigation View Controller-->
         <scene sceneID="0DA-8U-bpU">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="FO9-sH-IzH" customClass="NavigationViewController" customModule="informu" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="OjQ-Zd-3To">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="OjQ-Zd-3To">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="1" green="0.43921568630000002" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -237,4 +318,9 @@
             <point key="canvasLocation" x="136.80000000000001" y="138.98050974512745"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="bgCard" width="321" height="397"/>
+        <image name="bgLogin" width="375" height="667"/>
+        <image name="loginLogo" width="190" height="55"/>
+    </resources>
 </document>

@@ -8,7 +8,7 @@ import UserNotifications
 // ****************************************************************************************
 
 class ViewController: UIViewController, CLLocationManagerDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
-    
+
 	@IBOutlet var addTagPopUp: UIView!
 	@IBOutlet weak var distanceLabel: UILabel!
 	@IBOutlet weak var tagCollectionView: UICollectionView!
@@ -95,11 +95,15 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UICollectionV
 		let uuid = NSUUID(uuidString: "E2C56DB5-DFFB-48D2-B060-D0F5A71096E0")
 		let beaconRegion = CLBeaconRegion(proximityUUID: uuid as! UUID, identifier: "Simblee")
 		
+		// When a device enters or exits the vicinity of a beacon
 		locationManager.startMonitoring(for: beaconRegion)
+		
+		//Bbegin receiving notifications when the relative distance to the beacon changes
 		locationManager.startRangingBeacons(in: beaconRegion)
 	}
 	
 	// Scan for beacon and updateDistance if found
+	// The location manager reports any encountered beacons to its delegate
 	func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
 		print(beacons)
 		if beacons.count > 0 {

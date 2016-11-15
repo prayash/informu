@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 	// Override point for customization after application launch.
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions:[UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 		
-		let notificationSettings = UIUserNotificationSettings(types: [.badge, .alert, .sound], categories: nil)
+		let notificationSettings = UIUserNotificationSettings(types: [.alert, .sound], categories: nil)
 		UIApplication.shared.registerUserNotificationSettings(notificationSettings)
 
 		return true

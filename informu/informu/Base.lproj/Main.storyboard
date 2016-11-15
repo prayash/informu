@@ -217,7 +217,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="FO9-sH-IzH" customClass="NavigationViewController" customModule="informu" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="OjQ-Zd-3To">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="OjQ-Zd-3To">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="1" green="0.43921568630000002" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>

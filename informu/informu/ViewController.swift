@@ -113,7 +113,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UICollectionV
 			switch distance {
 				case .unknown:
 					self.distanceLabel.text = "lost"
-					// self.createLocationNotification()
+					self.createLocationNotification()
 				
 				case .far:
 					self.distanceLabel.text = "far"
@@ -129,14 +129,16 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UICollectionV
 	
 	// Helper to send local notification
 	func createLocationNotification() {
+		// Fire off LocalNotification now.
 		let localNotification = UILocalNotification()
 		localNotification.fireDate = Date()
-		localNotification.soundName = UILocalNotificationDefaultSoundName
-		localNotification.userInfo = [
-			"message" : "µ lost."
-		]
 		
+		localNotification.alertTitle = "Tag lost."
+		localNotification.applicationIconBadgeNumber = 0
+		localNotification.soundName = UILocalNotificationDefaultSoundName
+		localNotification.userInfo = ["message" : "µ lost."]
 		localNotification.alertBody = "Lost!"
+		
 		UIApplication.shared.scheduleLocalNotification(localNotification)
 	}
 	
@@ -148,7 +150,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UICollectionV
 		let tag = collectionView.dequeueReusableCell(withReuseIdentifier: "tag", for: indexPath) as! CollectionViewCell
 		tag.imageView?.image = self.imageArray[indexPath.row]
 		tag.tagName?.text = self.tags[indexPath.row]
-		
 		
 		return tag
 	}
@@ -174,6 +175,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UICollectionV
 			// Set the respective parameters of the new view
 			vc.image = self.imageArray[indexPath.row]!
 			vc.title = self.tags[indexPath.row]
+			
 		}
 	}
 

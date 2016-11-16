@@ -13,6 +13,15 @@ class NavigationViewController: UINavigationController, UIViewControllerTransiti
 		// Status bar white font
 		self.navigationBar.barStyle = UIBarStyle.black
 		self.navigationBar.tintColor = UIColor.white
+		self.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(name: "HelveticaNeue-Light", size: 22.0)!];
+
+		// Print out all available fonts
+//		for familyName in UIFont.familyNames {
+//			for font in UIFont.fontNames(forFamilyName: (familyName as? String)!) {
+//				print("font: \(font)")
+//			}
+//		}
+		
 	}
 	
 	override func didReceiveMemoryWarning() {

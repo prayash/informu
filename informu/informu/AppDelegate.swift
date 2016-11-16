@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 	// Override point for customization after application launch.
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions:[UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 		
-		let notificationSettings = UIUserNotificationSettings(types: [.alert, .sound], categories: nil)
+		let notificationSettings = UIUserNotificationSettings(types: [.badge, .alert, .sound], categories: nil)
 		UIApplication.shared.registerUserNotificationSettings(notificationSettings)
 
 		return true
@@ -28,7 +28,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 	func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
 		let notification = UILocalNotification()
 		notification.alertBody = "didExitRegion"
+		notification.applicationIconBadgeNumber = 0
 		UIApplication.shared.presentLocalNotificationNow(notification)
+	}
+	
+	func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
+		// enterRegion
 	}
 	
 	func application(_ application: UIApplication, didReceive notification: UILocalNotification) {

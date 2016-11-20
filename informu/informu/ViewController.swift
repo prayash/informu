@@ -72,7 +72,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UICollectionV
 				self.addTagPopUp.removeFromSuperview()
 			}
 	}
-		
+
 	func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
 		if status == CLAuthorizationStatus.authorizedAlways || status == CLAuthorizationStatus.authorizedWhenInUse {
 			if CLLocationManager.isMonitoringAvailable(for: CLBeaconRegion.self) {

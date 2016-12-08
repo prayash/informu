@@ -8,25 +8,27 @@
 
 /* Begin PBXBuildFile section */
 		ED72DDD61DD433DB00CAB3D4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED72DDD51DD433DB00CAB3D4 /* Assets.xcassets */; };
+		EDA00EE51DF97859008123CA /* TagsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA00EE41DF97859008123CA /* TagsTableViewController.swift */; };
+		EDA00EE71DF97E82008123CA /* TagTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA00EE61DF97E82008123CA /* TagTableViewCell.swift */; };
 		EDB785831DD42CB700312A41 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB785821DD42CB700312A41 /* CollectionViewCell.swift */; };
 		EDB785851DD42CD200312A41 /* TagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB785841DD42CD200312A41 /* TagViewController.swift */; };
 		EDE450CA1DC3F1B0006A6051 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE450C91DC3F1B0006A6051 /* AppDelegate.swift */; };
 		EDE450CC1DC3F1B0006A6051 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE450CB1DC3F1B0006A6051 /* ViewController.swift */; };
 		EDE450CF1DC3F1B0006A6051 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDE450CD1DC3F1B0006A6051 /* Main.storyboard */; };
-		EDE450D21DC3F1B0006A6051 /* iBeacon.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EDE450D01DC3F1B0006A6051 /* iBeacon.xcdatamodeld */; };
 		EDE450D71DC3F1B0006A6051 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDE450D51DC3F1B0006A6051 /* LaunchScreen.storyboard */; };
 		EDF89B651DD458F500BFD09B /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF89B641DD458F500BFD09B /* NavigationViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		ED72DDD51DD433DB00CAB3D4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EDA00EE41DF97859008123CA /* TagsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsTableViewController.swift; sourceTree = "<group>"; };
+		EDA00EE61DF97E82008123CA /* TagTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagTableViewCell.swift; sourceTree = "<group>"; };
 		EDB785821DD42CB700312A41 /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		EDB785841DD42CD200312A41 /* TagViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagViewController.swift; sourceTree = "<group>"; };
 		EDE450C61DC3F1B0006A6051 /* informu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = informu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDE450C91DC3F1B0006A6051 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EDE450CB1DC3F1B0006A6051 /* ViewController.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; tabWidth = 2; };
 		EDE450CE1DC3F1B0006A6051 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		EDE450D11DC3F1B0006A6051 /* iBeacon.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = iBeacon.xcdatamodel; sourceTree = "<group>"; };
 		EDE450D61DC3F1B0006A6051 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EDE450D81DC3F1B0006A6051 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EDF89B641DD458F500BFD09B /* NavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationViewController.swift; sourceTree = "<group>"; };
@@ -69,6 +71,8 @@
 			children = (
 				EDE450C91DC3F1B0006A6051 /* AppDelegate.swift */,
 				EDE450CB1DC3F1B0006A6051 /* ViewController.swift */,
+				EDA00EE41DF97859008123CA /* TagsTableViewController.swift */,
+				EDA00EE61DF97E82008123CA /* TagTableViewCell.swift */,
 				EDE450CD1DC3F1B0006A6051 /* Main.storyboard */,
 				EDF89B641DD458F500BFD09B /* NavigationViewController.swift */,
 				EDB785821DD42CB700312A41 /* CollectionViewCell.swift */,
@@ -76,7 +80,6 @@
 				EDE450D51DC3F1B0006A6051 /* LaunchScreen.storyboard */,
 				ED72DDD51DD433DB00CAB3D4 /* Assets.xcassets */,
 				EDE450D81DC3F1B0006A6051 /* Info.plist */,
-				EDE450D01DC3F1B0006A6051 /* iBeacon.xcdatamodeld */,
 			);
 			path = informu;
 			sourceTree = "<group>";
@@ -168,10 +171,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				EDF89B651DD458F500BFD09B /* NavigationViewController.swift in Sources */,
-				EDE450D21DC3F1B0006A6051 /* iBeacon.xcdatamodeld in Sources */,
 				EDE450CC1DC3F1B0006A6051 /* ViewController.swift in Sources */,
 				EDB785851DD42CD200312A41 /* TagViewController.swift in Sources */,
+				EDA00EE71DF97E82008123CA /* TagTableViewCell.swift in Sources */,
 				EDB785831DD42CB700312A41 /* CollectionViewCell.swift in Sources */,
+				EDA00EE51DF97859008123CA /* TagsTableViewController.swift in Sources */,
 				EDE450CA1DC3F1B0006A6051 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -349,19 +353,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		EDE450D01DC3F1B0006A6051 /* iBeacon.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				EDE450D11DC3F1B0006A6051 /* iBeacon.xcdatamodel */,
-			);
-			currentVersion = EDE450D11DC3F1B0006A6051 /* iBeacon.xcdatamodel */;
-			path = iBeacon.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = EDE450BE1DC3F1B0006A6051 /* Project object */;
 }

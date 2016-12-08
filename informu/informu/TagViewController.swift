@@ -20,8 +20,6 @@ class TagViewController: UIViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		self.tagImageView.image = self.image
-		self.tagName.text = self.title
 		
 		// Show user location + zoom in
 		mapView.showsUserLocation = true

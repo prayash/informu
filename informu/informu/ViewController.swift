@@ -12,7 +12,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UICollectionV
 	@IBOutlet var addTagPopUp: UIView!
 	@IBOutlet weak var distanceLabel: UILabel!
 	@IBOutlet weak var tagCollectionView: UICollectionView!
-	@IBOutlet weak var visualEffectView: UIVisualEffectView!
 	@IBAction func addTag(_ sender: AnyObject) { animateIn() }
 	@IBAction func doneAddTag(_ sender: AnyObject) { animateOut(); }
 	
@@ -27,9 +26,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UICollectionV
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		
-		// Deactivate blur visual effect
-		visualEffectView.effect = nil
 		
 		// Add corner radius to addTagPopUp
 		addTagPopUp.layer.cornerRadius = 5
@@ -63,7 +59,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UICollectionV
 		
 		UIView.animate(withDuration: 0.4) {
 			// Use self because we are within a closure
-			self.visualEffectView.effect = UIBlurEffect(style: .light)
 			self.addTagPopUp.alpha = 1
 			self.addTagPopUp.transform = CGAffineTransform.identity
 		}
@@ -74,7 +69,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UICollectionV
 		UIView.animate(withDuration: 0.3, animations: {
 			self.addTagPopUp.transform = CGAffineTransform.init(scaleX: 1.3, y: 1.3)
 			self.addTagPopUp.alpha = 0
-			self.visualEffectView.effect = nil
 			}) { (success:Bool) in
 				self.addTagPopUp.removeFromSuperview()
 			}
@@ -180,8 +174,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UICollectionV
 			let vc = segue.destination as! TagViewController
 			
 			// Set the respective parameters of the new view
-			vc.image = self.imageArray[indexPath.row]!
-			vc.title = self.tags[indexPath.row]
+//			vc.image = self.imageArray[indexPath.row]!
+//			vc.title = self.tags[indexPath.row]
 			
 		}
 	}

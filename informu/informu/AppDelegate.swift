@@ -71,7 +71,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 			case .unknown:
 					print("unknown")
 //				self.distanceLabel.text = "lost"
-//				self.createLocationNotification()
+				self.createLocationNotification()
 				
 			case .far:
 				print("far")
@@ -101,7 +101,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 	
 	func application(_ application: UIApplication, didReceive notification: UILocalNotification) {
 		if (application.applicationState == .active) {
-			// Inside app, do something!
+			
 		}
 		
 		self.takeActionWithNotification(localNotification: notification)
@@ -109,16 +109,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 	
 	func takeActionWithNotification(localNotification: UILocalNotification) {
 		let notificationMessage = localNotification.userInfo!["message"] as! String
-		let alertController = UIAlertController(title: "Hey user", message: notificationMessage, preferredStyle: .alert)
+		let uuid = NSUUID(uuidString: "E2C56DB5-DFFB-48D2-B060-D0F5A71096E0")
+		let beaconRegion = CLBeaconRegion(proximityUUID: uuid as! UUID, identifier: "Simblee")
+		let alertController = UIAlertController(title: "Alert!", message: notificationMessage, preferredStyle: .alert)
 		let remindMeLaterAction = UIAlertAction(title: "Remind Me Later", style: .default, handler: nil)
-		let sureAction = UIAlertAction(title: "Sure", style: .default) { (action) in
-			// hello
+		let sureAction = UIAlertAction(title: "Locate item", style: .default) { (action) in
+			self.locationManager?.stopMonitoring(for: beaconRegion)
+			self.locationManager?.stopRangingBeacons(in: beaconRegion)
 		}
 		
-		alertController.addAction(remindMeLaterAction)
 		alertController.addAction(sureAction)
 		
 		self.window?.rootViewController?.present(alertController, animated: true, completion: nil)
+	}
+	
+	func createLocationNotification() {
+		// Fire off LocalNotification now.
+		let localNotification = UILocalNotification()
+		localNotification.fireDate = Date()
+		
+		localNotification.alertTitle = "Wallet lost."
+		localNotification.applicationIconBadgeNumber = 0
+		localNotification.soundName = UILocalNotificationDefaultSoundName
+		localNotification.userInfo = ["message" : "Wallet lost."]
+		localNotification.alertBody = "You have left an item behind."
+		
+		UIApplication.shared.scheduleLocalNotification(localNotification)
 	}
 	
 	func applicationWillResignActive(_ application: UIApplication) {

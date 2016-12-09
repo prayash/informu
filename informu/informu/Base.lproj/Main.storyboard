@@ -14,7 +14,7 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -28,7 +28,6 @@
                     </navigationItem>
                     <connections>
                         <outlet property="addTagPopUp" destination="wuG-om-3d1" id="SRH-Ut-JWn"/>
-                        <segue destination="zXJ-j0-ktD" kind="show" identifier="showTag" id="L0Z-Lc-1Mm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -64,19 +63,19 @@
             <objects>
                 <tableViewController id="asA-WT-FW2" customClass="TagsTableViewController" customModule="informu" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="120" sectionHeaderHeight="28" sectionFooterHeight="28" id="8an-h2-Haf">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="sectionIndexBackgroundColor" red="0.89411764705882346" green="0.89411764705882346" blue="0.89411764705882346" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="TagCell" rowHeight="120" id="0ZE-Jr-dKW" customClass="TagTableViewCell" customModule="informu" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="414" height="120"/>
+                                <rect key="frame" x="0.0" y="92" width="320" height="120"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0ZE-Jr-dKW" id="9ou-1g-Ygs">
-                                    <frame key="frameInset" width="381" height="119"/>
+                                    <frame key="frameInset" width="287" height="119"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mu1" translatesAutoresizingMaskIntoConstraints="NO" id="1sD-ie-Goo">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mu1" translatesAutoresizingMaskIntoConstraints="NO" id="1sD-ie-Goo">
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="80" id="Egg-rW-jpv"/>
                                                 <constraint firstAttribute="width" constant="80" id="jIp-tj-3wg"/>
@@ -158,7 +157,7 @@
                         <viewControllerLayoutGuide type="bottom" id="ssJ-HI-Pfs"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="HV7-ER-GMa">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="sPQ-w7-hxV"/>
@@ -177,7 +176,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4bT-Ox-ijA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1862" y="472"/>
+            <point key="canvasLocation" x="1873" y="818"/>
         </scene>
         <!--Navigation View Controller-->
         <scene sceneID="0DA-8U-bpU">
@@ -201,7 +200,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bGv-x7-7zl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="136.80000000000001" y="138.98050974512745"/>
+            <point key="canvasLocation" x="246" y="138"/>
         </scene>
         <!--Navigation View Controller-->
         <scene sceneID="bum-xg-Tcp">
@@ -221,14 +220,11 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rWY-qd-sud" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="136" y="818"/>
+            <point key="canvasLocation" x="246" y="818"/>
         </scene>
     </scenes>
     <resources>
         <image name="icon-hamburger" width="22" height="16"/>
         <image name="mu1" width="542" height="457"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="igj-gR-Bq1"/>
-    </inferredMetricsTieBreakers>
 </document>

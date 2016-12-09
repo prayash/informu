@@ -165,13 +165,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UICollectionV
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if segue.identifier == "showTag" {
 			// Get # of items selected in collectionView
-			let indexPaths = self.tagCollectionView!.indexPathsForSelectedItems!
+//			let indexPaths = self.tagCollectionView!.indexPathsForSelectedItems!
 			
 			// Get first item and set that as indexPath
-			let indexPath = indexPaths[0] as NSIndexPath
+//			let indexPath = indexPaths[0] as NSIndexPath
 			
 			// Get the destination VC and cast it as new VC
-			let vc = segue.destination as! TagViewController
+//			let vc = segue.destination as! TagViewController
 			
 			// Set the respective parameters of the new view
 //			vc.image = self.imageArray[indexPath.row]!

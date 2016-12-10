@@ -23,6 +23,25 @@ class TagsTableViewController: UITableViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		
+		// Disable the ugly default lines
+		tableView.separatorStyle = .none
+	}
+	
+	override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+		
+		// Initial state of cell (full transparency)
+		cell.alpha = 0
+		
+		// Transform animation that brings em up
+		let entryAnim = CATransform3DTranslate(CATransform3DIdentity, 0, 500, 0)
+		cell.layer.transform = entryAnim
+		
+		// Animate in the tag Cells
+		UIView.animate(withDuration: 1.0, delay: 0, usingSpringWithDamping: 0.9, initialSpringVelocity: 0.25, options: [], animations: {
+			cell.alpha = 1.0
+			cell.layer.transform = CATransform3DIdentity
+		})
 	}
 	
 	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -37,9 +56,10 @@ class TagsTableViewController: UITableViewController {
 		cell.lastSeenLabel.text = "Last Seen: Today at 4:58 PM"
 		cell.locationLabel.text = "Location: 1023 Walnut St."
 		
-		let topBorder = UIView(frame: CGRect(x: CGFloat(0), y: CGFloat(0), width: CGFloat(414), height: CGFloat(5)))
+		// Top border for each Cell
+		let topBorder = UIView(frame: CGRect(x: CGFloat(0), y: CGFloat(0), width: CGFloat(355), height: CGFloat(5)))
 		topBorder.backgroundColor = self.colorArray[indexPath.row]
-//		cell.contentView.addSubview(topBorder)
+		cell.bgCardView.addSubview(topBorder)
 		return cell
 	}
 	

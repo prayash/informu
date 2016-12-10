@@ -56,7 +56,7 @@
                     <color key="backgroundColor" red="0.25882352941176467" green="0.25882352941176467" blue="0.25882352941176467" alpha="0.84428879310344829" colorSpace="calibratedRGB"/>
                 </view>
             </objects>
-            <point key="canvasLocation" x="1076" y="138.98050974512745"/>
+            <point key="canvasLocation" x="2582" y="817"/>
         </scene>
         <!--informµ-->
         <scene sceneID="lWb-fP-Ehv">
@@ -72,7 +72,7 @@
                                 <rect key="frame" x="0.0" y="92" width="375" height="120"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" tableViewCell="0ZE-Jr-dKW" id="9ou-1g-Ygs">
-                                    <frame key="frameInset" width="375" height="120"/>
+                                    <frame key="frameInset" width="375" height="119"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sWB-Ir-Czo">
@@ -189,35 +189,11 @@
             <point key="canvasLocation" x="1873" y="818"/>
         </scene>
         <!--Navigation View Controller-->
-        <scene sceneID="0DA-8U-bpU">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="FO9-sH-IzH" customClass="NavigationViewController" customModule="informu" customModuleProvider="target" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="OjQ-Zd-3To">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" red="1" green="0.43921568630000002" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="barTintColor" red="1" green="0.43921568630000002" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
-                        <textAttributes key="titleTextAttributes">
-                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <color key="textShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        </textAttributes>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="ODI-Ud-qKh"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="bGv-x7-7zl" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="246" y="138"/>
-        </scene>
-        <!--Navigation View Controller-->
         <scene sceneID="bum-xg-Tcp">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="YRp-Q8-fJ4" customClass="NavigationViewController" customModule="informu" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="sZI-rn-BsY">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="sZI-rn-BsY">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="0.8784313725490196" green="0.45490196078431372" blue="0.16862745098039217" alpha="1" colorSpace="calibratedRGB"/>

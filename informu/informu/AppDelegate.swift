@@ -19,21 +19,89 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 	// Override point for customization after application launch.
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions:[UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 		
+		// Initialize locationManager
+		locationManager = CLLocationManager()
+		locationManager?.delegate = self
+		locationManager?.requestAlwaysAuthorization()
+		
 		let notificationSettings = UIUserNotificationSettings(types: [.badge, .alert, .sound], categories: nil)
 		UIApplication.shared.registerUserNotificationSettings(notificationSettings)
 
 		return true
 	}
 	
+	func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+		if status == CLAuthorizationStatus.authorizedAlways || status == CLAuthorizationStatus.authorizedWhenInUse {
+			if CLLocationManager.isMonitoringAvailable(for: CLBeaconRegion.self) {
+				if CLLocationManager.isRangingAvailable() {
+					startScanning()
+				}
+			}
+		}
+	}
+	
+	// Initiate scanning
+	func startScanning() {
+		let uuid = NSUUID(uuidString: "E2C56DB5-DFFB-48D2-B060-D0F5A71096E0")
+		let beaconRegion = CLBeaconRegion(proximityUUID: uuid as! UUID, identifier: "Simblee")
+		
+		// When a device enters or exits the vicinity of a beacon
+		locationManager?.startMonitoring(for: beaconRegion)
+		
+		//Bbegin receiving notifications when the relative distance to the beacon changes
+		locationManager?.startRangingBeacons(in: beaconRegion)
+	}
+	
+	// Scan for beacon and updateDistance if found
+	// The location manager reports any encountered beacons to its delegate
+	func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
+		print(beacons)
+		if beacons.count > 0 {
+			let beacon = beacons.first! as CLBeacon
+			updateDistance(distance: beacon.proximity)
+		} else {
+			updateDistance(distance: .unknown)
+		}
+	}
+	
+	// Regularly update UI with proximity
+	func updateDistance(distance: CLProximity) {
+//		UIView.animate(withDuration: 1) { [unowned self] in
+			switch distance {
+			case .unknown:
+					print("unknown")
+//				self.distanceLabel.text = "lost"
+				self.createLocationNotification()
+				
+			case .far:
+				print("far")
+//				self.distanceLabel.text = "far"
+				
+			case .near:
+				print("near")
+//				self.distanceLabel.text = "near"
+				
+			case .immediate:
+				print("immediate")
+//				self.distanceLabel.text = "immediate"
+			}
+//		}
+	}
+	
 	func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
 		let notification = UILocalNotification()
 		notification.alertBody = "didExitRegion"
+		notification.applicationIconBadgeNumber = 0
 		UIApplication.shared.presentLocalNotificationNow(notification)
+	}
+	
+	func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
+		// enterRegion
 	}
 	
 	func application(_ application: UIApplication, didReceive notification: UILocalNotification) {
 		if (application.applicationState == .active) {
-			// Inside app, do something!
+			
 		}
 		
 		self.takeActionWithNotification(localNotification: notification)
@@ -41,16 +109,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 	
 	func takeActionWithNotification(localNotification: UILocalNotification) {
 		let notificationMessage = localNotification.userInfo!["message"] as! String
-		let alertController = UIAlertController(title: "Hey user", message: notificationMessage, preferredStyle: .alert)
+		let uuid = NSUUID(uuidString: "E2C56DB5-DFFB-48D2-B060-D0F5A71096E0")
+		let beaconRegion = CLBeaconRegion(proximityUUID: uuid as! UUID, identifier: "Simblee")
+		let alertController = UIAlertController(title: "Alert!", message: notificationMessage, preferredStyle: .alert)
 		let remindMeLaterAction = UIAlertAction(title: "Remind Me Later", style: .default, handler: nil)
-		let sureAction = UIAlertAction(title: "Sure", style: .default) { (action) in
-			// hello
+		let sureAction = UIAlertAction(title: "Locate item", style: .default) { (action) in
+			self.locationManager?.stopMonitoring(for: beaconRegion)
+			self.locationManager?.stopRangingBeacons(in: beaconRegion)
 		}
 		
-		alertController.addAction(remindMeLaterAction)
 		alertController.addAction(sureAction)
 		
 		self.window?.rootViewController?.present(alertController, animated: true, completion: nil)
+	}
+	
+	func createLocationNotification() {
+		// Fire off LocalNotification now.
+		let localNotification = UILocalNotification()
+		localNotification.fireDate = Date()
+		
+		localNotification.alertTitle = "Wallet lost."
+		localNotification.applicationIconBadgeNumber = 0
+		localNotification.soundName = UILocalNotificationDefaultSoundName
+		localNotification.userInfo = ["message" : "Wallet lost."]
+		localNotification.alertBody = "You have left an item behind."
+		
+		UIApplication.shared.scheduleLocalNotification(localNotification)
 	}
 	
 	func applicationWillResignActive(_ application: UIApplication) {

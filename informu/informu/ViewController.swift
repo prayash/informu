@@ -8,11 +8,10 @@ import UserNotifications
 // ****************************************************************************************
 
 class ViewController: UIViewController, CLLocationManagerDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
-    
+
 	@IBOutlet var addTagPopUp: UIView!
 	@IBOutlet weak var distanceLabel: UILabel!
 	@IBOutlet weak var tagCollectionView: UICollectionView!
-	@IBOutlet weak var visualEffectView: UIVisualEffectView!
 	@IBAction func addTag(_ sender: AnyObject) { animateIn() }
 	@IBAction func doneAddTag(_ sender: AnyObject) { animateOut(); }
 	
@@ -28,9 +27,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UICollectionV
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		// Deactivate blur visual effect
-		visualEffectView.effect = nil
-		
 		// Add corner radius to addTagPopUp
 		addTagPopUp.layer.cornerRadius = 5
 		
@@ -42,7 +38,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UICollectionV
 		locationManager = CLLocationManager()
 		locationManager.delegate = self
 		locationManager.requestAlwaysAuthorization()
-		
 	}
 	
 	// Animate addTagPopUp
@@ -50,12 +45,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UICollectionV
 		// Enter view
 		self.view.addSubview(addTagPopUp)
 		addTagPopUp.center = self.view.center
-		let pulsator = Pulsator()
-		visualEffectView.layer.addSublayer(pulsator)
-		pulsator.start()
-		pulsator.numPulse = 3
-		pulsator.radius = 240.0
-		pulsator.backgroundColor = UIColor(red: 1, green: 1, blue: 0, alpha: 1).cgColor
 		
 		// Initial animation state
 		addTagPopUp.transform = CGAffineTransform.init(scaleX: 1.3, y: 1.3)
@@ -63,7 +52,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UICollectionV
 		
 		UIView.animate(withDuration: 0.4) {
 			// Use self because we are within a closure
-			self.visualEffectView.effect = UIBlurEffect(style: .light)
 			self.addTagPopUp.alpha = 1
 			self.addTagPopUp.transform = CGAffineTransform.identity
 		}
@@ -74,12 +62,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UICollectionV
 		UIView.animate(withDuration: 0.3, animations: {
 			self.addTagPopUp.transform = CGAffineTransform.init(scaleX: 1.3, y: 1.3)
 			self.addTagPopUp.alpha = 0
-			self.visualEffectView.effect = nil
 			}) { (success:Bool) in
 				self.addTagPopUp.removeFromSuperview()
 			}
 	}
-		
+
 	func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
 		if status == CLAuthorizationStatus.authorizedAlways || status == CLAuthorizationStatus.authorizedWhenInUse {
 			if CLLocationManager.isMonitoringAvailable(for: CLBeaconRegion.self) {
@@ -95,11 +82,15 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UICollectionV
 		let uuid = NSUUID(uuidString: "E2C56DB5-DFFB-48D2-B060-D0F5A71096E0")
 		let beaconRegion = CLBeaconRegion(proximityUUID: uuid as! UUID, identifier: "Simblee")
 		
+		// When a device enters or exits the vicinity of a beacon
 		locationManager.startMonitoring(for: beaconRegion)
+		
+		//Bbegin receiving notifications when the relative distance to the beacon changes
 		locationManager.startRangingBeacons(in: beaconRegion)
 	}
 	
 	// Scan for beacon and updateDistance if found
+	// The location manager reports any encountered beacons to its delegate
 	func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
 		print(beacons)
 		if beacons.count > 0 {
@@ -116,7 +107,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UICollectionV
 			switch distance {
 				case .unknown:
 					self.distanceLabel.text = "lost"
-					// self.createLocationNotification()
+					self.createLocationNotification()
 				
 				case .far:
 					self.distanceLabel.text = "far"
@@ -132,14 +123,16 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UICollectionV
 	
 	// Helper to send local notification
 	func createLocationNotification() {
+		// Fire off LocalNotification now.
 		let localNotification = UILocalNotification()
 		localNotification.fireDate = Date()
-		localNotification.soundName = UILocalNotificationDefaultSoundName
-		localNotification.userInfo = [
-			"message" : "µ lost."
-		]
 		
+		localNotification.alertTitle = "Tag lost."
+		localNotification.applicationIconBadgeNumber = 0
+		localNotification.soundName = UILocalNotificationDefaultSoundName
+		localNotification.userInfo = ["message" : "µ lost."]
 		localNotification.alertBody = "Lost!"
+		
 		UIApplication.shared.scheduleLocalNotification(localNotification)
 	}
 	
@@ -151,7 +144,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UICollectionV
 		let tag = collectionView.dequeueReusableCell(withReuseIdentifier: "tag", for: indexPath) as! CollectionViewCell
 		tag.imageView?.image = self.imageArray[indexPath.row]
 		tag.tagName?.text = self.tags[indexPath.row]
-		
 		
 		return tag
 	}
@@ -166,17 +158,18 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UICollectionV
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if segue.identifier == "showTag" {
 			// Get # of items selected in collectionView
-			let indexPaths = self.tagCollectionView!.indexPathsForSelectedItems!
+//			let indexPaths = self.tagCollectionView!.indexPathsForSelectedItems!
 			
 			// Get first item and set that as indexPath
-			let indexPath = indexPaths[0] as NSIndexPath
+//			let indexPath = indexPaths[0] as NSIndexPath
 			
 			// Get the destination VC and cast it as new VC
-			let vc = segue.destination as! TagViewController
+//			let vc = segue.destination as! TagViewController
 			
 			// Set the respective parameters of the new view
-			vc.image = self.imageArray[indexPath.row]!
-			vc.title = self.tags[indexPath.row]
+//			vc.image = self.imageArray[indexPath.row]!
+//			vc.title = self.tags[indexPath.row]
+			
 		}
 	}
 

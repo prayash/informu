@@ -23,10 +23,6 @@ class TagViewController: UIViewController {
 		let userLocation = mapView.userLocation
 		print(userLocation)
 	}
-	
-	func animateView() {
-		
-	}
 
 	/*
 	// MARK: - Navigation

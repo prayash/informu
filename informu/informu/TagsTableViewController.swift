@@ -11,7 +11,7 @@ import UIKit
 class TagsTableViewController: UITableViewController {
 	let tags = ["Wallet", "MacBook"]
 	let imageArray = [UIImage(named: "mu1"), UIImage(named: "mu2")]
-	let colorArray = [UIColor(red: 0.98, green: 0.58, blue: 0.21, alpha: 1.0), UIColor(red: 0.45, green: 0.44, blue: 0.45, alpha: 1.0)]
+	let colorArray = [UIColor(red: 224/255.0, green: 116/255.0, blue: 43/255.0, alpha: 1.0), UIColor(red: 66/255.0, green: 66/255.0, blue: 66/255.0, alpha: 1.0)]
 	
 	@IBAction func menuButtonDidTouch(_ sender: AnyObject) {
 			
@@ -58,7 +58,7 @@ class TagsTableViewController: UITableViewController {
 		
 		// Top border for each Cell
 		let topBorder = UIView(frame: CGRect(x: CGFloat(0), y: CGFloat(0), width: CGFloat(355), height: CGFloat(5)))
-		topBorder.backgroundColor = self.colorArray[indexPath.row]
+		topBorder.backgroundColor = self.colorArray[indexPath.row].withAlphaComponent(0.5)
 		cell.bgCardView.addSubview(topBorder)
 		return cell
 	}

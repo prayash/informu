@@ -26,6 +26,11 @@ class TagsTableViewController: UITableViewController {
 		
 		// Disable the ugly default lines
 		tableView.separatorStyle = .none
+		
+	}
+	
+	override func viewDidAppear(_ animated: Bool) {
+		// self.tableView.bounds = CGRect(x: 0, y: 40, width: 320, height: 600)
 	}
 	
 	override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -38,7 +43,7 @@ class TagsTableViewController: UITableViewController {
 		cell.layer.transform = entryAnim
 		
 		// Animate in the tag Cells
-		UIView.animate(withDuration: 1.0, delay: 0, usingSpringWithDamping: 0.9, initialSpringVelocity: 0.25, options: [], animations: {
+		UIView.animate(withDuration: 1.0, delay: 0, usingSpringWithDamping: 0.9, initialSpringVelocity: 0.15, options: [], animations: {
 			cell.alpha = 1.0
 			cell.layer.transform = CATransform3DIdentity
 		})

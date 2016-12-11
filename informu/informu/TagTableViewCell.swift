@@ -19,9 +19,9 @@ class TagTableViewCell: UITableViewCell {
 	override func awakeFromNib() {
 		super.awakeFromNib()
 		
+		backgroundColor = UIColor(red: 235/255.0, green: 235/255.0, blue: 235/255.0, alpha: 1.0)
 		bgCardView.backgroundColor = UIColor.white;
-		contentView.backgroundColor = UIColor(red: 235/255.0, green: 235/255.0, blue: 235/255.0, alpha: 1.0)
-		bgCardView.layer.cornerRadius = 3.0
+		contentView.backgroundColor = backgroundColor
 		bgCardView.layer.masksToBounds = false
 		bgCardView.layer.shadowColor = UIColor.black.withAlphaComponent(0.2).cgColor
 		bgCardView.layer.shadowOffset = CGSize(width: 0, height: 0)

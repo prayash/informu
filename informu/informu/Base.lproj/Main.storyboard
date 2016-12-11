@@ -66,13 +66,30 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="sectionIndexBackgroundColor" red="0.89411764705882346" green="0.89411764705882346" blue="0.89411764705882346" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="sectionIndexBackgroundColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="calibratedRGB"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="CIW-vQ-jUh">
+                            <rect key="frame" x="0.0" y="64" width="375" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="TAGS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jpo-x6-0dB">
+                                    <frame key="frameInset" minX="33" minY="12" width="133" height="21"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                                    <color key="textColor" red="0.53333333333333333" green="0.53333333333333333" blue="0.53333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstItem="jpo-x6-0dB" firstAttribute="centerY" secondItem="CIW-vQ-jUh" secondAttribute="centerY" id="hpA-zd-2JU"/>
+                                <constraint firstItem="jpo-x6-0dB" firstAttribute="leading" secondItem="CIW-vQ-jUh" secondAttribute="leading" constant="33" id="xm3-37-hoX"/>
+                            </constraints>
+                        </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TagCell" rowHeight="120" id="0ZE-Jr-dKW" customClass="TagTableViewCell" customModule="informu" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="375" height="120"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="TagCell" rowHeight="120" id="0ZE-Jr-dKW" customClass="TagTableViewCell" customModule="informu" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="136" width="375" height="120"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" tableViewCell="0ZE-Jr-dKW" id="9ou-1g-Ygs">
-                                    <frame key="frameInset" width="375" height="119"/>
+                                    <frame key="frameInset" width="342" height="119"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sWB-Ir-Czo">
@@ -107,7 +124,7 @@
                                         <constraint firstItem="aU6-40-spd" firstAttribute="leading" secondItem="1sD-ie-Goo" secondAttribute="trailing" constant="8" id="9uR-du-3cm"/>
                                         <constraint firstItem="aU6-40-spd" firstAttribute="top" secondItem="9ou-1g-Ygs" secondAttribute="top" constant="25" id="AKt-w1-Kx7"/>
                                         <constraint firstAttribute="bottom" secondItem="sWB-Ir-Czo" secondAttribute="bottom" constant="10" id="JIY-vo-zpU"/>
-                                        <constraint firstAttribute="trailing" secondItem="sWB-Ir-Czo" secondAttribute="trailing" constant="10" id="NiM-Aw-6Xw"/>
+                                        <constraint firstAttribute="trailing" secondItem="sWB-Ir-Czo" secondAttribute="trailing" constant="-23" id="NiM-Aw-6Xw"/>
                                         <constraint firstAttribute="trailing" secondItem="x3E-mG-XgB" secondAttribute="trailing" constant="45" id="Nrk-ee-h9x"/>
                                         <constraint firstItem="x3E-mG-XgB" firstAttribute="leading" secondItem="1sD-ie-Goo" secondAttribute="trailing" constant="8" id="QAC-bY-ls5"/>
                                         <constraint firstItem="sWB-Ir-Czo" firstAttribute="leading" secondItem="9ou-1g-Ygs" secondAttribute="leading" constant="10" id="diH-21-zZW"/>
@@ -119,7 +136,7 @@
                                         <constraint firstItem="Vhe-3H-rSy" firstAttribute="top" secondItem="aU6-40-spd" secondAttribute="bottom" constant="5" id="ybd-aR-4Zo"/>
                                     </constraints>
                                 </tableViewCellContentView>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <connections>
                                     <outlet property="bgCardView" destination="sWB-Ir-Czo" id="c0w-N3-4Sw"/>

@@ -24,9 +24,10 @@ class SettingsLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDe
 	let cellId = "cellId"
 	let cellHeight: CGFloat = 50
 	let settings: [Setting] = {
-		return [Setting(name: "Settings", imageName: "settings"),
-		        Setting(name: "Remove", imageName: "remove"),
-		        Setting(name: "Cancel", imageName: "cancel")]
+		let cancelSetting = Setting(name: .Cancel, imageName: "cancel")
+		return [Setting(name: .Settings, imageName: "settings"),
+		        Setting(name: .Remove, imageName: "remove"),
+		       cancelSetting]
 	}()
 
 	func showSettings() {
@@ -63,9 +64,9 @@ class SettingsLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDe
 		}) { (completed: Bool) in
 
 			// Dismiss menu if tapped on overlayView
-			if setting.name.isEmpty {
+			if setting.name.rawValue.isEmpty {
 				return
-			} else if setting.name != "Cancel" && setting.name != "Remove" {
+			} else if setting.name != .Cancel && setting.name != .Remove {
 				self.tagViewController?.showEditViewController(setting: setting)
 			}
 		}

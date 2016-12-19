@@ -9,13 +9,19 @@
 import UIKit
 
 class Setting: NSObject {
-	let name: String
+	let name: SettingName
 	let imageName: String
 	
-	init(name: String, imageName: String) {
+	init(name: SettingName, imageName: String) {
 		self.name = name
 		self.imageName = imageName
 	}
+}
+
+enum SettingName: String {
+	case Cancel = "Cancel"
+	case Settings = "Settings"
+	case Remove = "Remove"
 }
 
 class SettingCell: BaseCell {
@@ -30,7 +36,7 @@ class SettingCell: BaseCell {
 	
 	var setting: Setting? {
 		didSet {
-			nameLabel.text = setting?.name
+			nameLabel.text = setting?.name.rawValue
 			
 			if let imageName = setting?.imageName {
 				iconImageView.image = UIImage(named: imageName)?.withRenderingMode(.alwaysTemplate)

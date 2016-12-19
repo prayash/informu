@@ -90,11 +90,11 @@ class TagsTableViewController: UITableViewController {
 		let tagLastSeen = "Today at 11:16 PM"
 		let tagLocation = "1311 College Ave"
 		
-		let tag  : [String : AnyObject] = ["name" : tagName as AnyObject,
-		                                   "color" : tagColor as AnyObject,
-		                                   "proximityUUID" : tagProximityUUID as AnyObject,
-		                                   "lastSeen" : tagLastSeen as AnyObject,
-		                                   "location" : tagLocation as AnyObject]
+		let tag: [String: AnyObject] = ["name": tagName as AnyObject,
+																		"color": tagColor as AnyObject,
+																		"proximityUUID": tagProximityUUID as AnyObject,
+																		"lastSeen": tagLastSeen as AnyObject,
+																		"location": tagLocation as AnyObject]
 		
 		let dbRef = FIRDatabase.database().reference()
 		dbRef.child("Tags").childByAutoId().setValue(tag)

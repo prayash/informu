@@ -42,7 +42,7 @@ class TagViewController: UIViewController {
 	func showEditViewController(setting: Setting) {
 		let editViewController = UIViewController()
 		editViewController.view.backgroundColor = UIColor.white
-		editViewController.navigationItem.title = setting.name
+		editViewController.navigationItem.title = setting.name.rawValue
 		navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
 		navigationController?.navigationBar.tintColor = UIColor.white
 		navigationController?.pushViewController(editViewController, animated: true)

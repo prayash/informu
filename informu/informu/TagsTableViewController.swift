@@ -22,6 +22,7 @@ class TagsTableViewController: UITableViewController {
 	let imageArray = [UIImage(named: "mu-orange"),
 	                  UIImage(named: "mu-teal"),
 	                  UIImage(named: "mu-blue")]
+	
 	let INF_ORANGE = UIColor(red: 224/255.0, green: 116/255.0, blue: 43/255.0, alpha: 1.0)
 	let INF_TEAL = UIColor(red: 66/255.0, green: 66/255.0, blue: 66/255.0, alpha: 1.0)
 	let INF_BLUE = UIColor(red: 66/255.0, green: 66/255.0, blue: 66/255.0, alpha: 1.0)
@@ -33,7 +34,7 @@ class TagsTableViewController: UITableViewController {
 	}
 
 	@IBAction func addTagButtonDidTouch(_ sender: AnyObject) {
-		addTag()
+//		addTag()
 	}
 	
 	override func viewDidLoad() {
@@ -45,6 +46,7 @@ class TagsTableViewController: UITableViewController {
 		// Add color palette
 		colorArray = [INF_ORANGE, INF_TEAL, INF_BLUE]
 		
+		FIRDatabase.database().persistenceEnabled = true
 		let dbRef = FIRDatabase.database().reference()
 		dbRef.child("Tags").queryOrderedByKey().observe(.childAdded, with: {
 			snapshot in

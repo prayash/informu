@@ -7,18 +7,33 @@
 //
 
 import UIKit
+import FirebaseDatabase
+
+struct Tag {
+	let name : String!
+	let color : String!
+	let proximityUUID : String!
+	let lastSeen : String!
+	let location : String!
+}
 
 class TagsTableViewController: UITableViewController {
-	let tags = ["Wallet", "MacBook"]
-	let imageArray = [UIImage(named: "mu1"), UIImage(named: "mu2")]
-	let colorArray = [UIColor(red: 224/255.0, green: 116/255.0, blue: 43/255.0, alpha: 1.0), UIColor(red: 66/255.0, green: 66/255.0, blue: 66/255.0, alpha: 1.0)]
+	var tags = [Tag]()
+	let imageArray = [UIImage(named: "mu-orange"),
+	                  UIImage(named: "mu-teal"),
+	                  UIImage(named: "mu-blue")]
+	let INF_ORANGE = UIColor(red: 224/255.0, green: 116/255.0, blue: 43/255.0, alpha: 1.0)
+	let INF_TEAL = UIColor(red: 66/255.0, green: 66/255.0, blue: 66/255.0, alpha: 1.0)
+	let INF_BLUE = UIColor(red: 66/255.0, green: 66/255.0, blue: 66/255.0, alpha: 1.0)
+	
+	var colorArray = [UIColor]()
 	
 	@IBAction func menuButtonDidTouch(_ sender: AnyObject) {
-			
+		
 	}
 
 	@IBAction func addTagButtonDidTouch(_ sender: AnyObject) {
-			
+		addTag()
 	}
 	
 	override func viewDidLoad() {
@@ -27,10 +42,49 @@ class TagsTableViewController: UITableViewController {
 		// Disable the ugly default lines
 		tableView.separatorStyle = .none
 		
+		// Add color palette
+		colorArray = [INF_ORANGE, INF_TEAL, INF_BLUE]
+		
+		let dbRef = FIRDatabase.database().reference()
+		dbRef.child("Tags").queryOrderedByKey().observe(.childAdded, with: {
+			snapshot in
+			
+			guard let snapshotDict = snapshot.value as? [String: String] else {
+				// Do something to handle the error
+				// if your snapshot.value isn't the type you thought it was going to be.
+				return;
+			}
+
+			let tagName = snapshotDict["name"]
+			let tagColor = snapshotDict["color"]
+			let tagProximityUUID = snapshotDict["proximityUUID"]
+			let tagLastSeen = snapshotDict["lastSeen"]
+			let tagLocation = snapshotDict["location"]
+			
+			self.tags.insert(Tag(name: tagName, color: tagColor, proximityUUID: tagProximityUUID, lastSeen: tagLastSeen, location: tagLocation), at: 0)
+			self.tableView.reloadData()
+		})
 	}
 	
 	override func viewDidAppear(_ animated: Bool) {
 		// self.tableView.bounds = CGRect(x: 0, y: 40, width: 320, height: 600)
+	}
+	
+	func addTag() {
+		let tagName = "Wallet"
+		let tagColor = "INF_ORANGE"
+		let tagProximityUUID = "E2C56DB5-DFFB-48D2-B060-D0F5A71096E0"
+		let tagLastSeen = "Today at 11:16 PM"
+		let tagLocation = "1311 College Ave"
+		
+		let tag  : [String : AnyObject] = ["name" : tagName as AnyObject,
+		                                   "color" : tagColor as AnyObject,
+		                                   "proximityUUID" : tagProximityUUID as AnyObject,
+		                                   "lastSeen" : tagLastSeen as AnyObject,
+		                                   "location" : tagLocation as AnyObject]
+		
+		let dbRef = FIRDatabase.database().reference()
+		dbRef.child("Tags").childByAutoId().setValue(tag)
 	}
 	
 	override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -50,16 +104,16 @@ class TagsTableViewController: UITableViewController {
 	}
 	
 	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return 2
+		return tags.count
 	}
 	
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: "TagCell") as! TagTableViewCell
-		cell.tagLabel.text = self.tags[indexPath.row]
-		cell.tagImageView.image = self.imageArray[indexPath.row]
-		cell.tagLabel.textColor = self.colorArray[indexPath.row]
-		cell.lastSeenLabel.text = "Last Seen: Today at 4:58 PM"
-		cell.locationLabel.text = "Location: 1023 Walnut St."
+		cell.tagLabel.text = tags[indexPath.row].name
+//		cell.tagImageView.image = colorArray[tags[indexPath.row]]
+		cell.tagLabel.textColor = colorArray[0]
+		cell.lastSeenLabel.text = tags[indexPath.row].lastSeen
+		cell.locationLabel.text = tags[indexPath.row].location
 		
 		// Top border for each Cell
 		let topBorder = UIView(frame: CGRect(x: CGFloat(0), y: CGFloat(0), width: CGFloat(355), height: CGFloat(5)))

@@ -6,59 +6,6 @@
     </dependencies>
     <scenes>
         <!--informµ-->
-        <scene sceneID="tne-QT-ifu">
-            <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="informu" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="informµ" id="3yf-9n-185">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="JE3-sh-ci3">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <connections>
-                                <action selector="addTag:" destination="BYZ-38-t0r" id="phf-4o-nLB"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="addTagPopUp" destination="wuG-om-3d1" id="SRH-Ut-JWn"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <view contentMode="scaleToFill" id="wuG-om-3d1">
-                    <rect key="frame" x="0.0" y="0.0" width="308" height="162"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add µ tag" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s71-y5-iZM">
-                            <frame key="frameInset" minX="50.00%" minY="20" width="98" height="28"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="23"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fsz-5B-QDl">
-                            <frame key="frameInset" minX="50.22%" width="75" height="30" maxY="11"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <state key="normal" title="Done">
-                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <connections>
-                                <action selector="doneAddTag:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ojB-wb-ijr"/>
-                            </connections>
-                        </button>
-                    </subviews>
-                    <color key="backgroundColor" red="0.25882352941176467" green="0.25882352941176467" blue="0.25882352941176467" alpha="0.84428879310344829" colorSpace="calibratedRGB"/>
-                </view>
-            </objects>
-            <point key="canvasLocation" x="2582" y="817"/>
-        </scene>
-        <!--informµ-->
         <scene sceneID="lWb-fP-Ehv">
             <objects>
                 <tableViewController id="asA-WT-FW2" customClass="TagsTableViewController" customModule="informu" customModuleProvider="target" sceneMemberID="viewController">
@@ -95,7 +42,7 @@
                                         <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sWB-Ir-Czo">
                                             <color key="backgroundColor" red="0.89411764709999997" green="0.89411764709999997" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
                                         </view>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mu1" translatesAutoresizingMaskIntoConstraints="NO" id="1sD-ie-Goo">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mu-orange" translatesAutoresizingMaskIntoConstraints="NO" id="1sD-ie-Goo">
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="80" id="Egg-rW-jpv"/>
                                                 <constraint firstAttribute="width" constant="80" id="jIp-tj-3wg"/>
@@ -229,6 +176,6 @@
     </scenes>
     <resources>
         <image name="icon-hamburger" width="22" height="16"/>
-        <image name="mu1" width="542" height="457"/>
+        <image name="mu-orange" width="542" height="457"/>
     </resources>
 </document>

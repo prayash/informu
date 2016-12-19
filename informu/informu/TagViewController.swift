@@ -22,8 +22,32 @@ class TagViewController: UIViewController {
 		self.mapView.setUserTrackingMode(.follow, animated: false);
 		let userLocation = mapView.userLocation
 		print(userLocation)
+		let tagSettingsButton = UIBarButtonItem(image: UIImage(named: "settings")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(TagViewController.showSettings))
+		
+		navigationItem.rightBarButtonItems = [tagSettingsButton]
 	}
-
+	
+	// 'lazy' = Only occurs once during the execution of the app
+	lazy var settingsLauncher: SettingsLauncher = {
+		let launcher = SettingsLauncher()
+		launcher.homeController = self
+		return launcher
+	}()
+	
+	func showSettings() {
+		settingsLauncher.homeController = self
+		settingsLauncher.showSettings()
+	}
+	
+	func showEditViewController(setting: Setting) {
+		let editViewController = UIViewController()
+		editViewController.view.backgroundColor = UIColor.white
+		editViewController.navigationItem.title = setting.name
+		navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+		navigationController?.navigationBar.tintColor = UIColor.white
+		navigationController?.pushViewController(editViewController, animated: true)
+	}
+	
 	/*
 	// MARK: - Navigation
 	

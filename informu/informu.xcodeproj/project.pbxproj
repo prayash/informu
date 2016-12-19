@@ -12,6 +12,7 @@
 		ED146D221E0871CD00EFFC0C /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED146D211E0871CD00EFFC0C /* SettingCell.swift */; };
 		ED146D241E08720000EFFC0C /* BaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED146D231E08720000EFFC0C /* BaseCell.swift */; };
 		ED146D261E08765900EFFC0C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED146D251E08765900EFFC0C /* Extensions.swift */; };
+		ED146D2B1E08968D00EFFC0C /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED146D2A1E08968D00EFFC0C /* Tag.swift */; };
 		ED55EC561E07A13D00B539F8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ED55EC551E07A13D00B539F8 /* GoogleService-Info.plist */; };
 		ED72DDD61DD433DB00CAB3D4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED72DDD51DD433DB00CAB3D4 /* Assets.xcassets */; };
 		EDA00EE51DF97859008123CA /* TagsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA00EE41DF97859008123CA /* TagsTableViewController.swift */; };
@@ -31,6 +32,7 @@
 		ED146D211E0871CD00EFFC0C /* SettingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
 		ED146D231E08720000EFFC0C /* BaseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseCell.swift; sourceTree = "<group>"; };
 		ED146D251E08765900EFFC0C /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		ED146D2A1E08968D00EFFC0C /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		ED55EC551E07A13D00B539F8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		ED72DDD51DD433DB00CAB3D4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EDA00EE41DF97859008123CA /* TagsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsTableViewController.swift; sourceTree = "<group>"; };
@@ -78,6 +80,14 @@
 			name = View;
 			sourceTree = "<group>";
 		};
+		ED146D2C1E0896F400EFFC0C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				ED146D2A1E08968D00EFFC0C /* Tag.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		EDE450BD1DC3F1B0006A6051 = {
 			isa = PBXGroup;
 			children = (
@@ -104,13 +114,14 @@
 			children = (
 				EDE450C91DC3F1B0006A6051 /* AppDelegate.swift */,
 				ED146D251E08765900EFFC0C /* Extensions.swift */,
+				ED146D2C1E0896F400EFFC0C /* Model */,
 				ED146D201E086FE600EFFC0C /* View */,
 				ED146D1F1E086FCA00EFFC0C /* Controller */,
+				ED72DDD51DD433DB00CAB3D4 /* Assets.xcassets */,
 				EDE450CD1DC3F1B0006A6051 /* Main.storyboard */,
 				EDE450D51DC3F1B0006A6051 /* LaunchScreen.storyboard */,
-				ED72DDD51DD433DB00CAB3D4 /* Assets.xcassets */,
-				EDE450D81DC3F1B0006A6051 /* Info.plist */,
 				ED55EC551E07A13D00B539F8 /* GoogleService-Info.plist */,
+				EDE450D81DC3F1B0006A6051 /* Info.plist */,
 			);
 			path = informu;
 			sourceTree = "<group>";
@@ -265,6 +276,7 @@
 			files = (
 				EDF89B651DD458F500BFD09B /* NavigationViewController.swift in Sources */,
 				ED146D261E08765900EFFC0C /* Extensions.swift in Sources */,
+				ED146D2B1E08968D00EFFC0C /* Tag.swift in Sources */,
 				EDB785851DD42CD200312A41 /* TagViewController.swift in Sources */,
 				ED146D1E1E086B4700EFFC0C /* SettingsLauncher.swift in Sources */,
 				EDA00EE71DF97E82008123CA /* TagTableViewCell.swift in Sources */,

@@ -30,12 +30,12 @@ class TagViewController: UIViewController {
 	// 'lazy' = Only occurs once during the execution of the app
 	lazy var settingsLauncher: SettingsLauncher = {
 		let launcher = SettingsLauncher()
-		launcher.homeController = self
+		launcher.tagViewController = self
 		return launcher
 	}()
 	
 	func showSettings() {
-		settingsLauncher.homeController = self
+		settingsLauncher.tagViewController = self
 		settingsLauncher.showSettings()
 	}
 	

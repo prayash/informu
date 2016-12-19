@@ -10,91 +10,94 @@ import UIKit
 import Foundation
 
 class SettingsLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout  {
-	
-	var homeController: TagViewController?
-	let blackView = UIView()
-	
+
+	var tagViewController: TagViewController?
+	let overlayView = UIView()
+
 	let collectionView: UICollectionView = {
 		let layout = UICollectionViewFlowLayout()
 		let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
 		cv.backgroundColor = UIColor.white
 		return cv
 	}()
-	
+
 	let cellId = "cellId"
 	let cellHeight: CGFloat = 50
 	let settings: [Setting] = {
 		return [Setting(name: "Settings", imageName: "settings"),
-		        Setting(name: "Remove", imageName: "settings"),
+		        Setting(name: "Remove", imageName: "remove"),
 		        Setting(name: "Cancel", imageName: "cancel")]
 	}()
-	
+
 	func showSettings() {
-		
+
 		if let window = UIApplication.shared.keyWindow  {
-			blackView.backgroundColor = UIColor(white: 0, alpha: 0.5)
-			blackView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleDismiss)))
-			
-			window.addSubview(blackView)
+			overlayView.backgroundColor = UIColor(white: 0, alpha: 0.5)
+			overlayView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleDismiss)))
+
+			window.addSubview(overlayView)
 			window.addSubview(collectionView)
-			
+
 			let height: CGFloat = CGFloat(settings.count) * cellHeight
 			let yPos = window.frame.height - height
 			collectionView.frame = CGRect(x: 0, y: window.frame.height, width: window.frame.width, height: 200)
-			
-			blackView.frame = window.frame
-			blackView.alpha = 0
-			
-			UIView.animate(withDuration: 0.25, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: { 
-				self.blackView.alpha = 1
+
+			overlayView.frame = window.frame
+			overlayView.alpha = 0
+
+			UIView.animate(withDuration: 0.25, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+				self.overlayView.alpha = 1
 				self.collectionView.frame = CGRect(x: 0, y: yPos, width: self.collectionView.frame.width, height: self.collectionView.frame.width)
 				}, completion: nil)
-			
+
 		}
 	}
-	
+
 	func handleDismiss(setting: Setting) {
 		UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-			self.blackView.alpha = 0
-			
+			self.overlayView.alpha = 0
+
 			if let window = UIApplication.shared.keyWindow  {
 				self.collectionView.frame = CGRect(x: 0, y: window.frame.height, width: self.collectionView.frame.width, height: self.collectionView.frame.height)
 			}
 		}) { (completed: Bool) in
-			
-			if setting.name != "" && setting.name != "Cancel" && setting.name != "Remove" {
-				self.homeController?.showEditViewController(setting: setting)
+
+			// Dismiss menu if tapped on overlayView
+			if setting.name.isEmpty {
+				return
+			} else if setting.name != "Cancel" && setting.name != "Remove" {
+				self.tagViewController?.showEditViewController(setting: setting)
 			}
 		}
 	}
-	
+
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 		return settings.count
 	}
-	
+
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! SettingCell
-		
+
 		let setting = settings[indexPath.item]
 		cell.setting = setting
 		return cell
 	}
-	
+
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 		return CGSize(width: collectionView.frame.width, height: cellHeight)
 	}
-	
+
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
 		return 0
 	}
-	
+
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 		handleDismiss(setting: self.settings[indexPath.item])
 	}
-	
+
 	override init() {
 		super.init()
-		
+
 		collectionView.dataSource = self
 		collectionView.delegate = self
 		collectionView.register(SettingCell.self, forCellWithReuseIdentifier: cellId)

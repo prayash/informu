@@ -9,14 +9,6 @@
 import UIKit
 import FirebaseDatabase
 
-struct Tag {
-	let name : String!
-	let color : String!
-	let proximityUUID : String!
-	let lastSeen : String!
-	let location : String!
-}
-
 class TagsTableViewController: UITableViewController {
 	var tags = [Tag]()
 	let imageArray = [UIImage(named: "mu-orange"),
@@ -34,7 +26,7 @@ class TagsTableViewController: UITableViewController {
 	}
 
 	@IBAction func addTagButtonDidTouch(_ sender: AnyObject) {
-//		addTag()
+		addTag(color: 0)
 	}
 	
 	override func viewDidLoad() {
@@ -76,13 +68,13 @@ class TagsTableViewController: UITableViewController {
 				return;
 			}
 			
-			let tagName = snapshotDict["name"]
+//			let tagName = snapshotDict["name"]
 			let tagColor = snapshotDict["color"]
-			let tagProximityUUID = snapshotDict["proximityUUID"]
-			let tagLastSeen = snapshotDict["lastSeen"]
-			let tagLocation = snapshotDict["location"]
+//			let tagProximityUUID = snapshotDict["proximityUUID"]
+//			let tagLastSeen = snapshotDict["lastSeen"]
+//			let tagLocation = snapshotDict["location"]
 			
-			self.tags.remove(at: 1)
+			self.tags.remove(at: Int(tagColor!)!)
 			self.tableView.reloadData()
 		})
 	}

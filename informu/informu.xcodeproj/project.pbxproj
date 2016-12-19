@@ -7,27 +7,29 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B5F5B7A0B27C7B5111A07D0F /* Pods_informu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C8EE56C2184BC08BFE62FFA /* Pods_informu.framework */; };
+		ED55EC561E07A13D00B539F8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ED55EC551E07A13D00B539F8 /* GoogleService-Info.plist */; };
 		ED72DDD61DD433DB00CAB3D4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED72DDD51DD433DB00CAB3D4 /* Assets.xcassets */; };
 		EDA00EE51DF97859008123CA /* TagsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA00EE41DF97859008123CA /* TagsTableViewController.swift */; };
 		EDA00EE71DF97E82008123CA /* TagTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA00EE61DF97E82008123CA /* TagTableViewCell.swift */; };
-		EDB785831DD42CB700312A41 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB785821DD42CB700312A41 /* CollectionViewCell.swift */; };
 		EDB785851DD42CD200312A41 /* TagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB785841DD42CD200312A41 /* TagViewController.swift */; };
 		EDE450CA1DC3F1B0006A6051 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE450C91DC3F1B0006A6051 /* AppDelegate.swift */; };
-		EDE450CC1DC3F1B0006A6051 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE450CB1DC3F1B0006A6051 /* ViewController.swift */; };
 		EDE450CF1DC3F1B0006A6051 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDE450CD1DC3F1B0006A6051 /* Main.storyboard */; };
 		EDE450D71DC3F1B0006A6051 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDE450D51DC3F1B0006A6051 /* LaunchScreen.storyboard */; };
 		EDF89B651DD458F500BFD09B /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF89B641DD458F500BFD09B /* NavigationViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		134575B5034C4BDB3646F338 /* Pods-informu.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-informu.debug.xcconfig"; path = "Pods/Target Support Files/Pods-informu/Pods-informu.debug.xcconfig"; sourceTree = "<group>"; };
+		5C8EE56C2184BC08BFE62FFA /* Pods_informu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_informu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E0C3BD5D711D55012ACFD55A /* Pods-informu.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-informu.release.xcconfig"; path = "Pods/Target Support Files/Pods-informu/Pods-informu.release.xcconfig"; sourceTree = "<group>"; };
+		ED55EC551E07A13D00B539F8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		ED72DDD51DD433DB00CAB3D4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EDA00EE41DF97859008123CA /* TagsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsTableViewController.swift; sourceTree = "<group>"; };
 		EDA00EE61DF97E82008123CA /* TagTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagTableViewCell.swift; sourceTree = "<group>"; };
-		EDB785821DD42CB700312A41 /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		EDB785841DD42CD200312A41 /* TagViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagViewController.swift; sourceTree = "<group>"; };
 		EDE450C61DC3F1B0006A6051 /* informu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = informu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDE450C91DC3F1B0006A6051 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		EDE450CB1DC3F1B0006A6051 /* ViewController.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; tabWidth = 2; };
 		EDE450CE1DC3F1B0006A6051 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EDE450D61DC3F1B0006A6051 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EDE450D81DC3F1B0006A6051 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -40,6 +42,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5F5B7A0B27C7B5111A07D0F /* Pods_informu.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -52,6 +55,7 @@
 				EDE450C81DC3F1B0006A6051 /* informu */,
 				EDE450C71DC3F1B0006A6051 /* Products */,
 				EDF89B691DD46F9100BFD09B /* Frameworks */,
+				FC2D2CA83F352408F78805CD /* Pods */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -70,16 +74,15 @@
 			isa = PBXGroup;
 			children = (
 				EDE450C91DC3F1B0006A6051 /* AppDelegate.swift */,
-				EDE450CB1DC3F1B0006A6051 /* ViewController.swift */,
 				EDA00EE41DF97859008123CA /* TagsTableViewController.swift */,
 				EDA00EE61DF97E82008123CA /* TagTableViewCell.swift */,
 				EDE450CD1DC3F1B0006A6051 /* Main.storyboard */,
 				EDF89B641DD458F500BFD09B /* NavigationViewController.swift */,
-				EDB785821DD42CB700312A41 /* CollectionViewCell.swift */,
 				EDB785841DD42CD200312A41 /* TagViewController.swift */,
 				EDE450D51DC3F1B0006A6051 /* LaunchScreen.storyboard */,
 				ED72DDD51DD433DB00CAB3D4 /* Assets.xcassets */,
 				EDE450D81DC3F1B0006A6051 /* Info.plist */,
+				ED55EC551E07A13D00B539F8 /* GoogleService-Info.plist */,
 			);
 			path = informu;
 			sourceTree = "<group>";
@@ -88,8 +91,18 @@
 			isa = PBXGroup;
 			children = (
 				EDF89B6A1DD46F9100BFD09B /* Mapbox.framework */,
+				5C8EE56C2184BC08BFE62FFA /* Pods_informu.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FC2D2CA83F352408F78805CD /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				134575B5034C4BDB3646F338 /* Pods-informu.debug.xcconfig */,
+				E0C3BD5D711D55012ACFD55A /* Pods-informu.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -99,9 +112,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EDE450DB1DC3F1B0006A6051 /* Build configuration list for PBXNativeTarget "informu" */;
 			buildPhases = (
+				2C72C2F05E676E71A9D3DF6E /* [CP] Check Pods Manifest.lock */,
 				EDE450C21DC3F1B0006A6051 /* Sources */,
 				EDE450C31DC3F1B0006A6051 /* Frameworks */,
 				EDE450C41DC3F1B0006A6051 /* Resources */,
+				0E3FB12AE5FD8E5A47BECEFE /* [CP] Embed Pods Frameworks */,
+				30531BDC01DBEF4A2EBE4C1F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -158,6 +174,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EDE450D71DC3F1B0006A6051 /* LaunchScreen.storyboard in Resources */,
+				ED55EC561E07A13D00B539F8 /* GoogleService-Info.plist in Resources */,
 				ED72DDD61DD433DB00CAB3D4 /* Assets.xcassets in Resources */,
 				EDE450CF1DC3F1B0006A6051 /* Main.storyboard in Resources */,
 			);
@@ -165,16 +182,62 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0E3FB12AE5FD8E5A47BECEFE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-informu/Pods-informu-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2C72C2F05E676E71A9D3DF6E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		30531BDC01DBEF4A2EBE4C1F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-informu/Pods-informu-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		EDE450C21DC3F1B0006A6051 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				EDF89B651DD458F500BFD09B /* NavigationViewController.swift in Sources */,
-				EDE450CC1DC3F1B0006A6051 /* ViewController.swift in Sources */,
 				EDB785851DD42CD200312A41 /* TagViewController.swift in Sources */,
 				EDA00EE71DF97E82008123CA /* TagTableViewCell.swift in Sources */,
-				EDB785831DD42CB700312A41 /* CollectionViewCell.swift in Sources */,
 				EDA00EE51DF97859008123CA /* TagsTableViewController.swift in Sources */,
 				EDE450CA1DC3F1B0006A6051 /* AppDelegate.swift in Sources */,
 			);
@@ -295,6 +358,7 @@
 		};
 		EDE450DC1DC3F1B0006A6051 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 134575B5034C4BDB3646F338 /* Pods-informu.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "";
@@ -315,6 +379,7 @@
 		};
 		EDE450DD1DC3F1B0006A6051 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E0C3BD5D711D55012ACFD55A /* Pods-informu.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "";

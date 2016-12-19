@@ -2,6 +2,7 @@
 //  informu
 
 import UIKit
+import Firebase
 import CoreData
 import CoreLocation
 import UserNotifications
@@ -19,6 +20,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 	// Override point for customization after application launch.
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions:[UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 		
+		// Initialize Firebase
+		FIRApp.configure()
+
 		// Initialize locationManager
 		locationManager = CLLocationManager()
 		locationManager?.delegate = self

@@ -8,10 +8,12 @@
 
 import UIKit
 import Foundation
+import FirebaseDatabase
 
 class SettingsLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout  {
 
 	var tagViewController: TagViewController?
+	var tagsTableViewController: TagsTableViewController?
 	let overlayView = UIView()
 
 	let collectionView: UICollectionView = {
@@ -64,10 +66,15 @@ class SettingsLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDe
 		}) { (completed: Bool) in
 
 			// Dismiss menu if tapped on overlayView
-			if setting.name.rawValue.isEmpty {
+			if setting.name.rawValue.isEmpty || setting.name == .Cancel {
 				return
-			} else if setting.name != .Cancel && setting.name != .Remove {
+			} else if setting.name == .Settings {
 				self.tagViewController?.showEditViewController(setting: setting)
+			} else if setting.name == .Remove {
+				print("Deleting...")
+				let dbRef = FIRDatabase.database().reference()
+				dbRef.child("Tags").childByAutoId().removeValue()
+				self.tagsTableViewController?.tableView.reloadData()
 			}
 		}
 	}

@@ -9,13 +9,14 @@ import UserNotifications
 
 // ****************************************************************************************
 
-@available(iOS 10.0, *)
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate {
 	
 	var window: UIWindow?
 	var locationManager: CLLocationManager?
 	var lastProximity: CLProximity?
+	var tagsTableViewController: TagsTableViewController = TagsTableViewController()
+	var proximityMessage: String = "Searching..."
 	
 	// Override point for customization after application launch.
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions:[UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -52,7 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 		// When a device enters or exits the vicinity of a beacon
 		locationManager?.startMonitoring(for: beaconRegion)
 		
-		//Bbegin receiving notifications when the relative distance to the beacon changes
+		// Begin receiving notifications when the relative distance to the beacon changes
 		locationManager?.startRangingBeacons(in: beaconRegion)
 	}
 	
@@ -62,7 +63,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 		print(beacons)
 		if beacons.count > 0 {
 			let beacon = beacons.first! as CLBeacon
-			updateDistance(distance: beacon.proximity)
+			let distance = beacon.proximity
+			let uuidString = beacon.proximityUUID.uuidString
+			let majorString = beacon.major.stringValue
+			let minorString = beacon.minor.stringValue
+			
+			if (tagsTableViewController.tags.isEmpty) {
+				//tagsTableViewController.addTagToDB(name: "mµ tag", color: "mu-orange", proximityUUID: uuidString, major: majorString, minor: minorString)
+			}
+			
+//			for tag in tagsTableViewController.tags {
+//				if (NSNumber(value: Int(tag.major)!) != beacon.major && NSNumber(value: Int(tag.minor)!) != beacon.minor) {
+//					tagsTableViewController.addTagToDB(name: "New Tag", color: "mu-orange", proximityUUID: uuidString, major: majorString, minor: minorString)
+//				}
+//			}
+			
+			for i in 0..<self.tagsTableViewController.tags.count {
+				self.tagsTableViewController.tags[i].location = proximityMessage
+				
+				UIView.performWithoutAnimation {
+					self.tagsTableViewController.tableView.reloadData()
+//					let indexPath = IndexPath(item: 0, section: 0)
+//					self.tagsTableViewController.tableView.reloadRows(at: [indexPath], with: .top)
+				}
+			}
+			
+			updateDistance(distance: distance)
 		} else {
 			updateDistance(distance: .unknown)
 		}
@@ -70,31 +96,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 	
 	// Regularly update UI with proximity
 	func updateDistance(distance: CLProximity) {
-//		UIView.animate(withDuration: 1) { [unowned self] in
+		UIView.animate(withDuration: 1) { [unowned self] in
 			switch distance {
 			case .unknown:
-					print("unknown")
+				print("unknown")
 //				self.distanceLabel.text = "lost"
 				self.createLocationNotification()
+				self.proximityMessage = "Lost"
 				
 			case .far:
 				print("far")
 //				self.distanceLabel.text = "far"
+				self.proximityMessage = "Farther Away"
 				
 			case .near:
 				print("near")
 //				self.distanceLabel.text = "near"
+				self.proximityMessage = "Nearby"
 				
 			case .immediate:
 				print("immediate")
 //				self.distanceLabel.text = "immediate"
+				self.proximityMessage = "Immediate"
 			}
-//		}
+		}
 	}
 	
 	func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
 		let notification = UILocalNotification()
-		notification.alertBody = "didExitRegion"
+		notification.alertBody = "You have gone out of range with the mµ tag."
 		notification.applicationIconBadgeNumber = 0
 		UIApplication.shared.presentLocalNotificationNow(notification)
 	}
@@ -132,10 +162,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 		let localNotification = UILocalNotification()
 		localNotification.fireDate = Date()
 		
-		localNotification.alertTitle = "Wallet lost."
+		localNotification.alertTitle = "mµ tag lost."
 		localNotification.applicationIconBadgeNumber = 0
 		localNotification.soundName = UILocalNotificationDefaultSoundName
-		localNotification.userInfo = ["message" : "Wallet lost."]
+		localNotification.userInfo = ["message" : "mµ tag lost."]
 		localNotification.alertBody = "You have left an item behind."
 		
 		UIApplication.shared.scheduleLocalNotification(localNotification)

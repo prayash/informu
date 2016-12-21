@@ -58,11 +58,7 @@ class TagsTableViewController: UITableViewController {
 		} else {
 			let uid = FIRAuth.auth()?.currentUser?.uid
 			FIRDatabase.database().reference().child("Users").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
-				
-				if let dictionary = snapshot.value as? [String: AnyObject] {
-					let nameString = dictionary["name"] as? String
-						self.headerTextAboveTable.text = "TAGS (" + nameString! + ")"
-				}
+
 				
 				}, withCancel: nil)
 		}
@@ -94,6 +90,7 @@ class TagsTableViewController: UITableViewController {
 	
 	func fetchTagsFromDatabase() {
 		print("[ Updating mµ tags from database... ]")
+		
 		let uid = FIRAuth.auth()?.currentUser?.uid
 		FIRDatabase.database().reference().child("Users").child(uid!).observe(.childAdded, with: { (snapshot) in
 			
@@ -106,7 +103,7 @@ class TagsTableViewController: UITableViewController {
 				let tagLastSeen = dictionary["lastSeen"] as? String
 				let tagLocation = dictionary["location"] as? String
 				
-				self.appDelegate.tags.append(Tag(name: tagName, color: tagColor, proximityUUID: tagProximityUUID, major: tagMajor, minor: tagMinor, lastSeen: tagLastSeen, location: tagLocation))
+				self.appDelegate.tags.insert(Tag(name: tagName, color: tagColor, proximityUUID: tagProximityUUID, major: tagMajor, minor: tagMinor, lastSeen: tagLastSeen, location: tagLocation), at: 0)
 				print("[ Mµ tags on device:", self.appDelegate.tags)
 				
 				DispatchQueue.main.async( execute: {

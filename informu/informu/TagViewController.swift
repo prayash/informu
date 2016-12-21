@@ -27,7 +27,7 @@ class TagViewController: UIViewController {
 		let tagSettingsButton = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(TagViewController.showSettings))
 		tagSettingsButton.tintColor = UIColor.white
 		
-		navigationItem.rightBarButtonItems = [tagSettingsButton]
+//		navigationItem.rightBarButtonItems = [tagSettingsButton]
 	}
 	
 	// 'lazy' = Only occurs once during the execution of the app

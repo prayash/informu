@@ -116,7 +116,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 		let s = v.string(from: (pingTime as NSDate) as Date)
 		
 		let elapsed = lround(abs(pingTime.timeIntervalSinceNow))
-		lastSeenMessage = elapsed.description + "s ago"
+//		lastSeenMessage = elapsed.description + "s ago"
+		lastSeenMessage = "Just Now"
 	}
 	
 	// Regularly update UI with proximity

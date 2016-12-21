@@ -101,6 +101,11 @@ class AddTagController: UITableViewController {
 				return
 			}
 			
+//			let tagsTableView = UIApplication.shared.keyWindow?.rootViewController?.childViewControllers[0] as! TagsTableViewController
+//			DispatchQueue.main.async(execute: {
+//				tagsTableView.tableView.reloadData()
+//			})
+			
 			// Tag successfully added to db
 			self.dismiss(animated: true, completion: nil)
 		}

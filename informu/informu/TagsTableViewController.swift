@@ -93,9 +93,9 @@ class TagsTableViewController: UITableViewController {
 	}
 	
 	func fetchTagsFromDatabase() {
-		print("[ Fetching mµ tags from database... ]")
+		print("[ Updating mµ tags from database... ]")
 		let uid = FIRAuth.auth()?.currentUser?.uid
-		FIRDatabase.database().reference().child("Users").child(uid!).child("Tags").observeSingleEvent(of: .value, with: { (snapshot) in
+		FIRDatabase.database().reference().child("Users").child(uid!).observe(.childAdded, with: { (snapshot) in
 			
 			if let dictionary = snapshot.value as? [String: AnyObject] {
 				let tagName = dictionary["name"] as? String

@@ -65,7 +65,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 	func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
 		if beacons.count > 0 {
 			let beacon = beacons.first! as CLBeacon
-//			let distance = beacon.proximity
+			let distance = beacon.proximity
 			
 			//print(addTagController)
 			//addTagController.showAvailableTags(beacon: beacon)
@@ -88,7 +88,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 //			}
 			
 			for i in 0..<self.tags.count {
-				// self.tags[i].location = proximityMessage
+				 self.tags[i].location = proximityMessage
 				
 				UIView.performWithoutAnimation {
 					self.tagsTableViewController.tableView.reloadData()
@@ -97,9 +97,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 				}
 			}
 			
-//			updateDistance(distance: distance)
+			updateDistance(distance: distance)
 		} else {
-//			updateDistance(distance: .unknown)
+			updateDistance(distance: .unknown)
 		}
 	}
 	
@@ -108,24 +108,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 		UIView.animate(withDuration: 1) { [unowned self] in
 			switch distance {
 			case .unknown:
-//				print("unknown")
-//				self.distanceLabel.text = "lost"
-//				self.createLocationNotification()
 				self.proximityMessage = "Lost"
+				self.createLocationNotification()
 				
 			case .far:
-//				print("far")
-//				self.distanceLabel.text = "far"
 				self.proximityMessage = "Farther Away"
 				
 			case .near:
-//				print("near")
-//				self.distanceLabel.text = "near"
 				self.proximityMessage = "Nearby"
 				
 			case .immediate:
-//				print("immediate")
-//				self.distanceLabel.text = "immediate"
 				self.proximityMessage = "Immediate"
 			}
 		}
@@ -168,7 +160,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 			
 		}
 		
-		//self.takeActionWithNotification(localNotification: notification)
+		self.takeActionWithNotification(localNotification: notification)
 	}
 	
 	func takeActionWithNotification(localNotification: UILocalNotification) {
@@ -177,9 +169,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 		let beaconRegion = CLBeaconRegion(proximityUUID: uuid as! UUID, identifier: "Simblee")
 		let alertController = UIAlertController(title: "Alert!", message: notificationMessage, preferredStyle: .alert)
 		// let remindMeLaterAction = UIAlertAction(title: "Remind Me Later", style: .default, handler: nil)
-		let sureAction = UIAlertAction(title: "Locate item", style: .default) { (action) in
-			self.locationManager?.stopMonitoring(for: beaconRegion)
-			self.locationManager?.stopRangingBeacons(in: beaconRegion)
+		let sureAction = UIAlertAction(title: "Okay.", style: .default) { (action) in
+//			self.locationManager?.stopMonitoring(for: beaconRegion)
+//			self.locationManager?.stopRangingBeacons(in: beaconRegion)
 		}
 		
 		alertController.addAction(sureAction)

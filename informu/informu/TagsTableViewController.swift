@@ -153,6 +153,7 @@ class TagsTableViewController: UITableViewController {
 		let topBorder = UIView(frame: CGRect(x: CGFloat(0), y: CGFloat(0), width: CGFloat(355), height: CGFloat(5)))
 		topBorder.backgroundColor = colors[String(appDelegate.tags[indexPath.row].color)]?.withAlphaComponent(1)
 		cell.bgCardView.addSubview(topBorder)
+		
 		return cell
 	}
 	

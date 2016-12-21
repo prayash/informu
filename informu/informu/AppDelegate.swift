@@ -109,7 +109,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 			switch distance {
 			case .unknown:
 				self.proximityMessage = "Lost"
-				self.createLocationNotification()
+//				self.createLocationNotification()
 				
 			case .far:
 				self.proximityMessage = "Farther Away"
@@ -125,10 +125,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 	
 	// - exitRegion
 	func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
-		let notification = UILocalNotification()
-		notification.alertBody = "You have gone out of range with the mµ tag."
-		notification.applicationIconBadgeNumber = 0
-		UIApplication.shared.presentLocalNotificationNow(notification)
+//		let notification = UILocalNotification()
+//		notification.alertBody = "You have gone out of range with the mµ tag."
+//		notification.applicationIconBadgeNumber = 0
+//		UIApplication.shared.presentLocalNotificationNow(notification)
+		
+		createLocationNotification()
 	}
 	
 	// - enterRegion
@@ -183,12 +185,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 		// Fire off LocalNotification now.
 		let localNotification = UILocalNotification()
 		localNotification.fireDate = Date()
-		
-		localNotification.alertTitle = "mµ tag lost."
 		localNotification.applicationIconBadgeNumber = 0
 		localNotification.soundName = UILocalNotificationDefaultSoundName
-		localNotification.userInfo = ["message" : "mµ tag lost."]
-		localNotification.alertBody = "You have left an item behind."
+		localNotification.alertBody = "You have gone out of range with the mµ tag"
 		
 		UIApplication.shared.scheduleLocalNotification(localNotification)
 	}

@@ -45,7 +45,7 @@ class AddTagController: UITableViewController {
 		let tagLastSeen = "Just Now"
 		let tagLocation = appDelegate.parseProximity(distance: beacon.proximity)
 		
-		let availableTag = Tag(name: "mµ tag", color: "mu-teal", proximityUUID: uuidString, major: majorString, minor: minorString, lastSeen: tagLastSeen, location: tagLocation)
+		let availableTag = Tag(name: "mµ tag", color: "mu-orange", proximityUUID: uuidString, major: majorString, minor: minorString, lastSeen: tagLastSeen, location: tagLocation)
 		
 		if (availableTags.isEmpty) {
 			self.availableTags.append(availableTag)
@@ -152,8 +152,8 @@ class TagCell: UITableViewCell {
 	
 	override func layoutSubviews() {
 		super.layoutSubviews()
-		textLabel?.frame = CGRect(x: 56, y: textLabel!.frame.origin.y, width: textLabel!.frame.width, height: textLabel!.frame.height)
-		detailTextLabel?.frame = CGRect(x: 56, y: detailTextLabel!.frame.origin.y, width: detailTextLabel!.frame.width, height: detailTextLabel!.frame.height)
+		textLabel?.frame = CGRect(x: 56, y: textLabel!.frame.origin.y - 2, width: textLabel!.frame.width, height: textLabel!.frame.height)
+		detailTextLabel?.frame = CGRect(x: 56, y: detailTextLabel!.frame.origin.y + 2, width: detailTextLabel!.frame.width, height: detailTextLabel!.frame.height)
 	}
 	
 	let tagImageView: UIImageView = {

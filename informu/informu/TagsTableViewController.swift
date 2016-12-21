@@ -143,8 +143,10 @@ class TagsTableViewController: UITableViewController {
 		cell.tagLabel.text = appDelegate.tags[indexPath.row].name
 		cell.tagImageView.image = UIImage(named: String(appDelegate.tags[indexPath.row].color))
 		cell.tagLabel.textColor = colors[String(appDelegate.tags[indexPath.row].color)!]
-		cell.lastSeenLabel.text = String(format: "Last Seen: %@ ", appDelegate.tags[indexPath.row].lastSeen)
-		cell.locationLabel.text = String(format: "Location: %@ ", appDelegate.tags[indexPath.row].location)
+		
+		// THESE ARE REVERSED
+		cell.lastSeenLabel.text = String(format: "Status: %@ ", appDelegate.tags[indexPath.row].location)
+		cell.locationLabel.text = String(format: "Last Seen: %@ ", appDelegate.tags[indexPath.row].lastSeen)
 		
 		// Top border for each Cell
 		let topBorder = UIView(frame: CGRect(x: CGFloat(0), y: CGFloat(0), width: CGFloat(355), height: CGFloat(5)))

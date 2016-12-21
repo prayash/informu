@@ -130,7 +130,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 			
 		case .far:
 			self.pingTime = Date()
-			self.proximityMessage = "Farther Away"
+			self.proximityMessage = "Farther away"
 			
 		case .near:
 			self.pingTime = Date()
@@ -138,7 +138,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 			
 		case .immediate:
 			self.pingTime = Date()
-			self.proximityMessage = "Immediate"
+			self.proximityMessage = "Safe"
 		}
 	}
 	

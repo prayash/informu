@@ -137,32 +137,32 @@ class AddTagController: UITableViewController {
 	
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		let selectedTag = availableTags[indexPath.row]
-//		if (appDelegate.tags.isEmpty) {
+		if (appDelegate.tags.isEmpty) {
 			addTagToDB(tag: selectedTag);
 			
 			dismiss(animated: true, completion: nil)
 			tableView.deselectRow(at: indexPath, animated: true)
 			return
-//		}
+		}
 		
-//		for tag in appDelegate.tags {
-//			if Int(selectedTag.major) == Int(tag.major) {
-//				print("This tag has already been added!")
-//				
-//				let alertController = UIAlertController(title: "Tag already added!", message: "This tag is already linked to your device.", preferredStyle: .alert)
-//				let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-//				alertController.addAction(defaultAction)
-//				
-//				present(alertController, animated: true, completion: nil)
-//				return
-//			} else {
-//				addTagToDB(tag: selectedTag);
-//				
-//				dismiss(animated: true, completion: nil)
-//				tableView.deselectRow(at: indexPath, animated: true)
-//				return
-//			}
-//		}
+		for tag in appDelegate.tags {
+			if Int(selectedTag.major) == Int(tag.major) {
+				print("This tag has already been added!")
+				
+				let alertController = UIAlertController(title: "Tag already added!", message: "This tag is already linked to your device.", preferredStyle: .alert)
+				let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+				alertController.addAction(defaultAction)
+				
+				present(alertController, animated: true, completion: nil)
+				return
+			} else {
+				addTagToDB(tag: selectedTag);
+				
+				dismiss(animated: true, completion: nil)
+				tableView.deselectRow(at: indexPath, animated: true)
+				return
+			}
+		}
 	}
 	
 	override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

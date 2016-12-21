@@ -14,19 +14,19 @@ class NavigationViewController: UINavigationController, UIViewControllerTransiti
 		self.navigationBar.barStyle = UIBarStyle.black
 		self.navigationBar.tintColor = UIColor.white
 		self.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(name: "HelveticaNeue-Light", size: 22.0)!];
-
-		// Print out all available fonts
-//		for familyName in UIFont.familyNames {
-//			for font in UIFont.fontNames(forFamilyName: (familyName as? String)!) {
-//				print("font: \(font)")
-//			}
-//		}
-		
 	}
 	
 	override func didReceiveMemoryWarning() {
 		super.didReceiveMemoryWarning()
 		// Dispose of any resources that can be recreated.
+	}
+	
+	func printAllFonts() {
+		for familyName in UIFont.familyNames {
+			for font in UIFont.fontNames(forFamilyName: familyName) {
+				print("font: \(font)")
+			}
+		}
 	}
 	
 	

@@ -22,7 +22,10 @@ class TagViewController: UIViewController {
 		self.mapView.setUserTrackingMode(.follow, animated: false);
 		let userLocation = mapView.userLocation
 		print(userLocation)
-		let tagSettingsButton = UIBarButtonItem(image: UIImage(named: "settings")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(TagViewController.showSettings))
+		// let tagSettingsButton = UIBarButtonItem(image: UIImage(named: "settings")?.withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(TagViewController.showSettings))
+		
+		let tagSettingsButton = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(TagViewController.showSettings))
+		tagSettingsButton.tintColor = UIColor.white
 		
 		navigationItem.rightBarButtonItems = [tagSettingsButton]
 	}

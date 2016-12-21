@@ -21,6 +21,8 @@
 		EDE450CA1DC3F1B0006A6051 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE450C91DC3F1B0006A6051 /* AppDelegate.swift */; };
 		EDE450CF1DC3F1B0006A6051 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDE450CD1DC3F1B0006A6051 /* Main.storyboard */; };
 		EDE450D71DC3F1B0006A6051 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDE450D51DC3F1B0006A6051 /* LaunchScreen.storyboard */; };
+		EDE67B8D1E0A087B00887020 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE67B8C1E0A087B00887020 /* LoginViewController.swift */; };
+		EDE67B8F1E0A246500887020 /* AddTagController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE67B8E1E0A246500887020 /* AddTagController.swift */; };
 		EDF89B651DD458F500BFD09B /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF89B641DD458F500BFD09B /* NavigationViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +45,8 @@
 		EDE450CE1DC3F1B0006A6051 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EDE450D61DC3F1B0006A6051 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EDE450D81DC3F1B0006A6051 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EDE67B8C1E0A087B00887020 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		EDE67B8E1E0A246500887020 /* AddTagController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTagController.swift; sourceTree = "<group>"; };
 		EDF89B641DD458F500BFD09B /* NavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationViewController.swift; sourceTree = "<group>"; };
 		EDF89B6A1DD46F9100BFD09B /* Mapbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Mapbox.framework; path = "../../../Downloads/mapbox-ios-sdk-3.3.5-dynamic/dynamic/Mapbox.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -63,6 +67,8 @@
 			isa = PBXGroup;
 			children = (
 				EDF89B641DD458F500BFD09B /* NavigationViewController.swift */,
+				EDE67B8E1E0A246500887020 /* AddTagController.swift */,
+				EDE67B8C1E0A087B00887020 /* LoginViewController.swift */,
 				ED146D1D1E086B4700EFFC0C /* SettingsLauncher.swift */,
 				EDA00EE41DF97859008123CA /* TagsTableViewController.swift */,
 				EDB785841DD42CD200312A41 /* TagViewController.swift */,
@@ -280,10 +286,12 @@
 				EDB785851DD42CD200312A41 /* TagViewController.swift in Sources */,
 				ED146D1E1E086B4700EFFC0C /* SettingsLauncher.swift in Sources */,
 				EDA00EE71DF97E82008123CA /* TagTableViewCell.swift in Sources */,
+				EDE67B8F1E0A246500887020 /* AddTagController.swift in Sources */,
 				ED146D241E08720000EFFC0C /* BaseCell.swift in Sources */,
 				ED146D221E0871CD00EFFC0C /* SettingCell.swift in Sources */,
 				EDA00EE51DF97859008123CA /* TagsTableViewController.swift in Sources */,
 				EDE450CA1DC3F1B0006A6051 /* AppDelegate.swift in Sources */,
+				EDE67B8D1E0A087B00887020 /* LoginViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

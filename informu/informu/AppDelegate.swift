@@ -3,7 +3,6 @@
 
 import UIKit
 import Firebase
-import CoreData
 import CoreLocation
 import UserNotifications
 
@@ -15,6 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 	var window: UIWindow?
 	var locationManager: CLLocationManager?
 	var lastProximity: CLProximity?
+	var tags = [Tag]()
 	var tagsTableViewController: TagsTableViewController = TagsTableViewController()
 	var proximityMessage: String = "Searching..."
 	
@@ -47,6 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 	
 	// Initiate scanning
 	func startScanning() {
+		print("Scanning. . . ")
 		let uuid = NSUUID(uuidString: "E2C56DB5-DFFB-48D2-B060-D0F5A71096E0")
 		let beaconRegion = CLBeaconRegion(proximityUUID: uuid as! UUID, identifier: "Simblee")
 		
@@ -60,17 +61,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 	// Scan for beacon and updateDistance if found
 	// The location manager reports any encountered beacons to its delegate
 	func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
-		print(beacons)
 		if beacons.count > 0 {
 			let beacon = beacons.first! as CLBeacon
-			let distance = beacon.proximity
-			let uuidString = beacon.proximityUUID.uuidString
-			let majorString = beacon.major.stringValue
-			let minorString = beacon.minor.stringValue
-			
-			if (tagsTableViewController.tags.isEmpty) {
-				//tagsTableViewController.addTagToDB(name: "mµ tag", color: "mu-orange", proximityUUID: uuidString, major: majorString, minor: minorString)
+//			let distance = beacon.proximity
+			if (self.tags.isEmpty) {
+				// addTagToDB(name: "mµ tag", color: "mu-orange", proximityUUID: uuidString, major: majorString, minor: minorString)
 			}
+			
+			// This is seriously so hacky.. must figure out a better way to do this!
+			if let addTagController = UIApplication.shared.keyWindow?.rootViewController?.childViewControllers[0].presentedViewController?.childViewControllers[0] as? AddTagController {
+				addTagController.showAvailableTags(beacon: beacon)
+			}
+//			let addTagController = UIApplication.shared.keyWindow?.rootViewController?.childViewControllers[3] as? AddTagController
+			
 			
 //			for tag in tagsTableViewController.tags {
 //				if (NSNumber(value: Int(tag.major)!) != beacon.major && NSNumber(value: Int(tag.minor)!) != beacon.minor) {
@@ -78,8 +81,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 //				}
 //			}
 			
-			for i in 0..<self.tagsTableViewController.tags.count {
-				self.tagsTableViewController.tags[i].location = proximityMessage
+			for i in 0..<self.tags.count {
+				self.tags[i].location = proximityMessage
 				
 				UIView.performWithoutAnimation {
 					self.tagsTableViewController.tableView.reloadData()
@@ -88,9 +91,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 				}
 			}
 			
-			updateDistance(distance: distance)
+//			updateDistance(distance: distance)
 		} else {
-			updateDistance(distance: .unknown)
+//			updateDistance(distance: .unknown)
 		}
 	}
 	
@@ -99,29 +102,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 		UIView.animate(withDuration: 1) { [unowned self] in
 			switch distance {
 			case .unknown:
-				print("unknown")
+//				print("unknown")
 //				self.distanceLabel.text = "lost"
-				self.createLocationNotification()
+//				self.createLocationNotification()
 				self.proximityMessage = "Lost"
 				
 			case .far:
-				print("far")
+//				print("far")
 //				self.distanceLabel.text = "far"
 				self.proximityMessage = "Farther Away"
 				
 			case .near:
-				print("near")
+//				print("near")
 //				self.distanceLabel.text = "near"
 				self.proximityMessage = "Nearby"
 				
 			case .immediate:
-				print("immediate")
+//				print("immediate")
 //				self.distanceLabel.text = "immediate"
 				self.proximityMessage = "Immediate"
 			}
 		}
 	}
 	
+	// - exitRegion
 	func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
 		let notification = UILocalNotification()
 		notification.alertBody = "You have gone out of range with the mµ tag."
@@ -129,8 +133,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 		UIApplication.shared.presentLocalNotificationNow(notification)
 	}
 	
+	// - enterRegion
 	func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
-		// enterRegion
+//		let notification = UILocalNotification()
+//		notification.alertBody = "You have come into range with the mµ tag."
+//		notification.applicationIconBadgeNumber = 0
+//		UIApplication.shared.presentLocalNotificationNow(notification)
+	}
+	
+	func parseProximity(distance: CLProximity) -> String {
+		switch distance {
+		case .unknown:
+			return "Lost"
+			
+		case .far:
+			return "Far"
+			
+		case .near:
+			return "Nearby"
+			
+		case .immediate:
+			return "Immediate"
+		}
 	}
 	
 	func application(_ application: UIApplication, didReceive notification: UILocalNotification) {
@@ -138,7 +162,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 			
 		}
 		
-		self.takeActionWithNotification(localNotification: notification)
+		//self.takeActionWithNotification(localNotification: notification)
 	}
 	
 	func takeActionWithNotification(localNotification: UILocalNotification) {

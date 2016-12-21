@@ -5,11 +5,13 @@
 //  Copyright © 2016 Prayash Thapa. All rights reserved.
 
 import UIKit
+import Firebase
+import FirebaseAuth
 import FirebaseDatabase
 
 class TagsTableViewController: UITableViewController {
-	var tags = [Tag]()
 	var dbRef: FIRDatabaseReference!
+	var appDelegate: AppDelegate!
 	
 	let MAX_TAGS = 2
 	var currentTags = 0
@@ -22,11 +24,17 @@ class TagsTableViewController: UITableViewController {
 	                                   "mu-teal": UIColor(red: 66/255.0, green: 66/255.0, blue: 66/255.0, alpha: 1.0),
 	                                   "mu-blue": UIColor(red: 101/255.0, green: 216/255.0, blue: 216/255.0, alpha: 1.0)]
 	
+	@IBOutlet weak var headerTextAboveTable: UILabel!
 	@IBAction func menuButtonDidTouch(_ sender: AnyObject) {
 		print("Slide out Menu")
 	}
 
 	@IBAction func addTagButtonDidTouch(_ sender: AnyObject) {
+		let addTagController = AddTagController()
+		let navController = UINavigationController(rootViewController: addTagController)
+		
+		present(navController, animated: true, completion: nil)
+		
 		if (currentTags <= 2) {
 			// addTagToDB(name: "Wallet", color: "mu-orange")
 		}
@@ -47,8 +55,10 @@ class TagsTableViewController: UITableViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		appDelegate = UIApplication.shared.delegate as! AppDelegate
 		
-		let appDelegate = UIApplication.shared.delegate as! AppDelegate
+		navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
+		
 		appDelegate.tagsTableViewController = self
 		
 		// Disable the ugly default lines
@@ -73,9 +83,8 @@ class TagsTableViewController: UITableViewController {
 			let tagMinor = snapshotDict["minor"]
 			let tagLastSeen = snapshotDict["lastSeen"]
 			let tagLocation = snapshotDict["location"]
-			let tagId = snapshotDict["tagId"]
 			
-			self.tags.insert(Tag(name: tagName, color: tagColor, proximityUUID: tagProximityUUID, major: tagMajor, minor: tagMinor, lastSeen: tagLastSeen, location: tagLocation, tagId: tagId), at: 0)
+			self.appDelegate.tags.insert(Tag(name: tagName, color: tagColor, proximityUUID: tagProximityUUID, major: tagMajor, minor: tagMinor, lastSeen: tagLastSeen, location: tagLocation), at: 0)
 			self.tableView.reloadData()
 		})
 		
@@ -94,13 +103,43 @@ class TagsTableViewController: UITableViewController {
 //			let tagLastSeen = snapshotDict["lastSeen"]
 //			let tagLocation = snapshotDict["location"]
 			
-			self.tags.remove(at: Int(tagColor!)!)
+			self.appDelegate.tags.remove(at: Int(tagColor!)!)
 			self.tableView.reloadData()
 		})
 	}
 	
+	func checkIfUserIsLoggedIn() {
+		if FIRAuth.auth()?.currentUser?.uid == nil {
+			performSelector(onMainThread: #selector(handleLogout), with: nil, waitUntilDone: true)
+		} else {
+			let uid = FIRAuth.auth()?.currentUser?.uid
+			FIRDatabase.database().reference().child("Users").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
+				
+				if let dictionary = snapshot.value as? [String: AnyObject] {
+					let nameString = dictionary["name"] as? String
+						self.headerTextAboveTable.text = "TAGS (" + nameString! + ")"
+				}
+				
+				}, withCancel: nil)
+		}
+	}
+	
+	func handleLogout() {
+		
+		do {
+			try FIRAuth.auth()?.signOut()
+		} catch let logoutError {
+			print(logoutError)
+		}
+		
+		let loginController = LoginViewController()
+		present(loginController, animated: true, completion: nil)
+	}
+	
 	override func viewDidAppear(_ animated: Bool) {
-		// self.tableView.bounds = CGRect(x: 0, y: 40, width: 320, height: 600)
+
+		checkIfUserIsLoggedIn()
+		
 //		dbRef.child("Tags").observeSingleEvent(of: .value, with: {
 //			snapshot in
 //			
@@ -129,35 +168,6 @@ class TagsTableViewController: UITableViewController {
 //		})
 	}
 	
-	func addTagToDB(name: String, color: String, proximityUUID: String, major: String, minor: String) -> Void {
-		print("Adding Tag...")
-		let tagName = name
-		let tagColor = color
-		let tagProximityUUID = "E2C56DB5-DFFB-48D2-B060-D0F5A71096E0"
-		let tagMajor = major
-		let tagMinor = minor
-		let tagLastSeen = "Just Now"
-		let tagLocation = "Searching..."
-		
-		let tag: [String: AnyObject] = ["name": tagName as AnyObject,
-																		"color": tagColor as AnyObject,
-																		"proximityUUID": tagProximityUUID as AnyObject,
-																		"major": tagMajor as AnyObject,
-																		"minor": tagMinor as AnyObject,
-																		"lastSeen": tagLastSeen as AnyObject,
-																		"location": tagLocation as AnyObject]
-		
-		let dbRef = FIRDatabase.database().reference()
-		let tagRef = dbRef.child("Tags").childByAutoId()
-		tagRef.setValue(tag)
-		let tagId = tagRef.key
-		print(tagId)
-		dbRef.child("Tags").child(tagId).child("tagId").setValue(tagId)
-		
-		tags.insert(Tag(name: tagName, color: tagColor, proximityUUID: tagProximityUUID, major: tagMajor, minor: tagMinor, lastSeen: tagLastSeen, location: tagLocation, tagId: tagId), at: 0)
-		currentTags += 1;
-	}
-	
 	override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
 		
 //		// Initial state of cell (full transparency)
@@ -175,20 +185,20 @@ class TagsTableViewController: UITableViewController {
 	}
 	
 	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return tags.count
+		return appDelegate.tags.count
 	}
 	
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: "TagCell") as! TagTableViewCell
-		cell.tagLabel.text = tags[indexPath.row].name
-		cell.tagImageView.image = UIImage(named: String(tags[indexPath.row].color))
-		cell.tagLabel.textColor = colors[String(tags[indexPath.row].color)!]
-		cell.lastSeenLabel.text = String(format: "Last Seen: %@ ", tags[indexPath.row].lastSeen)
-		cell.locationLabel.text = String(format: "Location: %@ ", tags[indexPath.row].location)
+		cell.tagLabel.text = appDelegate.tags[indexPath.row].name
+		cell.tagImageView.image = UIImage(named: String(appDelegate.tags[indexPath.row].color))
+		cell.tagLabel.textColor = colors[String(appDelegate.tags[indexPath.row].color)!]
+		cell.lastSeenLabel.text = String(format: "Last Seen: %@ ", appDelegate.tags[indexPath.row].lastSeen)
+		cell.locationLabel.text = String(format: "Location: %@ ", appDelegate.tags[indexPath.row].location)
 		
 		// Top border for each Cell
 		let topBorder = UIView(frame: CGRect(x: CGFloat(0), y: CGFloat(0), width: CGFloat(355), height: CGFloat(5)))
-		topBorder.backgroundColor = colors[String(tags[indexPath.row].color)]?.withAlphaComponent(1)
+		topBorder.backgroundColor = colors[String(appDelegate.tags[indexPath.row].color)]?.withAlphaComponent(1)
 		cell.bgCardView.addSubview(topBorder)
 		return cell
 	}

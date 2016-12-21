@@ -17,7 +17,6 @@ struct Tag {
 	let minor: String!
 	var lastSeen: String!
 	var location: String!
-	let tagId: String!
 	
 //	init (name: String, color: String, proximityUUID: String, major: String, minor: String, lastSeen: String, location: String) {
 //		self.name = name

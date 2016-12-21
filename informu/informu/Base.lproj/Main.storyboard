@@ -114,6 +114,7 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="headerTextAboveTable" destination="jpo-x6-0dB" id="qq0-ep-o4a"/>
                         <segue destination="zXJ-j0-ktD" kind="show" identifier="MapSegue" id="igj-gR-Bq1"/>
                     </connections>
                 </tableViewController>

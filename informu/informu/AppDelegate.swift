@@ -19,13 +19,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 	
 	//var addTagController: AddTagController = AddTagController()
 	var proximityMessage: String = "Searching..."
+	var lastSeenMessage: String = "Just Now"
+	var timer = Timer()
+	var pingTime = Date()
 	
 	// Override point for customization after application launch.
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions:[UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 		
 		// Initialize Firebase
 		FIRApp.configure()
-
+		
+		// Start timer
+		timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.timeElapsed), userInfo: nil, repeats: true)
+		
 		// Initialize locationManager
 		locationManager = CLLocationManager()
 		locationManager?.delegate = self
@@ -89,6 +95,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 			
 			for i in 0..<self.tags.count {
 				 self.tags[i].location = proximityMessage
+				self.tags[i].lastSeen = lastSeenMessage
 				
 				UIView.performWithoutAnimation {
 					self.tagsTableViewController.tableView.reloadData()
@@ -103,23 +110,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 		}
 	}
 	
+	func timeElapsed() {
+		let v = DateFormatter()
+		v.dateFormat = "MM-dd-yyyy HHmm"
+		let s = v.string(from: (pingTime as NSDate) as Date)
+		
+		let elapsed = lround(abs(pingTime.timeIntervalSinceNow))
+		lastSeenMessage = elapsed.description + "s ago"
+	}
+	
 	// Regularly update UI with proximity
 	func updateDistance(distance: CLProximity) {
-		UIView.animate(withDuration: 1) { [unowned self] in
-			switch distance {
-			case .unknown:
-				self.proximityMessage = "Lost"
-//				self.createLocationNotification()
-				
-			case .far:
-				self.proximityMessage = "Farther Away"
-				
-			case .near:
-				self.proximityMessage = "Nearby"
-				
-			case .immediate:
-				self.proximityMessage = "Immediate"
-			}
+		switch distance {
+		case .unknown:
+			self.pingTime = Date()
+			self.proximityMessage = "Lost"
+//			self.createLocationNotification()
+			
+		case .far:
+			self.pingTime = Date()
+			self.proximityMessage = "Farther Away"
+			
+		case .near:
+			self.pingTime = Date()
+			self.proximityMessage = "Nearby"
+			
+		case .immediate:
+			self.pingTime = Date()
+			self.proximityMessage = "Immediate"
 		}
 	}
 	
@@ -162,7 +180,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 			
 		}
 		
-		self.takeActionWithNotification(localNotification: notification)
+		//self.takeActionWithNotification(localNotification: notification)
 	}
 	
 	func takeActionWithNotification(localNotification: UILocalNotification) {

@@ -137,6 +137,14 @@ class AddTagController: UITableViewController {
 	
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		let selectedTag = availableTags[indexPath.row]
+		if (appDelegate.tags.isEmpty) {
+			addTagToDB(tag: selectedTag);
+			
+			dismiss(animated: true, completion: nil)
+			tableView.deselectRow(at: indexPath, animated: true)
+			return
+		}
+		
 		for tag in appDelegate.tags {
 			if Int(selectedTag.major) == Int(tag.major) {
 				print("This tag has already been added!")

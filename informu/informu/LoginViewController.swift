@@ -177,6 +177,7 @@ class LoginViewController: UIViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		self.hideKeyboardWhenTappedAround()
 		
 		view.backgroundColor = UIColor(r: 255, g: 255, b: 255)
 		

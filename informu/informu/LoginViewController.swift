@@ -172,6 +172,8 @@ class LoginViewController: UIViewController {
 		// If Login is selected, hide that first gray line
 		if loginRegisterSegmentedControl.selectedSegmentIndex == 0 {
 			nameSeparatorView.isHidden = true
+		} else {
+			nameSeparatorView.isHidden = false
 		}
 	}
 	

@@ -13,9 +13,6 @@ class TagsTableViewController: UITableViewController {
 	var dbRef: FIRDatabaseReference!
 	var appDelegate: AppDelegate!
 	
-	let MAX_TAGS = 2
-	var currentTags = 0
-	
 	let imageArray = [UIImage(named: "mu-orange"),
 	                  UIImage(named: "mu-teal"),
 	                  UIImage(named: "mu-blue")]
@@ -32,85 +29,32 @@ class TagsTableViewController: UITableViewController {
 	@IBAction func addTagButtonDidTouch(_ sender: AnyObject) {
 		let addTagController = AddTagController()
 		let navController = UINavigationController(rootViewController: addTagController)
-		
 		present(navController, animated: true, completion: nil)
-		
-		if (currentTags <= 2) {
-			// addTagToDB(name: "Wallet", color: "mu-orange")
-		}
-		
-//		let tagAlert = UIAlertController(title: "New Tag", message: "Enter your tag", preferredStyle: .alert)
-//		tagAlert.addTextField { (textField: UITextField) in
-//			textField.placeholder = "Your tag name"
-//		}
-//		
-//		tagAlert.addAction(UIAlertAction(title: "Add", style: .default, handler: { (action: UIAlertAction) in
-//			if let tagName = tagAlert.textFields?.first?.text {
-//				let tag = Tag()
-//				let tagRef = self.dbRef.child("Tags")
-//				tagRef.setValue()
-//			}
-//		}))
 	}
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		appDelegate = UIApplication.shared.delegate as! AppDelegate
-		
-		navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
-		
 		appDelegate.tagsTableViewController = self
+		
+		navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(confirmLogout))
 		
 		// Disable the ugly default lines
 		tableView.separatorStyle = .none
 		
 		FIRDatabase.database().persistenceEnabled = true
 		dbRef = FIRDatabase.database().reference()
+		checkIfUserIsLoggedIn()
 		
-		dbRef.child("Tags").queryOrderedByKey().observe(.childAdded, with: {
-			snapshot in
-			
-			guard let snapshotDict = snapshot.value as? [String: String] else {
-				// Do something to handle the error
-				// if your snapshot.value isn't the type you thought it was going to be.
-				return;
-			}
-
-			let tagName = snapshotDict["name"]
-			let tagColor = snapshotDict["color"]
-			let tagProximityUUID = snapshotDict["proximityUUID"]
-			let tagMajor = snapshotDict["major"]
-			let tagMinor = snapshotDict["minor"]
-			let tagLastSeen = snapshotDict["lastSeen"]
-			let tagLocation = snapshotDict["location"]
-			
-			self.appDelegate.tags.insert(Tag(name: tagName, color: tagColor, proximityUUID: tagProximityUUID, major: tagMajor, minor: tagMinor, lastSeen: tagLastSeen, location: tagLocation), at: 0)
-			self.tableView.reloadData()
-		})
-		
-		dbRef.child("Tags").queryOrderedByKey().observe(.childRemoved, with: {
-			snapshot in
-			
-			guard let snapshotDict = snapshot.value as? [String: String] else {
-				// Do something to handle the error
-				// if your snapshot.value isn't the type you thought it was going to be.
-				return;
-			}
-			
-//			let tagName = snapshotDict["name"]
-			let tagColor = snapshotDict["color"]
-//			let tagProximityUUID = snapshotDict["proximityUUID"]
-//			let tagLastSeen = snapshotDict["lastSeen"]
-//			let tagLocation = snapshotDict["location"]
-			
-			self.appDelegate.tags.remove(at: Int(tagColor!)!)
-			self.tableView.reloadData()
-		})
+		// Fetch tags if the user is logged in
+		if FIRAuth.auth()?.currentUser?.uid != nil {
+			fetchTagsFromDatabase()
+		}
 	}
 	
 	func checkIfUserIsLoggedIn() {
 		if FIRAuth.auth()?.currentUser?.uid == nil {
-			performSelector(onMainThread: #selector(handleLogout), with: nil, waitUntilDone: true)
+			performSelector(onMainThread: #selector(logOut), with: nil, waitUntilDone: true)
 		} else {
 			let uid = FIRAuth.auth()?.currentUser?.uid
 			FIRDatabase.database().reference().child("Users").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
@@ -124,8 +68,20 @@ class TagsTableViewController: UITableViewController {
 		}
 	}
 	
-	func handleLogout() {
+	func confirmLogout() {
+		let logoutAlert = UIAlertController(title: "Log out?", message: "Are you sure you want to log out?", preferredStyle: .alert)
+		logoutAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action: UIAlertAction!) in
+			self.logOut()
+		}))
 		
+		logoutAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
+			return
+		}))
+		
+		present(logoutAlert, animated: true, completion: nil)
+	}
+	
+	func logOut() {
 		do {
 			try FIRAuth.auth()?.signOut()
 		} catch let logoutError {
@@ -136,36 +92,33 @@ class TagsTableViewController: UITableViewController {
 		present(loginController, animated: true, completion: nil)
 	}
 	
+	func fetchTagsFromDatabase() {
+		print("[ Fetching mµ tags from database... ]")
+		let uid = FIRAuth.auth()?.currentUser?.uid
+		FIRDatabase.database().reference().child("Users").child(uid!).child("Tags").observeSingleEvent(of: .value, with: { (snapshot) in
+			
+			if let dictionary = snapshot.value as? [String: AnyObject] {
+				let tagName = dictionary["name"] as? String
+				let tagColor = dictionary["color"] as? String
+				let tagProximityUUID = dictionary["proximityUUID"] as? String
+				let tagMajor = dictionary["major"] as? String
+				let tagMinor = dictionary["minor"] as? String
+				let tagLastSeen = dictionary["lastSeen"] as? String
+				let tagLocation = dictionary["location"] as? String
+				
+				self.appDelegate.tags.append(Tag(name: tagName, color: tagColor, proximityUUID: tagProximityUUID, major: tagMajor, minor: tagMinor, lastSeen: tagLastSeen, location: tagLocation))
+				print("[ Mµ tags on device:", self.appDelegate.tags)
+				
+				DispatchQueue.main.async( execute: {
+					self.tableView.reloadData()
+				})
+			}
+			
+			}, withCancel: nil)
+	}
+	
 	override func viewDidAppear(_ animated: Bool) {
-
-		checkIfUserIsLoggedIn()
-		
-//		dbRef.child("Tags").observeSingleEvent(of: .value, with: {
-//			snapshot in
-//			
-//			let value = snapshot.value as? NSDictionary
-//			let tagName = value?["name"] as? String ?? ""
-//			print(tagName)
-//			
-//			guard let snapshotDict = snapshot.value as? [String: String] else {
-//				// Do something to handle the error
-//				// if your snapshot.value isn't the type you thought it was going to be.
-//				return;
-//			}
-//			
-//			//			let tagName = snapshotDict["name"]
-//			let tagColor = snapshotDict["color"]
-//			let tagProximityUUID = snapshotDict["proximityUUID"]
-//			let tagMajor = snapshotDict["major"]
-//			let tagMinor = snapshotDict["minor"]
-//			let tagLastSeen = snapshotDict["lastSeen"]
-//			let tagLocation = snapshotDict["location"]
-//			let tagId = snapshotDict["tagId"]
-//			
-//			self.tags.insert(Tag(name: tagName, color: tagColor, proximityUUID: tagProximityUUID, major: tagMajor, minor: tagMinor, lastSeen: tagLastSeen, location: tagLocation, tagId: tagId), at: 0)
-//			self.tableView.reloadData()
-//			
-//		})
+//		checkIfUserIsLoggedIn()
 	}
 	
 	override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {

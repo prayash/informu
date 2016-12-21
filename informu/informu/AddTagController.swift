@@ -18,18 +18,19 @@ class User: NSObject {
 }
 
 class AddTagController: UITableViewController {
-	var appDelegate = UIApplication.shared.delegate as! AppDelegate
+	var appDelegate: AppDelegate!
 	var users = [User]()
 	var availableTags = [Tag]()
 	let cellId = "cellId"
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		tableView.register(TagCell.self, forCellReuseIdentifier: cellId)
+		appDelegate = UIApplication.shared.delegate as! AppDelegate
+//		appDelegate.addTagController = self
 		
+		tableView.register(TagCell.self, forCellReuseIdentifier: cellId)
 		navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action:#selector(handleCancel))
 		
-		fetchTags()
 		appDelegate.startScanning()
 	}
 	
@@ -46,6 +47,13 @@ class AddTagController: UITableViewController {
 		let tagLocation = appDelegate.parseProximity(distance: beacon.proximity)
 		
 		let availableTag = Tag(name: "mµ tag", color: "mu-orange", proximityUUID: uuidString, major: majorString, minor: minorString, lastSeen: tagLastSeen, location: tagLocation)
+		
+		for tag in appDelegate.tags {
+			if Int(tag.major) == Int(availableTag.major) {
+				print("Found an already added tag. Dismissing.")
+//				return
+			}
+		}
 		
 		if (availableTags.isEmpty) {
 			self.availableTags.append(availableTag)
@@ -66,62 +74,41 @@ class AddTagController: UITableViewController {
 		DispatchQueue.main.async(execute: {
 			self.tableView.reloadData()
 		})
-		
-		print("* * * * * * * * * * * * * * * * * * * * ")
 	}
 	
-	func fetchTags() {
-		FIRDatabase.database().reference().child("Users").observe(.childAdded, with: { (snapshot) in
-			print("User Found")
-//			print(snapshot)
-			
-			if let dictionary = snapshot.value as? [String: AnyObject] {
-				let user = User()
-				
-				// If we use this setter, app will crash if the class properties don't exactly match with Firebase dictionary keys
-				user.setValuesForKeys(dictionary)
-				self.users.append(user)
-				
-				// This will crash due to background thread, use DispatchQueue.main.async to fix
-				DispatchQueue.main.async( execute: {
-					self.tableView.reloadData()
-				})
-				
-				// user.name = dictionary["name"]
-
-				print(user.name, user.email)
-			}
-			
-			}, withCancel: nil)
-	}
-	
-	func addTagToDB(name: String, color: String, proximityUUID: String, major: String, minor: String) -> Void {
+	func addTagToDB(tag: Tag) -> Void {
 		print("Adding Tag...")
-		let tagName = name
-		let tagColor = color
-		let tagProximityUUID = "E2C56DB5-DFFB-48D2-B060-D0F5A71096E0"
-		let tagMajor = major
-		let tagMinor = minor
-		let tagLastSeen = "Just Now"
-		let tagLocation = "Searching..."
+		let tagName = tag.name
+		let tagColor = tag.color
+		let tagProximityUUID = tag.proximityUUID
+		let tagMajor = tag.major
+		let tagMinor = tag.minor
+		let tagLastSeen = tag.lastSeen
+		let tagLocation = tag.location
 		
-		let tag: [String: AnyObject] = ["name": tagName as AnyObject,
-		                                "color": tagColor as AnyObject,
-		                                "proximityUUID": tagProximityUUID as AnyObject,
-		                                "major": tagMajor as AnyObject,
-		                                "minor": tagMinor as AnyObject,
-		                                "lastSeen": tagLastSeen as AnyObject,
-		                                "location": tagLocation as AnyObject]
+		let tag: [String: Any] = ["name": tagName! as Any,
+		                                "color": tagColor! as Any,
+		                                "proximityUUID": tagProximityUUID! as Any,
+		                                "major": tagMajor! as Any,
+		                                "minor": tagMinor! as Any,
+		                                "lastSeen": tagLastSeen! as Any,
+		                                "location": tagLocation! as Any]
 		
 		let uid = FIRAuth.auth()?.currentUser?.uid
-		FIRDatabase.database().reference().child("Users").child(uid!).child("Tags").setValue(tag)
-		
-		appDelegate.tags.insert(Tag(name: tagName, color: tagColor, proximityUUID: tagProximityUUID, major: tagMajor, minor: tagMinor, lastSeen: tagLastSeen, location: tagLocation), at: 0)
+		FIRDatabase.database().reference().child("Users").child(uid!).child("Tags").setValue(tag) { (err, ref) in
+			if err != nil {
+				print(err)
+				return
+			}
+			
+			// Tag successfully added to db
+			self.dismiss(animated: true, completion: nil)
+		}
 	}
 	
 	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//		return availableTags.count
-		return users.count
+		return availableTags.count
+//		return users.count
 	}
 	
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -143,6 +130,28 @@ class AddTagController: UITableViewController {
 		return cell
 	}
 	
+	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		let selectedTag = availableTags[indexPath.row]
+		for tag in appDelegate.tags {
+			if Int(selectedTag.major) == Int(tag.major) {
+				print("This tag has already been added!")
+				
+				let alertController = UIAlertController(title: "Tag already added!", message: "This tag is already linked to your device.", preferredStyle: .alert)
+				let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+				alertController.addAction(defaultAction)
+				
+				present(alertController, animated: true, completion: nil)
+				return
+			} else {
+				addTagToDB(tag: selectedTag);
+				
+				dismiss(animated: true, completion: nil)
+				tableView.deselectRow(at: indexPath, animated: true)
+				return
+			}
+		}
+	}
+	
 	override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 		return 100
 	}
@@ -159,6 +168,7 @@ class TagCell: UITableViewCell {
 	let tagImageView: UIImageView = {
 		let imageView = UIImageView()
 		imageView.image = nil
+		imageView.contentMode = .scaleAspectFit
 		imageView.translatesAutoresizingMaskIntoConstraints = false
 		return imageView
 	}()

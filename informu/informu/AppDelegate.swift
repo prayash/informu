@@ -13,9 +13,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 	
 	var window: UIWindow?
 	var locationManager: CLLocationManager?
-	var lastProximity: CLProximity?
+	
 	var tags = [Tag]()
 	var tagsTableViewController: TagsTableViewController = TagsTableViewController()
+	
+	//var addTagController: AddTagController = AddTagController()
 	var proximityMessage: String = "Searching..."
 	
 	// Override point for customization after application launch.
@@ -47,7 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 	
 	// Initiate scanning
 	func startScanning() {
-		print("Scanning. . . ")
+		print("[ Scanning from AppDelegate. . . ]")
 		let uuid = NSUUID(uuidString: "E2C56DB5-DFFB-48D2-B060-D0F5A71096E0")
 		let beaconRegion = CLBeaconRegion(proximityUUID: uuid as! UUID, identifier: "Simblee")
 		
@@ -64,25 +66,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 		if beacons.count > 0 {
 			let beacon = beacons.first! as CLBeacon
 //			let distance = beacon.proximity
-			if (self.tags.isEmpty) {
-				// addTagToDB(name: "mµ tag", color: "mu-orange", proximityUUID: uuidString, major: majorString, minor: minorString)
-			}
 			
+			//print(addTagController)
+			//addTagController.showAvailableTags(beacon: beacon)
 			// This is seriously so hacky.. must figure out a better way to do this!
-			if let addTagController = UIApplication.shared.keyWindow?.rootViewController?.childViewControllers[0].presentedViewController?.childViewControllers[0] as? AddTagController {
-				addTagController.showAvailableTags(beacon: beacon)
+			//print(UIApplication.shared.keyWindow?.rootViewController?.childViewControllers[0].presentedViewController?.childViewControllers.isEmpty)
+			
+			if UIApplication.shared.keyWindow?.rootViewController?.childViewControllers[0].presentedViewController?.childViewControllers.isEmpty == false  {
+				if let addTagController = UIApplication.shared.keyWindow?.rootViewController?.childViewControllers[0].presentedViewController?.childViewControllers[0] as? AddTagController {
+						addTagController.showAvailableTags(beacon: beacon)
+				}
 			}
-//			let addTagController = UIApplication.shared.keyWindow?.rootViewController?.childViewControllers[3] as? AddTagController
 			
-			
-//			for tag in tagsTableViewController.tags {
-//				if (NSNumber(value: Int(tag.major)!) != beacon.major && NSNumber(value: Int(tag.minor)!) != beacon.minor) {
-//					tagsTableViewController.addTagToDB(name: "New Tag", color: "mu-orange", proximityUUID: uuidString, major: majorString, minor: minorString)
+//			if (UIApplication.shared.keyWindow?.rootViewController?.childViewControllers[0].presentedViewController != nil && UIApplication.shared.keyWindow?.rootViewController?.childViewControllers[0].presentedViewController?.childViewControllers != nil) {
+//				if let addTagController = UIApplication.shared.keyWindow?.rootViewController?.childViewControllers[0].presentedViewController?.childViewControllers[0] as? AddTagController {
+//					addTagController.showAvailableTags(beacon: beacon)
 //				}
+//			}
+//			if let addTagController = UIApplication.shared.keyWindow?.rootViewController?.childViewControllers[0].presentedViewController?.childViewControllers[0] as? AddTagController {
+//				addTagController.showAvailableTags(beacon: beacon)
 //			}
 			
 			for i in 0..<self.tags.count {
-				self.tags[i].location = proximityMessage
+				// self.tags[i].location = proximityMessage
 				
 				UIView.performWithoutAnimation {
 					self.tagsTableViewController.tableView.reloadData()

@@ -9,8 +9,30 @@
 import UIKit
 import Firebase
 import FirebaseAuth
+import FBSDKLoginKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
+	
+	override func viewDidLoad() {
+		super.viewDidLoad()
+		self.hideKeyboardWhenTappedAround()
+		FBLoginButton.delegate = self
+		FBLoginButton.readPermissions = ["email", "public_profile"]
+		
+		view.backgroundColor = UIColor(r: 255, g: 255, b: 255)
+		
+		view.addSubview(inputsContainerView)
+		view.addSubview(loginRegisterButton)
+		view.addSubview(FBLoginButton)
+		view.addSubview(profileImageView)
+		view.addSubview(loginRegisterSegmentedControl)
+		
+		setupInputsContainerView()
+		setupLoginRegisterButton()
+		setupFBLoginButton()
+		setupProfileImageView()
+		setupLoginRegisterSegmentedControl()
+	}
 
 	let inputsContainerView: UIView = {
 		let view = UIView()
@@ -33,6 +55,61 @@ class LoginViewController: UIViewController {
 		
 		return button
 	}()
+	
+	let FBLoginButton: FBSDKLoginButton = {
+		let button = FBSDKLoginButton()
+		button.translatesAutoresizingMaskIntoConstraints = false
+		return button
+	}()
+	
+	func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
+		print("Log out of FB")
+	}
+	
+	func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
+		if error != nil {
+			print(error)
+			return
+		}
+		
+		FBSDKGraphRequest(graphPath: "/me", parameters: ["fields": "id, name, email"]).start(completionHandler: {
+			(connection, result, err) in
+			if err != nil {
+				print("Failed to start Graph API request: ", err)
+				return
+			}
+			print(result)
+		})
+		
+		showEmailAddress()
+	}
+	
+	func showEmailAddress() {
+		let accessToken = FBSDKAccessToken.current()
+		guard let accessTokenString = accessToken?.tokenString else { return }
+		let credentials = FIRFacebookAuthProvider.credential(withAccessToken: accessTokenString)
+		FIRAuth.auth()?.signIn(with: credentials, completion: { (user, err) in
+			if err != nil {
+				print("Something went wrong with our FB user: ", err)
+				return
+			}
+			
+			print("Successfully logged in with user: ", user?.displayName)
+			
+			guard let uid = user?.uid else { return }
+			let dbRef = FIRDatabase.database().reference()
+			let usersRef = dbRef.child("Users").child(uid)
+			let values = ["name": user?.displayName, "email": user?.email]
+			usersRef.updateChildValues(values, withCompletionBlock: { (err, ref) in
+				if err != nil {
+					print(err)
+					return
+				}
+				
+				print("Succesfully saved user into db.")
+			})
+		})
+	}
 	
 	func handleLoginRegister() {
 		if loginRegisterSegmentedControl.selectedSegmentIndex == 0 {
@@ -71,9 +148,7 @@ class LoginViewController: UIViewController {
 				return
 			}
 			
-			guard let uid = user?.uid else {
-				return
-			}
+			guard let uid = user?.uid else { return }
 			
 			// Successfully authenticated user
 			let dbRef = FIRDatabase.database().reference()
@@ -177,25 +252,8 @@ class LoginViewController: UIViewController {
 		}
 	}
 	
-	override func viewDidLoad() {
-		super.viewDidLoad()
-		self.hideKeyboardWhenTappedAround()
-		
-		view.backgroundColor = UIColor(r: 255, g: 255, b: 255)
-		
-		view.addSubview(inputsContainerView)
-		view.addSubview(loginRegisterButton)
-		view.addSubview(profileImageView)
-		view.addSubview(loginRegisterSegmentedControl)
-		
-		setupInputsContainerView()
-		setupLoginRegisterButton()
-		setupProfileImageView()
-		setupLoginRegisterSegmentedControl()
-	}
-	
 	func setupLoginRegisterSegmentedControl() {
-		// need x, y, width, height constraints
+		// Need x, y, width, height constraints
 		loginRegisterSegmentedControl.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
 		loginRegisterSegmentedControl.bottomAnchor.constraint(equalTo: inputsContainerView.topAnchor, constant: -12).isActive = true
 		loginRegisterSegmentedControl.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
@@ -203,7 +261,6 @@ class LoginViewController: UIViewController {
 	}
 	
 	func setupProfileImageView() {
-		// Need x, y, width, height constraints
 		profileImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
 		profileImageView.bottomAnchor.constraint(equalTo: loginRegisterSegmentedControl.topAnchor, constant: -12).isActive = true
 		profileImageView.widthAnchor.constraint(equalToConstant: 150).isActive = true
@@ -264,10 +321,16 @@ class LoginViewController: UIViewController {
 	}
 	
 	func setupLoginRegisterButton() {
-		//need x, y, width, height constraints
 		loginRegisterButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
 		loginRegisterButton.topAnchor.constraint(equalTo: inputsContainerView.bottomAnchor, constant: 12).isActive = true
 		loginRegisterButton.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
 		loginRegisterButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+	}
+	
+	func setupFBLoginButton() {
+		FBLoginButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+		FBLoginButton.topAnchor.constraint(equalTo: loginRegisterButton.bottomAnchor, constant: 12).isActive = true
+		FBLoginButton.widthAnchor.constraint(equalTo: loginRegisterButton.widthAnchor).isActive = true
+		FBLoginButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
 	}
 }

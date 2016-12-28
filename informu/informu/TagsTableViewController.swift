@@ -59,8 +59,7 @@ class TagsTableViewController: UITableViewController {
 			let uid = FIRAuth.auth()?.currentUser?.uid
 			FIRDatabase.database().reference().child("Users").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
 
-				
-				}, withCancel: nil)
+			}, withCancel: nil)
 		}
 	}
 	

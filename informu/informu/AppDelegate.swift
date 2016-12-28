@@ -5,6 +5,7 @@ import UIKit
 import Firebase
 import CoreLocation
 import UserNotifications
+import FBSDKCoreKit
 
 // ****************************************************************************************
 
@@ -26,8 +27,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 	// Override point for customization after application launch.
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions:[UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 		
-		// Initialize Firebase
+		// Init Firebase
 		FIRApp.configure()
+		
+		// Init Facebook SDK
+		FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
 		
 		// Start timer
 		timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.timeElapsed), userInfo: nil, repeats: true)
@@ -41,6 +45,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 		UIApplication.shared.registerUserNotificationSettings(notificationSettings)
 
 		return true
+	}
+	
+	func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+		let handled = FBSDKApplicationDelegate.sharedInstance().application(app, open: url, sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String!, annotation: options[UIApplicationOpenURLOptionsKey.annotation])
+		
+		return handled
 	}
 	
 	func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
@@ -116,8 +126,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 		let s = v.string(from: (pingTime as NSDate) as Date)
 		
 		let elapsed = lround(abs(pingTime.timeIntervalSinceNow))
-//		lastSeenMessage = elapsed.description + "s ago"
-		lastSeenMessage = "Just Now"
+		lastSeenMessage = elapsed.description + "s ago"
+//		lastSeenMessage = "Just Now"
 	}
 	
 	// Regularly update UI with proximity

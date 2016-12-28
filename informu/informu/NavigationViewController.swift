@@ -14,6 +14,10 @@ class NavigationViewController: UINavigationController, UIViewControllerTransiti
 		self.navigationBar.barStyle = UIBarStyle.black
 		self.navigationBar.tintColor = UIColor.white
 		self.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(name: "HelveticaNeue-Light", size: 22.0)!];
+		
+//		self.navigationBar.setBackgroundImage(UIImage(), for: .top, barMetrics: .default)
+//		self.navigationBar.shadowImage = UIImage()
+//		self.navigationBar.isTranslucent = true
 	}
 	
 	override func didReceiveMemoryWarning() {

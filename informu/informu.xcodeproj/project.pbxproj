@@ -119,7 +119,6 @@
 		EDE450C81DC3F1B0006A6051 /* informu */ = {
 			isa = PBXGroup;
 			children = (
-				ED33D8631E1345AD00909570 /* informu.entitlements */,
 				EDE450C91DC3F1B0006A6051 /* AppDelegate.swift */,
 				ED146D251E08765900EFFC0C /* Extensions.swift */,
 				ED146D2C1E0896F400EFFC0C /* Model */,
@@ -130,6 +129,7 @@
 				EDE450D51DC3F1B0006A6051 /* LaunchScreen.storyboard */,
 				ED55EC551E07A13D00B539F8 /* GoogleService-Info.plist */,
 				EDE450D81DC3F1B0006A6051 /* Info.plist */,
+				ED33D8631E1345AD00909570 /* informu.entitlements */,
 			);
 			path = informu;
 			sourceTree = "<group>";

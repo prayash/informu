@@ -50,7 +50,7 @@ class TagViewController: UIViewController {
 		navigationController?.navigationBar.tintColor = UIColor.white
 		navigationController?.pushViewController(editViewController, animated: true)
 	}
-	
+		
 	/*
 	// MARK: - Navigation
 	

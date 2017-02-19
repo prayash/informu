@@ -120,20 +120,22 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
 	}
 	
 	func handleLogin() {
-		guard let email = emailTextField.text, let password = passwordTextField.text else {
-			print("Form is not valid.")
-			return
-		}
-		
-		FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (user, error) in
-			if error != nil {
-				print(error)
-				return
-			}
-			
-			// Successfully logged in
-			self.dismiss(animated: true, completion: nil)
-		})
+		self.dismiss(animated: true, completion: nil)
+//		
+//		guard let email = emailTextField.text, let password = passwordTextField.text else {
+//			print("Form is not valid.")
+//			return
+//		}
+//		
+//		FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (user, error) in
+//			if error != nil {
+//				print(error)
+//				return
+//			}
+//			
+//			// Successfully logged in
+//			self.dismiss(animated: true, completion: nil)
+//		})
 	}
 	
 	func handleRegister() {

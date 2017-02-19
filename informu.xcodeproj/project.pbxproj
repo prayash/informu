@@ -7,21 +7,57 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D60950A45C4229024F043BF /* Pods_informu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF4E1580B3BBC4C5858DECDE /* Pods_informu.framework */; };
 		EDAC80F11E5923DF00CC3998 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDAC80F01E5923DF00CC3998 /* AppDelegate.swift */; };
-		EDAC80F31E5923DF00CC3998 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDAC80F21E5923DF00CC3998 /* ViewController.swift */; };
-		EDAC80F61E5923DF00CC3998 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDAC80F41E5923DF00CC3998 /* Main.storyboard */; };
 		EDAC80F81E5923DF00CC3998 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EDAC80F71E5923DF00CC3998 /* Assets.xcassets */; };
 		EDAC80FB1E5923DF00CC3998 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDAC80F91E5923DF00CC3998 /* LaunchScreen.storyboard */; };
+		EDC7131C1E5924C100B7C4DD /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC7131B1E5924C100B7C4DD /* MenuController.swift */; };
+		EDC7131E1E5924E500B7C4DD /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC7131D1E5924E500B7C4DD /* Extensions.swift */; };
+		EDC713201E59250D00B7C4DD /* NavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC7131F1E59250D00B7C4DD /* NavController.swift */; };
+		EDC713221E59255E00B7C4DD /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC713211E59255E00B7C4DD /* SettingsController.swift */; };
+		EDC713241E5925A800B7C4DD /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC713231E5925A800B7C4DD /* HomeController.swift */; };
+		EDC713261E59260100B7C4DD /* MenuBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC713251E59260100B7C4DD /* MenuBarController.swift */; };
+		EDC713291E59296600B7C4DD /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC713281E59296600B7C4DD /* Tag.swift */; };
+		EDC7132D1E59418300B7C4DD /* HomeDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC7132C1E59418300B7C4DD /* HomeDatasource.swift */; };
+		EDC7132F1E5941BF00B7C4DD /* TagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC7132E1E5941BF00B7C4DD /* TagCell.swift */; };
+		EDC713311E5944F700B7C4DD /* TagHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC713301E5944F700B7C4DD /* TagHeader.swift */; };
+		EDC713331E59612100B7C4DD /* TagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC713321E59612100B7C4DD /* TagViewController.swift */; };
+		EDC713351E59735B00B7C4DD /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDC713341E59735B00B7C4DD /* MapKit.framework */; };
+		EDC713371E59738800B7C4DD /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDC713361E59738800B7C4DD /* CoreLocation.framework */; };
+		EDC713391E5979B700B7C4DD /* AddTagController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC713381E5979B700B7C4DD /* AddTagController.swift */; };
+		EDD85C271E5984D600D9E0B7 /* AddTagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD85C261E5984D600D9E0B7 /* AddTagCell.swift */; };
+		EDD85C291E598E0500D9E0B7 /* TagSettingsLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD85C281E598E0500D9E0B7 /* TagSettingsLauncher.swift */; };
+		EDD85C2B1E598E4E00D9E0B7 /* TagSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD85C2A1E598E4E00D9E0B7 /* TagSettingCell.swift */; };
+		EDD85C2D1E59969700D9E0B7 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD85C2C1E59969700D9E0B7 /* LoginController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3C4FC9705EEF66A9A292DB77 /* Pods-informu.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-informu.debug.xcconfig"; path = "Pods/Target Support Files/Pods-informu/Pods-informu.debug.xcconfig"; sourceTree = "<group>"; };
+		CFD8670F0C889A8B1526E8D6 /* Pods-informu.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-informu.release.xcconfig"; path = "Pods/Target Support Files/Pods-informu/Pods-informu.release.xcconfig"; sourceTree = "<group>"; };
 		EDAC80ED1E5923DF00CC3998 /* informu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = informu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDAC80F01E5923DF00CC3998 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		EDAC80F21E5923DF00CC3998 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		EDAC80F51E5923DF00CC3998 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EDAC80F71E5923DF00CC3998 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EDAC80FA1E5923DF00CC3998 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EDAC80FC1E5923DF00CC3998 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EDC7131B1E5924C100B7C4DD /* MenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
+		EDC7131D1E5924E500B7C4DD /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		EDC7131F1E59250D00B7C4DD /* NavController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavController.swift; sourceTree = "<group>"; };
+		EDC713211E59255E00B7C4DD /* SettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
+		EDC713231E5925A800B7C4DD /* HomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
+		EDC713251E59260100B7C4DD /* MenuBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuBarController.swift; sourceTree = "<group>"; };
+		EDC713281E59296600B7C4DD /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
+		EDC7132C1E59418300B7C4DD /* HomeDatasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeDatasource.swift; sourceTree = "<group>"; };
+		EDC7132E1E5941BF00B7C4DD /* TagCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagCell.swift; sourceTree = "<group>"; };
+		EDC713301E5944F700B7C4DD /* TagHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagHeader.swift; sourceTree = "<group>"; };
+		EDC713321E59612100B7C4DD /* TagViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagViewController.swift; sourceTree = "<group>"; };
+		EDC713341E59735B00B7C4DD /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		EDC713361E59738800B7C4DD /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		EDC713381E5979B700B7C4DD /* AddTagController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTagController.swift; sourceTree = "<group>"; };
+		EDD85C261E5984D600D9E0B7 /* AddTagCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTagCell.swift; sourceTree = "<group>"; };
+		EDD85C281E598E0500D9E0B7 /* TagSettingsLauncher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagSettingsLauncher.swift; sourceTree = "<group>"; };
+		EDD85C2A1E598E4E00D9E0B7 /* TagSettingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagSettingCell.swift; sourceTree = "<group>"; };
+		EDD85C2C1E59969700D9E0B7 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		FF4E1580B3BBC4C5858DECDE /* Pods_informu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_informu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +65,41 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EDC713371E59738800B7C4DD /* CoreLocation.framework in Frameworks */,
+				EDC713351E59735B00B7C4DD /* MapKit.framework in Frameworks */,
+				3D60950A45C4229024F043BF /* Pods_informu.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		605E66ECF148A8211B2A9C1A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EDC713361E59738800B7C4DD /* CoreLocation.framework */,
+				EDC713341E59735B00B7C4DD /* MapKit.framework */,
+				FF4E1580B3BBC4C5858DECDE /* Pods_informu.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B68134710C78BEB7D481C44E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3C4FC9705EEF66A9A292DB77 /* Pods-informu.debug.xcconfig */,
+				CFD8670F0C889A8B1526E8D6 /* Pods-informu.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		EDAC80E41E5923DF00CC3998 = {
 			isa = PBXGroup;
 			children = (
 				EDAC80EF1E5923DF00CC3998 /* informu */,
 				EDAC80EE1E5923DF00CC3998 /* Products */,
+				B68134710C78BEB7D481C44E /* Pods */,
+				605E66ECF148A8211B2A9C1A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -55,13 +115,51 @@
 			isa = PBXGroup;
 			children = (
 				EDAC80F01E5923DF00CC3998 /* AppDelegate.swift */,
-				EDAC80F21E5923DF00CC3998 /* ViewController.swift */,
-				EDAC80F41E5923DF00CC3998 /* Main.storyboard */,
+				EDC7131D1E5924E500B7C4DD /* Extensions.swift */,
+				EDC713271E59295B00B7C4DD /* Model */,
+				EDC7132B1E59298400B7C4DD /* View */,
+				EDC7132A1E59297D00B7C4DD /* Controller */,
 				EDAC80F71E5923DF00CC3998 /* Assets.xcassets */,
 				EDAC80F91E5923DF00CC3998 /* LaunchScreen.storyboard */,
 				EDAC80FC1E5923DF00CC3998 /* Info.plist */,
 			);
 			path = informu;
+			sourceTree = "<group>";
+		};
+		EDC713271E59295B00B7C4DD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EDC7132C1E59418300B7C4DD /* HomeDatasource.swift */,
+				EDC713281E59296600B7C4DD /* Tag.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		EDC7132A1E59297D00B7C4DD /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				EDC713381E5979B700B7C4DD /* AddTagController.swift */,
+				EDC713231E5925A800B7C4DD /* HomeController.swift */,
+				EDD85C2C1E59969700D9E0B7 /* LoginController.swift */,
+				EDC7131B1E5924C100B7C4DD /* MenuController.swift */,
+				EDC713251E59260100B7C4DD /* MenuBarController.swift */,
+				EDC7131F1E59250D00B7C4DD /* NavController.swift */,
+				EDC713211E59255E00B7C4DD /* SettingsController.swift */,
+				EDD85C281E598E0500D9E0B7 /* TagSettingsLauncher.swift */,
+				EDC713321E59612100B7C4DD /* TagViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		EDC7132B1E59298400B7C4DD /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EDD85C261E5984D600D9E0B7 /* AddTagCell.swift */,
+				EDC7132E1E5941BF00B7C4DD /* TagCell.swift */,
+				EDC713301E5944F700B7C4DD /* TagHeader.swift */,
+				EDD85C2A1E598E4E00D9E0B7 /* TagSettingCell.swift */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +169,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EDAC80FF1E5923DF00CC3998 /* Build configuration list for PBXNativeTarget "informu" */;
 			buildPhases = (
+				9A40E2BA4D1D8CC9747EAE93 /* [CP] Check Pods Manifest.lock */,
 				EDAC80E91E5923DF00CC3998 /* Sources */,
 				EDAC80EA1E5923DF00CC3998 /* Frameworks */,
 				EDAC80EB1E5923DF00CC3998 /* Resources */,
+				AC027506DA103E569B27DEFD /* [CP] Embed Pods Frameworks */,
+				22E45DD8DE6277A18BEBF5CB /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -98,6 +199,11 @@
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = 6CU374MXYV;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -126,33 +232,87 @@
 			files = (
 				EDAC80FB1E5923DF00CC3998 /* LaunchScreen.storyboard in Resources */,
 				EDAC80F81E5923DF00CC3998 /* Assets.xcassets in Resources */,
-				EDAC80F61E5923DF00CC3998 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		22E45DD8DE6277A18BEBF5CB /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-informu/Pods-informu-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9A40E2BA4D1D8CC9747EAE93 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		AC027506DA103E569B27DEFD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-informu/Pods-informu-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		EDAC80E91E5923DF00CC3998 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EDAC80F31E5923DF00CC3998 /* ViewController.swift in Sources */,
+				EDD85C271E5984D600D9E0B7 /* AddTagCell.swift in Sources */,
+				EDC713221E59255E00B7C4DD /* SettingsController.swift in Sources */,
+				EDC713261E59260100B7C4DD /* MenuBarController.swift in Sources */,
+				EDC7132F1E5941BF00B7C4DD /* TagCell.swift in Sources */,
+				EDD85C291E598E0500D9E0B7 /* TagSettingsLauncher.swift in Sources */,
+				EDC713241E5925A800B7C4DD /* HomeController.swift in Sources */,
+				EDC7132D1E59418300B7C4DD /* HomeDatasource.swift in Sources */,
+				EDC713311E5944F700B7C4DD /* TagHeader.swift in Sources */,
+				EDC7131C1E5924C100B7C4DD /* MenuController.swift in Sources */,
+				EDD85C2B1E598E4E00D9E0B7 /* TagSettingCell.swift in Sources */,
+				EDC713201E59250D00B7C4DD /* NavController.swift in Sources */,
+				EDD85C2D1E59969700D9E0B7 /* LoginController.swift in Sources */,
+				EDC713291E59296600B7C4DD /* Tag.swift in Sources */,
+				EDC713331E59612100B7C4DD /* TagViewController.swift in Sources */,
 				EDAC80F11E5923DF00CC3998 /* AppDelegate.swift in Sources */,
+				EDC713391E5979B700B7C4DD /* AddTagController.swift in Sources */,
+				EDC7131E1E5924E500B7C4DD /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		EDAC80F41E5923DF00CC3998 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				EDAC80F51E5923DF00CC3998 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		EDAC80F91E5923DF00CC3998 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -182,6 +342,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -231,6 +392,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -257,10 +419,12 @@
 		};
 		EDAC81001E5923DF00CC3998 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3C4FC9705EEF66A9A292DB77 /* Pods-informu.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 6CU374MXYV;
 				INFOPLIST_FILE = informu/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.informu.informu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -270,10 +434,12 @@
 		};
 		EDAC81011E5923DF00CC3998 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CFD8670F0C889A8B1526E8D6 /* Pods-informu.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 6CU374MXYV;
 				INFOPLIST_FILE = informu/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.informu.informu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -300,6 +466,7 @@
 				EDAC81011E5923DF00CC3998 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -66,10 +66,12 @@ class TagSettingsLauncher: NSObject, UICollectionViewDataSource, UICollectionVie
             
             // Dismiss menu if tapped on overlayView
             if setting.name.rawValue.isEmpty || setting.name == .Cancel {
+                self.createLocationNotification(msg: "You have left your passport behind!")
                 return
             } else if setting.name == .Settings {
                 self.tagViewController?.showEditViewController(setting: setting)
             } else if setting.name == .Remove {
+                self.createLocationNotification(msg: "You have left your passport behind!")
                 print("Deleting...")
             }
         }
@@ -97,6 +99,17 @@ class TagSettingsLauncher: NSObject, UICollectionViewDataSource, UICollectionVie
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         handleDismiss(setting: self.settings[indexPath.item])
+    }
+    
+    func createLocationNotification(msg: String) {
+        // Fire off LocalNotification now.
+        let localNotification = UILocalNotification()
+        localNotification.fireDate = Date().addingTimeInterval(30)
+        localNotification.applicationIconBadgeNumber = 0
+        localNotification.soundName = UILocalNotificationDefaultSoundName
+        localNotification.alertBody = msg
+        
+        UIApplication.shared.scheduleLocalNotification(localNotification)
     }
     
     override init() {

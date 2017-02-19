@@ -24,6 +24,7 @@ class LoginController: UIViewController {
         setupLoginRegisterButton()
         setupProfileImageView()
         setupLoginRegisterSegmentedControl()
+        handleLoginRegisterChange()
     }
     
     let inputsContainerView: UIView = {

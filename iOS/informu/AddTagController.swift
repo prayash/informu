@@ -39,7 +39,7 @@ class AddTagController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        dismiss(animated: true, completion: nil)
+        showAlert()
         tableView.deselectRow(at: indexPath, animated: true)
         return
     }
@@ -50,6 +50,25 @@ class AddTagController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
+    }
+    
+    func showAlert() {
+        let alert = UIAlertController(title: "Name your tag.", message: "What will you be attaching it to?", preferredStyle: UIAlertControllerStyle.alert)
+        
+        alert.addTextField(configurationHandler: configurationTextField)
+        
+        alert.addAction(UIAlertAction(title: "Add", style: UIAlertActionStyle.default, handler:{ (UIAlertAction)in
+            print("User added tag.")
+            self.dismiss(animated: true, completion: nil)
+        }))
+        
+        self.present(alert, animated: true, completion: {
+            print("Popped up add tag alert.")
+        })
+    }
+    
+    func configurationTextField(textField: UITextField!){
+        textField.text = ""
     }
 }
 

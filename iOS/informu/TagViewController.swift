@@ -121,7 +121,8 @@ class TagViewController: UIViewController, MKMapViewDelegate {
     }
     
     func setupToolbar() {
-        self.navigationController?.isToolbarHidden = false
+        navigationController?.isToolbarHidden = false
+        self.navigationController?.setToolbarHidden(false, animated: true)
         let openMapsButton = UIBarButtonItem(title: "Open in Maps", style: .plain, target: self, action: #selector(openMaps))
         openMapsButton.tintColor = muOrange
         self.toolbarItems = [openMapsButton]

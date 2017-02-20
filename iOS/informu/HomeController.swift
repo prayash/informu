@@ -26,11 +26,16 @@ class HomeController: DatasourceController {
         
         prepareAddButton()
         prepareMenuButton()
-        prepareNavigationItem()
+        prepareNavigationItems()
         
         let homeDatasource = HomeDatasource()
         self.datasource = homeDatasource
         collectionView?.delaysContentTouches = false
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.isToolbarHidden = true
+        navigationController?.setToolbarHidden(true, animated: true)
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -79,11 +84,12 @@ extension HomeController {
         addButton.addTarget(self, action: #selector(handleAddButton), for: .touchUpInside)
     }
     
-    fileprivate func prepareNavigationItem() {
+    fileprivate func prepareNavigationItems() {
         navigationItem.title = "Home"
         navigationItem.titleLabel.font = UIFont(name: "Raleway", size: 20)
         navigationItem.leftViews = [menuButton]
         navigationItem.rightViews = [addButton]
+//        navigationController?.setToolbarHidden(true, animated: true)
     }
     
 }

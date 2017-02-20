@@ -95,12 +95,7 @@ class TagViewController: UIViewController, MKMapViewDelegate {
             
             let route = response.routes[0]
             self.mapView.add((route.polyline), level: MKOverlayLevel.aboveRoads)
-            
-            let rect = route.polyline.boundingMapRect
-            let boundingRectSize = MKMapSize(width: rect.size.width * 1.5, height: rect.size.height)
-            let boundingRectOrigin = MKMapPoint(x: rect.origin.x - 500, y: rect.origin.y)
-            let boundingRect = MKMapRect(origin: boundingRectOrigin, size: boundingRectSize)
-            self.mapView.setRegion(MKCoordinateRegionForMapRect(boundingRect), animated: true)
+            self.mapView.setZoomByDelta(delta: 2, animated: true)
         }
         
         view.addSubview(mapView)
@@ -151,5 +146,17 @@ class TagViewController: UIViewController, MKMapViewDelegate {
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         navigationController?.navigationBar.tintColor = UIColor.white
         navigationController?.pushViewController(editViewController, animated: true)
+    }
+}
+
+extension MKMapView {
+    func setZoomByDelta(delta: Double, animated: Bool) {
+        var _region = region;
+        var _span = region.span;
+        _span.latitudeDelta *= delta;
+        _span.longitudeDelta *= delta;
+        _region.span = _span;
+        
+        setRegion(_region, animated: animated)
     }
 }

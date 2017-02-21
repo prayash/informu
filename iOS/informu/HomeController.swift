@@ -22,7 +22,7 @@ class HomeController: DatasourceController {
     
     open override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = Color.grey.lighten5
+        view.backgroundColor = UIColor(r: 130, g: 130, b: 130)
         
         prepareAddButton()
         prepareMenuButton()
@@ -57,7 +57,7 @@ class HomeController: DatasourceController {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
-        return 0
+        return 10
     }
     
     override func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
@@ -105,7 +105,7 @@ extension HomeController {
     @objc
     fileprivate func handleMenuButton() {
         let loginController = LoginController()
-                present(loginController, animated: true, completion: nil)
+        present(loginController, animated: true, completion: nil)
 //        let navController = UINavigationController(rootViewController: loginController)
 //        present(navController, animated: true, completion: nil)
     }

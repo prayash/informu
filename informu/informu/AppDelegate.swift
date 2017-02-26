@@ -5,7 +5,7 @@ import UIKit
 import Firebase
 import CoreLocation
 import UserNotifications
-import FBSDKCoreKit
+
 
 // ****************************************************************************************
 
@@ -18,7 +18,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 	var tags = [Tag]()
 	var tagsTableViewController: TagsTableViewController = TagsTableViewController()
 	
-	//var addTagController: AddTagController = AddTagController()
 	var proximityMessage: String = "Searching..."
 	var lastSeenMessage: String = "Just Now"
 	var timer = Timer()
@@ -29,105 +28,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 		
 		// Init Firebase
 		FIRApp.configure()
-		
-		// Init Facebook SDK
-		FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
-		
-		// Start timer
-		timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.timeElapsed), userInfo: nil, repeats: true)
-		
-		// Initialize locationManager
-		locationManager = CLLocationManager()
-		locationManager?.delegate = self
-		locationManager?.requestAlwaysAuthorization()
+		TagRangeManager.manager.start()
 		
 		let notificationSettings = UIUserNotificationSettings(types: [.badge, .alert, .sound], categories: nil)
 		UIApplication.shared.registerUserNotificationSettings(notificationSettings)
 
 		return true
-	}
-	
-	func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
-		let handled = FBSDKApplicationDelegate.sharedInstance().application(app, open: url, sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String!, annotation: options[UIApplicationOpenURLOptionsKey.annotation])
-		
-		return handled
-	}
-	
-	func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-		if status == CLAuthorizationStatus.authorizedAlways || status == CLAuthorizationStatus.authorizedWhenInUse {
-			if CLLocationManager.isMonitoringAvailable(for: CLBeaconRegion.self) {
-				if CLLocationManager.isRangingAvailable() {
-					startScanning()
-				}
-			}
-		}
-	}
-	
-	// Initiate scanning
-	func startScanning() {
-		print("[ Scanning from AppDelegate. . . ]")
-		let uuid = NSUUID(uuidString: "E2C56DB5-DFFB-48D2-B060-D0F5A71096E0")
-		let beaconRegion = CLBeaconRegion(proximityUUID: uuid as! UUID, identifier: "Simblee")
-		
-		// When a device enters or exits the vicinity of a beacon
-		locationManager?.startMonitoring(for: beaconRegion)
-		
-		// Begin receiving notifications when the relative distance to the beacon changes
-		locationManager?.startRangingBeacons(in: beaconRegion)
-	}
-	
-	// Scan for beacon and updateDistance if found
-	// The location manager reports any encountered beacons to its delegate
-	func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
-		if beacons.count > 0 {
-			let beacon = beacons.first! as CLBeacon
-			let distance = beacon.proximity
-			
-			//print(addTagController)
-			//addTagController.showAvailableTags(beacon: beacon)
-			// This is seriously so hacky.. must figure out a better way to do this!
-			//print(UIApplication.shared.keyWindow?.rootViewController?.childViewControllers[0].presentedViewController?.childViewControllers.isEmpty)
-			
-			if UIApplication.shared.keyWindow?.rootViewController?.childViewControllers[0].presentedViewController?.childViewControllers.isEmpty == false  {
-				if let addTagController = UIApplication.shared.keyWindow?.rootViewController?.childViewControllers[0].presentedViewController?.childViewControllers[0] as? AddTagController {
-						addTagController.showAvailableTags(beacon: beacon)
-				}
-			}
-			
-//			if (UIApplication.shared.keyWindow?.rootViewController?.childViewControllers[0].presentedViewController != nil && UIApplication.shared.keyWindow?.rootViewController?.childViewControllers[0].presentedViewController?.childViewControllers != nil) {
-//				if let addTagController = UIApplication.shared.keyWindow?.rootViewController?.childViewControllers[0].presentedViewController?.childViewControllers[0] as? AddTagController {
-//					addTagController.showAvailableTags(beacon: beacon)
-//				}
-//			}
-//			if let addTagController = UIApplication.shared.keyWindow?.rootViewController?.childViewControllers[0].presentedViewController?.childViewControllers[0] as? AddTagController {
-//				addTagController.showAvailableTags(beacon: beacon)
-//			}
-			
-			for i in 0..<self.tags.count {
-				 self.tags[i].location = proximityMessage
-				self.tags[i].lastSeen = lastSeenMessage
-				
-				UIView.performWithoutAnimation {
-					self.tagsTableViewController.tableView.reloadData()
-//					let indexPath = IndexPath(item: 0, section: 0)
-//					self.tagsTableViewController.tableView.reloadRows(at: [indexPath], with: .top)
-				}
-			}
-			
-			updateDistance(distance: distance)
-		} else {
-			updateDistance(distance: .unknown)
-		}
-	}
-	
-	func timeElapsed() {
-		let v = DateFormatter()
-		v.dateFormat = "MM-dd-yyyy HHmm"
-		let s = v.string(from: (pingTime as NSDate) as Date)
-		
-		let elapsed = lround(abs(pingTime.timeIntervalSinceNow))
-		lastSeenMessage = elapsed.description + "s ago"
-//		lastSeenMessage = "Just Now"
 	}
 	
 	// Regularly update UI with proximity
@@ -152,24 +58,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 		}
 	}
 	
-	// - exitRegion
-	func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
-//		let notification = UILocalNotification()
-//		notification.alertBody = "You have gone out of range with the mµ tag."
-//		notification.applicationIconBadgeNumber = 0
-//		UIApplication.shared.presentLocalNotificationNow(notification)
-		
-		createLocationNotification()
-	}
-	
-	// - enterRegion
-	func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
-//		let notification = UILocalNotification()
-//		notification.alertBody = "You have come into range with the mµ tag."
-//		notification.applicationIconBadgeNumber = 0
-//		UIApplication.shared.presentLocalNotificationNow(notification)
-	}
-	
 	func parseProximity(distance: CLProximity) -> String {
 		switch distance {
 		case .unknown:
@@ -184,41 +72,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 		case .immediate:
 			return "Immediate"
 		}
-	}
-	
-	func application(_ application: UIApplication, didReceive notification: UILocalNotification) {
-		if (application.applicationState == .active) {
-			
-		}
-		
-		//self.takeActionWithNotification(localNotification: notification)
-	}
-	
-	func takeActionWithNotification(localNotification: UILocalNotification) {
-		let notificationMessage = localNotification.userInfo!["message"] as! String
-		let uuid = NSUUID(uuidString: "E2C56DB5-DFFB-48D2-B060-D0F5A71096E0")
-		let beaconRegion = CLBeaconRegion(proximityUUID: uuid as! UUID, identifier: "Simblee")
-		let alertController = UIAlertController(title: "Alert!", message: notificationMessage, preferredStyle: .alert)
-		// let remindMeLaterAction = UIAlertAction(title: "Remind Me Later", style: .default, handler: nil)
-		let sureAction = UIAlertAction(title: "Okay.", style: .default) { (action) in
-//			self.locationManager?.stopMonitoring(for: beaconRegion)
-//			self.locationManager?.stopRangingBeacons(in: beaconRegion)
-		}
-		
-		alertController.addAction(sureAction)
-		
-		self.window?.rootViewController?.present(alertController, animated: true, completion: nil)
-	}
-	
-	func createLocationNotification() {
-		// Fire off LocalNotification now.
-		let localNotification = UILocalNotification()
-		localNotification.fireDate = Date()
-		localNotification.applicationIconBadgeNumber = 0
-		localNotification.soundName = UILocalNotificationDefaultSoundName
-		localNotification.alertBody = "You have gone out of range with the mµ tag"
-		
-		UIApplication.shared.scheduleLocalNotification(localNotification)
 	}
 	
 	func applicationWillResignActive(_ application: UIApplication) {

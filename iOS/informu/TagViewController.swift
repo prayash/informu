@@ -14,12 +14,21 @@ class TagViewController: UIViewController, MKMapViewDelegate {
     
     var locationManager: CLLocationManager!
     var mapView: MKMapView!
-    var tag: Tag?
+    let tag: Tag
     var destinationLocation: CLLocationCoordinate2D!
+    
+    init(tag: Tag) {
+        self.tag = tag
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         view.backgroundColor = .white
-        navigationItem.title = tag?.name
+        navigationItem.title = tag.name
         navigationItem.backButton.tintColor = muOrange
         
         createMapView()
@@ -65,7 +74,7 @@ class TagViewController: UIViewController, MKMapViewDelegate {
         }
         
         let destinationAnnotation = MKPointAnnotation()
-        destinationAnnotation.title = tag?.name
+        destinationAnnotation.title = tag.name
         
         if let location = destinationPlacemark.location {
             destinationAnnotation.coordinate = location.coordinate

@@ -8,8 +8,12 @@ import UIKit
 import Firebase
 import FirebaseAuth
 import FirebaseDatabase
+import CoreLocation
 
 class TagsTableViewController: UITableViewController {
+	
+	let tagRangeManager = TagRangeManager()
+	
 	var dbRef: FIRDatabaseReference!
 	var appDelegate: AppDelegate!
 	
@@ -36,6 +40,7 @@ class TagsTableViewController: UITableViewController {
 		super.viewDidLoad()
 		appDelegate = UIApplication.shared.delegate as! AppDelegate
 		appDelegate.tagsTableViewController = self
+		tagRangeManager.delegate = self
 		
 		navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(confirmLogout))
 		
@@ -83,8 +88,8 @@ class TagsTableViewController: UITableViewController {
 			print(logoutError)
 		}
 		
-		let loginController = LoginViewController()
-		present(loginController, animated: true, completion: nil)
+//		let loginController = LoginViewController()
+//		present(loginController, animated: true, completion: nil)
 	}
 	
 	func fetchTagsFromDatabase() {
@@ -158,5 +163,12 @@ class TagsTableViewController: UITableViewController {
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		performSegue(withIdentifier: "MapSegue", sender: self)
 		tableView.deselectRow(at: indexPath, animated: true)
+	}
+}
+
+extension TagsTableViewController: TagRangeManagerDelegate {
+	
+	func didExitRegion(_ region: CLRegion) {
+		print("didExitRegion")
 	}
 }

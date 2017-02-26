@@ -30,8 +30,6 @@ class AddTagController: UITableViewController {
 		
 		tableView.register(TagCell.self, forCellReuseIdentifier: cellId)
 		navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action:#selector(handleCancel))
-		
-		appDelegate.startScanning()
 	}
 	
 	func handleCancel() {

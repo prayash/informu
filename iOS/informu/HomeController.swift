@@ -39,8 +39,9 @@ class HomeController: DatasourceController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let tagViewController = TagViewController()
-        tagViewController.tag = self.datasource?.item(indexPath) as? Tag
+        guard let tag = self.datasource?.item(indexPath) as? Tag else { return }
+        
+        let tagViewController = TagViewController(tag: tag)
         navigationController?.pushViewController(tagViewController, animated: true)
     }
     

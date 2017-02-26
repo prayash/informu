@@ -66,12 +66,12 @@ class TagSettingsLauncher: NSObject, UICollectionViewDataSource, UICollectionVie
             
             // Dismiss menu if tapped on overlayView
             if setting.name.rawValue.isEmpty || setting.name == .Cancel {
-                self.createLocationNotification(msg: "You have left your passport behind!")
                 return
             } else if setting.name == .Settings {
-                self.tagViewController?.showEditViewController(setting: setting)
-            } else if setting.name == .Remove {
+//                self.tagViewController?.showEditViewController(setting: setting)
                 self.createLocationNotification(msg: "You have left your passport behind!")
+            } else if setting.name == .Remove {
+                self.createLocationNotification(msg: "Your calendar shows you have a flight today at 4:30 PM. Don't forget to take your passport and luggage.")
                 print("Deleting...")
             }
         }

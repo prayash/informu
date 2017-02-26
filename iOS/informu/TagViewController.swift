@@ -17,6 +17,9 @@ class TagViewController: UIViewController, MKMapViewDelegate {
     let tag: Tag
     var destinationLocation: CLLocationCoordinate2D!
     
+    var tagSnoozeButton: UIBarButtonItem!
+    var luggageCheckInButton: UIButton!
+    
     init(tag: Tag) {
         self.tag = tag
         super.init(nibName: nil, bundle: nil)
@@ -31,7 +34,12 @@ class TagViewController: UIViewController, MKMapViewDelegate {
         navigationItem.title = tag.name
         navigationItem.backButton.tintColor = muOrange
         
-        createMapView()
+        if tag.name != "Luggage" {
+            createMapView()
+        } else {
+            createLuggageMapView()
+        }
+        
         let tagSettingsButton = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(TagViewController.showSettings))
         tagSettingsButton.tintColor = muOrange
         navigationItem.rightBarButtonItems = [tagSettingsButton]
@@ -111,8 +119,92 @@ class TagViewController: UIViewController, MKMapViewDelegate {
         
     }
     
+    func createLuggageMapView() {
+        mapView = MKMapView()
+        mapView.delegate = self
+        
+        let leftMargin: CGFloat = 10
+        let topMargin: CGFloat = 60
+        
+        mapView.frame = CGRect(x: leftMargin, y: topMargin, width: view.frame.width, height: view.frame.height)
+        mapView.mapType = .standard
+        mapView.isZoomEnabled = true
+        mapView.isScrollEnabled = true
+        
+        mapView.center = view.center
+        
+        // Show user location + zoom in
+        mapView.showsUserLocation = true
+        self.mapView.setUserTrackingMode(.follow, animated: false);
+        
+        let sourceLocation = CLLocationCoordinate2D(latitude: 39.848903, longitude: -104.674398)
+        destinationLocation = CLLocationCoordinate2D(latitude: 39.847370, longitude: -104.680301)
+        
+        let sourcePlacemark = MKPlacemark(coordinate: sourceLocation, addressDictionary: nil)
+        
+        let sourceAnnotation = MKPointAnnotation()
+        sourceAnnotation.title = "You"
+        
+        if let location = sourcePlacemark.location {
+            sourceAnnotation.coordinate = location.coordinate
+        }
+        
+        mapView.showAnnotations([sourceAnnotation], animated: true)
+        
+        view.addSubview(mapView)
+        
+        luggageCheckInButton = {
+            let button = UIButton(type: .system)
+            button.backgroundColor = UIColor(r: 224, g: 116, b: 43)
+            button.setTitle("Reactivate Luggage", for: .normal)
+            button.translatesAutoresizingMaskIntoConstraints = false
+            button.setTitleColor(UIColor.white, for: .normal)
+            button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+            button.isHidden = true
+            
+            button.addTarget(self, action: #selector(snoozeAlert), for: .touchUpInside)
+            
+            return button
+        }()
+        
+        view.addSubview(luggageCheckInButton)
+        luggageCheckInButton.anchor(view.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, topConstant: -120, leftConstant: 12, bottomConstant: 0, rightConstant: 12, widthConstant: 0, heightConstant: 60)
+        
+    }
+    
     func openMaps() {
         openMapForTag(lat: destinationLocation.latitude, long: destinationLocation.longitude)
+    }
+    
+    func snoozeAlert() {
+        if tagSnoozeButton.title == "Reactivate" {
+            let alert = UIAlertController(title: "Luggage reactivated", message: "You will now recieve alerts on your luggage.", preferredStyle: UIAlertControllerStyle.alert)
+            
+            alert.addAction(UIAlertAction(title: "Got it!", style: UIAlertActionStyle.default, handler:{ (UIAlertAction) in
+                print("User reactivated tag.")
+                self.tagSnoozeButton.title = "Check In"
+                self.luggageCheckInButton.isHidden = true
+                self.dismiss(animated: true, completion: nil)
+            }))
+            
+            self.present(alert, animated: true, completion: {
+                print("Popped up snooze alert.")
+            })
+        } else {
+            let alert = UIAlertController(title: "Check in Luggage?", message: "This will disable alerts until you reactivate.", preferredStyle: UIAlertControllerStyle.alert)
+            
+            alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler:{ (UIAlertAction) in
+                print("User snoozed tag.")
+                self.tagSnoozeButton.title = "Reactivate"
+                self.luggageCheckInButton.isHidden = false
+                self.dismiss(animated: true, completion: nil)
+            }))
+            
+            self.present(alert, animated: true, completion: {
+                print("Popped up snooze alert.")
+            })
+        }
+
     }
     
     func openMapForTag(lat: CLLocationDegrees, long: CLLocationDegrees) {
@@ -132,9 +224,15 @@ class TagViewController: UIViewController, MKMapViewDelegate {
     func setupToolbar() {
         navigationController?.isToolbarHidden = false
         self.navigationController?.setToolbarHidden(false, animated: true)
+        
         let openMapsButton = UIBarButtonItem(title: "Open in Maps", style: .plain, target: self, action: #selector(openMaps))
         openMapsButton.tintColor = muOrange
-        self.toolbarItems = [openMapsButton]
+        
+        tagSnoozeButton = UIBarButtonItem(title: "Check In", style: .plain, target: self, action: #selector(snoozeAlert))
+        tagSnoozeButton.tintColor = muOrange
+        
+        let flexibleItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: self, action: nil)
+        self.toolbarItems = [openMapsButton, flexibleItem, tagSnoozeButton]
     }
     
     // 'lazy' = Only occurs once during the execution of the app

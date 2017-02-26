@@ -197,7 +197,7 @@
 				TargetAttributes = {
 					EDAC80EC1E5923DF00CC3998 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = 6CU374MXYV;
+						DevelopmentTeam = 5Z8XR94BK8;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Maps.iOS = {
@@ -422,11 +422,11 @@
 			baseConfigurationReference = 3C4FC9705EEF66A9A292DB77 /* Pods-informu.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 6CU374MXYV;
+				DEVELOPMENT_TEAM = 5Z8XR94BK8;
 				INFOPLIST_FILE = informu/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = io.informu.informu;
+				PRODUCT_BUNDLE_IDENTIFIER = io.informu.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -437,11 +437,11 @@
 			baseConfigurationReference = CFD8670F0C889A8B1526E8D6 /* Pods-informu.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 6CU374MXYV;
+				DEVELOPMENT_TEAM = 5Z8XR94BK8;
 				INFOPLIST_FILE = informu/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = io.informu.informu;
+				PRODUCT_BUNDLE_IDENTIFIER = io.informu.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};

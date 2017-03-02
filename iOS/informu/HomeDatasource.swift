@@ -32,6 +32,8 @@ class HomeDatasource: Datasource {
         return [TagFooter.self]
     }
     
+    // helper method that will return a tag for an index path
+    
     override func item(_ indexPath: IndexPath) -> Any? {
         return tags[indexPath.item]
     }

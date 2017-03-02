@@ -22,20 +22,26 @@ class HomeController: DatasourceController {
     
     open override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = Color.grey.lighten5
+        view.backgroundColor = UIColor(r: 130, g: 130, b: 130)
         
         prepareAddButton()
         prepareMenuButton()
-        prepareNavigationItem()
+        prepareNavigationItems()
         
         let homeDatasource = HomeDatasource()
         self.datasource = homeDatasource
         collectionView?.delaysContentTouches = false
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.isToolbarHidden = true
+        navigationController?.setToolbarHidden(true, animated: true)
+    }
+    
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let tagViewController = TagViewController()
-        tagViewController.tag = self.datasource?.item(indexPath) as? Tag
+        guard let tag = self.datasource?.item(indexPath) as? Tag else { return }
+        
+        let tagViewController = TagViewController(tag: tag)
         navigationController?.pushViewController(tagViewController, animated: true)
     }
     
@@ -52,7 +58,7 @@ class HomeController: DatasourceController {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
-        return 0
+        return 10
     }
     
     override func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
@@ -79,11 +85,12 @@ extension HomeController {
         addButton.addTarget(self, action: #selector(handleAddButton), for: .touchUpInside)
     }
     
-    fileprivate func prepareNavigationItem() {
+    fileprivate func prepareNavigationItems() {
         navigationItem.title = "Home"
         navigationItem.titleLabel.font = UIFont(name: "Raleway", size: 20)
         navigationItem.leftViews = [menuButton]
         navigationItem.rightViews = [addButton]
+//        navigationController?.setToolbarHidden(true, animated: true)
     }
     
 }
@@ -99,7 +106,7 @@ extension HomeController {
     @objc
     fileprivate func handleMenuButton() {
         let loginController = LoginController()
-                present(loginController, animated: true, completion: nil)
+        present(loginController, animated: true, completion: nil)
 //        let navController = UINavigationController(rootViewController: loginController)
 //        present(navController, animated: true, completion: nil)
     }

@@ -68,8 +68,10 @@ class TagSettingsLauncher: NSObject, UICollectionViewDataSource, UICollectionVie
             if setting.name.rawValue.isEmpty || setting.name == .Cancel {
                 return
             } else if setting.name == .Settings {
-                self.tagViewController?.showEditViewController(setting: setting)
+//                self.tagViewController?.showEditViewController(setting: setting)
+                self.createLocationNotification(msg: "You have left your passport behind!")
             } else if setting.name == .Remove {
+                self.createLocationNotification(msg: "Your calendar shows you have a flight today at 4:30 PM. Don't forget to take your passport and luggage.")
                 print("Deleting...")
             }
         }
@@ -97,6 +99,17 @@ class TagSettingsLauncher: NSObject, UICollectionViewDataSource, UICollectionVie
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         handleDismiss(setting: self.settings[indexPath.item])
+    }
+    
+    func createLocationNotification(msg: String) {
+        // Fire off LocalNotification now.
+        let localNotification = UILocalNotification()
+        localNotification.fireDate = Date().addingTimeInterval(30)
+        localNotification.applicationIconBadgeNumber = 0
+        localNotification.soundName = UILocalNotificationDefaultSoundName
+        localNotification.alertBody = msg
+        
+        UIApplication.shared.scheduleLocalNotification(localNotification)
     }
     
     override init() {

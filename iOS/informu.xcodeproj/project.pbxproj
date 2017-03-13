@@ -29,6 +29,8 @@
 		EDD85C291E598E0500D9E0B7 /* TagSettingsLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD85C281E598E0500D9E0B7 /* TagSettingsLauncher.swift */; };
 		EDD85C2B1E598E4E00D9E0B7 /* TagSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD85C2A1E598E4E00D9E0B7 /* TagSettingCell.swift */; };
 		EDD85C2D1E59969700D9E0B7 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD85C2C1E59969700D9E0B7 /* LoginController.swift */; };
+		EDE193E01E7655F70079CFAF /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE193DF1E7655F70079CFAF /* Manager.swift */; };
+		EDE193E21E7659840079CFAF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EDE193E11E7659840079CFAF /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +59,8 @@
 		EDD85C281E598E0500D9E0B7 /* TagSettingsLauncher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagSettingsLauncher.swift; sourceTree = "<group>"; };
 		EDD85C2A1E598E4E00D9E0B7 /* TagSettingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagSettingCell.swift; sourceTree = "<group>"; };
 		EDD85C2C1E59969700D9E0B7 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		EDE193DF1E7655F70079CFAF /* Manager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
+		EDE193E11E7659840079CFAF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FF4E1580B3BBC4C5858DECDE /* Pods_informu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_informu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -116,12 +120,14 @@
 			children = (
 				EDAC80F01E5923DF00CC3998 /* AppDelegate.swift */,
 				EDC7131D1E5924E500B7C4DD /* Extensions.swift */,
+				EDE193DF1E7655F70079CFAF /* Manager.swift */,
 				EDC713271E59295B00B7C4DD /* Model */,
 				EDC7132B1E59298400B7C4DD /* View */,
 				EDC7132A1E59297D00B7C4DD /* Controller */,
 				EDAC80F71E5923DF00CC3998 /* Assets.xcassets */,
 				EDAC80F91E5923DF00CC3998 /* LaunchScreen.storyboard */,
 				EDAC80FC1E5923DF00CC3998 /* Info.plist */,
+				EDE193E11E7659840079CFAF /* GoogleService-Info.plist */,
 			);
 			path = informu;
 			sourceTree = "<group>";
@@ -232,6 +238,7 @@
 			files = (
 				EDAC80FB1E5923DF00CC3998 /* LaunchScreen.storyboard in Resources */,
 				EDAC80F81E5923DF00CC3998 /* Assets.xcassets in Resources */,
+				EDE193E21E7659840079CFAF /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,6 +304,7 @@
 				EDD85C291E598E0500D9E0B7 /* TagSettingsLauncher.swift in Sources */,
 				EDC713241E5925A800B7C4DD /* HomeController.swift in Sources */,
 				EDC7132D1E59418300B7C4DD /* HomeDatasource.swift in Sources */,
+				EDE193E01E7655F70079CFAF /* Manager.swift in Sources */,
 				EDC713311E5944F700B7C4DD /* TagHeader.swift in Sources */,
 				EDC7131C1E5924C100B7C4DD /* MenuController.swift in Sources */,
 				EDD85C2B1E598E4E00D9E0B7 /* TagSettingCell.swift in Sources */,

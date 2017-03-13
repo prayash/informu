@@ -8,7 +8,9 @@
 
 import UIKit
 import Material
+import CoreLocation
 import LBTAComponents
+import UserNotifications
 
 let imageArray = [UIImage(named: "mu-orange"),
                   UIImage(named: "mu-teal"),
@@ -16,12 +18,15 @@ let imageArray = [UIImage(named: "mu-orange"),
 
 let muOrange = UIColor(r: 224, g: 116, b: 43)
 
-class HomeController: DatasourceController {
+class HomeController: DatasourceController, ManagerDelegate {
+    
     fileprivate var menuButton: IconButton!
     fileprivate var addButton: IconButton!
     
     open override func viewDidLoad() {
         super.viewDidLoad()
+        Manager.sharedInstance.delegate = self
+        
         view.backgroundColor = UIColor(r: 130, g: 130, b: 130)
         
         prepareAddButton()
@@ -31,12 +36,41 @@ class HomeController: DatasourceController {
         let homeDatasource = HomeDatasource()
         self.datasource = homeDatasource
         collectionView?.delaysContentTouches = false
+        
+        Manager.sharedInstance.fetchTagsFromDatabase()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.isToolbarHidden = true
         navigationController?.setToolbarHidden(true, animated: true)
     }
+    
+    func didExitRegion(region: CLRegion) {
+        print("didExitRegion")
+    }
+    
+    func didUpdateDistance(proximity: CLProximity) {
+        switch proximity {
+        case .unknown:
+            print("out of range")
+            let localNotification = UILocalNotification()
+            localNotification.fireDate = Date()
+            localNotification.applicationIconBadgeNumber = 0
+            localNotification.soundName = UILocalNotificationDefaultSoundName
+            localNotification.alertBody = "You have gone out of range with the mµ tag"
+            UIApplication.shared.scheduleLocalNotification(localNotification)
+            
+        case .far:
+            print("farther away")
+            
+        case .near:
+            print("nearby")
+            
+        case .immediate:
+            print("immediate")
+        }
+    }
+    
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let tag = self.datasource?.item(indexPath) as? Tag else { return }

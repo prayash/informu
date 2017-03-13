@@ -8,8 +8,10 @@
 
 import UIKit
 import Material
+import Firebase
 import CoreLocation
 import UserNotifications
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate {
@@ -22,66 +24,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         window!.rootViewController = NavController(rootViewController: HomeController())
         window!.makeKeyAndVisible()
         
-        // Initialize locationManager
+        // Initialize LocationManager
         locationManager = CLLocationManager()
         locationManager?.delegate = self
         locationManager?.requestAlwaysAuthorization()
         
+        // Init Firebase
+        FIRApp.configure()
+        
+        // Init Tag Manager
+        Manager.sharedInstance.start()
+        
         let notificationSettings = UIUserNotificationSettings(types: [.badge, .alert, .sound], categories: nil)
         UIApplication.shared.registerUserNotificationSettings(notificationSettings)
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        if status == CLAuthorizationStatus.authorizedAlways || status == CLAuthorizationStatus.authorizedWhenInUse {
-            if CLLocationManager.isMonitoringAvailable(for: CLBeaconRegion.self) {
-                if CLLocationManager.isRangingAvailable() {
-                    startScanning()
-                }
-            }
-        }
-    }
-    
-    // Initiate scanning
-    func startScanning() {
-        print("[ Scanning from AppDelegate. . . ]")
-        let uuid = NSUUID(uuidString: "E2C56DB5-DFFB-48D2-B060-D0F5A71096E0")
-        let beaconRegion = CLBeaconRegion(proximityUUID: uuid as! UUID, identifier: "Simblee")
-        
-        // When a device enters or exits the vicinity of a beacon
-        locationManager?.startMonitoring(for: beaconRegion)
-        
-        // Begin receiving notifications when the relative distance to the beacon changes
-        locationManager?.startRangingBeacons(in: beaconRegion)
-    }
-    
-    // Scan for beacon and updateDistance if found
-    // The location manager reports any encountered beacons to its delegate
-    func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
-        if beacons.count > 0 {
-            let beacon = beacons.first! as CLBeacon
-            let distance = beacon.proximity
-            
-            updateDistance(distance: distance)
-        } else {
-            updateDistance(distance: .unknown)
-        }
-    }
-    
-    // Regularly update UI with proximity
-    func updateDistance(distance: CLProximity) {
-        switch distance {
-        case .unknown:
-            print("out of range")
-            
-        case .far:
-            print("farther away")
-            
-        case .near:
-            print("nearby")
-            
-        case .immediate:
-            print("immediate")
-        }
     }
     
     

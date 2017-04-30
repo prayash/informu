@@ -57,8 +57,14 @@ class AddTagController: UITableViewController {
         
         alert.addTextField(configurationHandler: configurationTextField)
         
-        alert.addAction(UIAlertAction(title: "Add", style: UIAlertActionStyle.default, handler:{ (UIAlertAction)in
+        alert.addAction(UIAlertAction(title: "Add", style: UIAlertActionStyle.default, handler:{ (UIAlertAction) in
             print("User added tag.")
+            let inputName = (alert.textFields?[0].text)! as String
+            let wallet = Tag(name: inputName, color: "mu-orange", proximityUUID: "E2C56DB5-DFFB-48D2-B060-D0F5A71096E0", major: "1111", minor: "1111", lastSeen: "Few seconds ago", location: "Nearby")
+//            print(HomeController().homeDatasource.tags)
+            let hc = UIApplication.shared.keyWindow?.rootViewController?.childViewControllers[0] as! HomeController
+            hc.homeDatasource.tags.insert(wallet, at: 0)
+            hc.collectionView?.reloadData()
             self.dismiss(animated: true, completion: nil)
         }))
         

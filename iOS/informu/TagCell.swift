@@ -26,7 +26,7 @@ class TagCell: DatasourceCell {
             nameLabel.text = datasourceItem as? String
             nameLabel.text = tag.name
             tagPicture.image = imageArr[tag.color]
-            statusLabel.text = String(format: "Status: %@ ", tag.location)
+            statusLabel.text = String(format: "Location: %@ ", tag.location)
             lastSeenLabel.text = String(format: "Last Seen: %@ ", tag.lastSeen)
             topBorder.backgroundColor = colors[tag.color]
         }

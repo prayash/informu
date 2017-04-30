@@ -22,6 +22,7 @@ class HomeController: DatasourceController, ManagerDelegate {
     
     fileprivate var menuButton: IconButton!
     fileprivate var addButton: IconButton!
+    var homeDatasource: HomeDatasource!
     
     open override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,11 +34,14 @@ class HomeController: DatasourceController, ManagerDelegate {
         prepareMenuButton()
         prepareNavigationItems()
         
-        let homeDatasource = HomeDatasource()
+        homeDatasource = HomeDatasource()
         self.datasource = homeDatasource
         collectionView?.delaysContentTouches = false
         
         Manager.sharedInstance.fetchTagsFromDatabase()
+        
+        // hack
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -52,22 +56,43 @@ class HomeController: DatasourceController, ManagerDelegate {
     func didUpdateDistance(proximity: CLProximity) {
         switch proximity {
         case .unknown:
-            print("out of range")
-            let localNotification = UILocalNotification()
-            localNotification.fireDate = Date()
-            localNotification.applicationIconBadgeNumber = 0
-            localNotification.soundName = UILocalNotificationDefaultSoundName
-            localNotification.alertBody = "You have gone out of range with the mµ tag"
-            UIApplication.shared.scheduleLocalNotification(localNotification)
+//            if homeDatasource.tags[0].name == "Backpack" {
+                homeDatasource.tags[0].location = "Lost"
+                homeDatasource.tags[0].lastSeen = "A minute ago"
+                collectionView?.reloadData()
+                print("out of range")
+//            }
+//            let localNotification = UILocalNotification()
+//            localNotification.fireDate = Date()
+//            localNotification.applicationIconBadgeNumber = 0
+//            localNotification.soundName = UILocalNotificationDefaultSoundName
+//            localNotification.alertBody = "You have gone out of range with the mµ tag"
+//            UIApplication.shared.scheduleLocalNotification(localNotification)
             
         case .far:
-            print("farther away")
+//            if homeDatasource.tags[0].name == "Backpack" {
+                homeDatasource.tags[0].location = "Farther away"
+                homeDatasource.tags[0].lastSeen = "Few seconds ago"
+                collectionView?.reloadData()
+                print("farther away")
+//            }
+            
             
         case .near:
-            print("nearby")
+//            if homeDatasource.tags[0].name == "Backpack" {
+                homeDatasource.tags[0].location = "Nearby"
+                homeDatasource.tags[0].lastSeen = "Few seconds ago"
+                collectionView?.reloadData()
+                print("nearby")
+//            }
             
         case .immediate:
-            print("immediate")
+//            if homeDatasource.tags[0].name == "Backpack" {
+                homeDatasource.tags[0].location = "Immediate"
+                homeDatasource.tags[0].lastSeen = "Few seconds ago"
+                collectionView?.reloadData()
+                print("immediate")
+//            }
         }
     }
     

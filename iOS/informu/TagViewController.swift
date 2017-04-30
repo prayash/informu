@@ -64,8 +64,8 @@ class TagViewController: UIViewController, MKMapViewDelegate {
         mapView.showsUserLocation = true
         self.mapView.setUserTrackingMode(.follow, animated: false);
         
-        let sourceLocation = CLLocationCoordinate2D(latitude: 39.848903, longitude: -104.674398)
-        destinationLocation = CLLocationCoordinate2D(latitude: 39.847370, longitude: -104.680301)
+        let sourceLocation = CLLocationCoordinate2D(latitude: 40.007317, longitude: -105.263238)
+        destinationLocation = CLLocationCoordinate2D(latitude: 40.007315, longitude: -105.263210)
         
         let sourcePlacemark = MKPlacemark(coordinate: sourceLocation, addressDictionary: nil)
         let destinationPlacemark = MKPlacemark(coordinate: destinationLocation, addressDictionary: nil)
@@ -88,7 +88,7 @@ class TagViewController: UIViewController, MKMapViewDelegate {
             destinationAnnotation.coordinate = location.coordinate
         }
         
-        mapView.showAnnotations([sourceAnnotation, destinationAnnotation], animated: true)
+        mapView.showAnnotations([sourceAnnotation], animated: true)
         
         // 7.
         let directionRequest = MKDirectionsRequest()

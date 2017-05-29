@@ -8,8 +8,8 @@ import { DrawerNavigator } from "react-navigation"
 const HomeScreenRouter = DrawerNavigator(
   {
     Home: { screen: HomeScreen },
-    Chat: { screen: MainScreenNavigator },
-    Profile: { screen: Profile }
+    Logout: { screen: MainScreenNavigator },
+    Settings: { screen: Profile }
   },
   {
     drawerPosition: 'left',

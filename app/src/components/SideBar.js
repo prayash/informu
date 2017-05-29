@@ -13,7 +13,12 @@ import {
   View
 } from "native-base"
 
-const routes = ["Home", "Chat", "Profile"]
+const routes = ["Home", "Settings", "Logout"]
+const iconMap = {
+  'Home' : 'home',
+  'Settings' : 'settings',
+  'Logout' : 'log-out'
+}
 
 export default class SideBar extends Component {
   render() {
@@ -48,10 +53,10 @@ export default class SideBar extends Component {
               return (
                 <ListItem
                   icon
-                  button={false}
+                  button={true}
                   style={{ height: 50 }}
                   onPress={() => this.props.navigation.navigate(data)}>
-                  <Left><Icon name="home" style={{ color: '#EBEBEB' }} /></Left>
+                  <Left><Icon name={iconMap[data]} style={{ color: '#EBEBEB', fontWeight: '700' }} /></Left>
                   <Body style={{ borderBottomWidth: 0 }}>
                     <Text style={{ fontWeight: '100', color: '#EBEBEB'}}>{data}</Text>
                   </Body>

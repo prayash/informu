@@ -1,7 +1,9 @@
 export const colors = {
-  'orange'  : '#e0742b',
-  'blue'    : '#65d8d8',
-  'teal'    : '#424242' 
+  'blue'    : '#65D8D8',
+  'dark'    : '#666666',
+  'orange'  : '#E0742B',
+  'teal'    : '#424242',
+  'white'   : '#FAFAF1'
 }
 
 export const thumbnails = {
@@ -11,7 +13,7 @@ export const thumbnails = {
 }
 
 export const sidebarIcons = {
-  'Home' : 'home',
-  'Settings' : 'settings',
-  'Logout' : 'log-out'
+  'Home'    : 'home',
+  'Settings': 'settings',
+  'Logout'  : 'log-out'
 }

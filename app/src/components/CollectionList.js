@@ -20,12 +20,11 @@ import {
 } from "native-base"
 
 import { colors, thumbnails } from '../config/theme'
-import tags from '../config/data'
 
 export default class CollectionList extends Component {
   render() {
     const { navigate } = this.props.navigation
-    // const { tags } = this.props
+    const { tags } = this.props
     return (
       <List>
         <Separator style={{ backgroundColor: "#ffffff" }}>

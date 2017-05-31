@@ -19,6 +19,7 @@ import moment from 'moment'
 import CollectionList from '../../components/CollectionList'
 import Logger from '../../components/Logger'
 import { convertToCSV } from '../../utils'
+import tags from '../config/data'
 
 let recordedTags = []
 
@@ -98,7 +99,7 @@ export default class HomeView extends Component {
       <Container>
         <Content padder style={{ backgroundColor: '#ffffff' }}>
 
-          <CollectionList navigation={this.props.navigation}/>
+          <CollectionList tags={tags} navigation={this.props.navigation} />
 
           <Logger
             record={this.state.record}

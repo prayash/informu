@@ -13,15 +13,13 @@ import {
   View
 } from "native-base"
 
-const routes = ["Home", "Settings", "Logout"]
-const iconMap = {
-  'Home' : 'home',
-  'Settings' : 'settings',
-  'Logout' : 'log-out'
-}
+import { sidebarIcons } from '../config/theme'
 
 export default class SideBar extends Component {
   render() {
+    const { state, navigate } = this.props.navigation
+    const routes = this.props.routes
+    console.log(state.index)
     return (
       <Container>
         <Content style={{ backgroundColor: '#2d2d2d' }}>
@@ -55,8 +53,8 @@ export default class SideBar extends Component {
                   icon
                   button={true}
                   style={{ height: 50 }}
-                  onPress={() => this.props.navigation.navigate(data)}>
-                  <Left><Icon name={iconMap[data]} style={{ color: '#EBEBEB', fontWeight: '700' }} /></Left>
+                  onPress={() => navigate(data)}>
+                  <Left><Icon name={sidebarIcons[data]} style={{ color: '#EBEBEB', fontWeight: '700' }} /></Left>
                   <Body style={{ borderBottomWidth: 0 }}>
                     <Text style={{ fontWeight: '100', color: '#EBEBEB'}}>{data}</Text>
                   </Body>

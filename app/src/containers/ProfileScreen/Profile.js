@@ -21,7 +21,7 @@ import EditScreenOne from "./EditScreenOne.js";
 // import EditScreenTwo from "./EditScreenTwo.js";
 export default class Profile extends React.Component {
   componentDidMount() {
-    Alert.alert("No Users Found", "Oops, Looks like you are not signed in");
+    // Alert.alert("No Users Found", "Oops, Looks like you are not signed in");
   }
   render() {
     return (

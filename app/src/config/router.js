@@ -2,6 +2,7 @@ import React from 'react'
 import { DrawerNavigator, StackNavigator, TabNavigator } from 'react-navigation'
 
 import AddTagView from '../containers/AddTagView'
+import LoginView from '../containers/LoginView'
 import HomeView from '../containers/HomeView'
 import TagView from '../containers/TagView'
 import SideBar from '../components/SideBar'
@@ -16,7 +17,7 @@ const routes = ['Home', 'Settings', 'Logout']
 const Router = DrawerNavigator(
   {
     Home: { screen: HomeRoute },
-    Logout: { screen: HomeRoute },
+    Logout: { screen: LoginView },
     Settings: { screen: HomeRoute }
   },
   {

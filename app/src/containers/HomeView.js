@@ -1,12 +1,9 @@
 import React, { Component } from 'react'
 import { Alert, DeviceEventEmitter, View } from 'react-native'
-import { StackNavigator } from 'react-navigation'
 import Beacons from 'react-native-beacons-manager'
 import {
   Body,
   Button,
-  Container,
-  Content,
   Header,
   Icon,
   Left,
@@ -16,6 +13,7 @@ import {
 } from 'native-base'
 import moment from 'moment'
 
+import ViewContainer from '../components/ViewContainer'
 import CollectionList from '../components/CollectionList'
 import Logger from '../components/Logger.js'
 import { colors } from '../config/theme'
@@ -97,18 +95,16 @@ export default class HomeView extends Component {
 
   render() {
     return (
-      <Container>
-        <Content padder style={{ backgroundColor: colors.white }}>
+      <ViewContainer>
 
-          <CollectionList tags={tags} navigation={this.props.navigation} />
+        <CollectionList tags={tags} navigation={this.props.navigation} />
 
-          <Logger
-            record={this.state.record}
-            onStart={this.startRecording}
-            onStop={this.stopRecording} />
+        <Logger
+          record={this.state.record}
+          onStart={this.startRecording}
+          onStop={this.stopRecording} />
 
-        </Content>
-      </Container>
+      </ViewContainer>
     )
   }
 }

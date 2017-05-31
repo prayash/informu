@@ -3,8 +3,6 @@ import { Alert, DeviceEventEmitter, View } from 'react-native'
 import {
   Body,
   Button,
-  Container,
-  Content,
   Header,
   Icon,
   Left,
@@ -13,6 +11,7 @@ import {
   Title
 } from 'native-base'
 
+import ViewContainer from '../components/ViewContainer'
 import { colors } from '../config/theme'
 
 export default class TagView extends Component {
@@ -27,15 +26,13 @@ export default class TagView extends Component {
   render() {
     const { params } = this.props.navigation.state
     return (
-      <Container>
-        <Content padder style={{ backgroundColor: colors.white }}>
+      <ViewContainer>
 
-          <Text>{params.tag.name}</Text>
-          <Text>{params.tag.location}</Text>
-          <Text>{params.tag.lastSeen}</Text>
+        <Text>{params.tag.name}</Text>
+        <Text>{params.tag.location}</Text>
+        <Text>{params.tag.lastSeen}</Text>
 
-        </Content>
-      </Container>
+      </ViewContainer>
     )
   }
 }

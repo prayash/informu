@@ -1,12 +1,8 @@
 import React, { Component } from 'react'
-import { Alert, DeviceEventEmitter, View } from 'react-native'
-import { StackNavigator } from 'react-navigation'
 import Beacons from 'react-native-beacons-manager'
 import {
   Body,
   Button,
-  Container,
-  Content,
   Header,
   Icon,
   Left,
@@ -15,6 +11,7 @@ import {
   Title
 } from 'native-base'
 
+import ViewContainer from '../components/ViewContainer'
 import { colors } from '../config/theme'
 
 export default class HomeView extends Component {
@@ -29,13 +26,11 @@ export default class HomeView extends Component {
 
   render() {
     return (
-      <Container>
-        <Content padder style={{ backgroundColor: colors.white }}>
+      <ViewContainer>
 
-          
+        <Text>Add a tag here!</Text>
 
-        </Content>
-      </Container>
+      </ViewContainer>
     )
   }
 }

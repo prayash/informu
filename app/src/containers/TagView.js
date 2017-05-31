@@ -13,6 +13,8 @@ import {
   Title
 } from 'native-base'
 
+import { colors } from '../config/theme'
+
 export default class TagView extends Component {
   constructor(props) {
     super(props)
@@ -26,7 +28,7 @@ export default class TagView extends Component {
     const { params } = this.props.navigation.state
     return (
       <Container>
-        <Content padder style={{ backgroundColor: '#ffffff' }}>
+        <Content padder style={{ backgroundColor: colors.white }}>
 
           <Text>{params.tag.name}</Text>
           <Text>{params.tag.location}</Text>
@@ -40,12 +42,12 @@ export default class TagView extends Component {
 
 TagView.navigationOptions = ({ navigation }) => ({
   header: (
-    <Header noShadow={true} style={{ marginTop: 5, backgroundColor: '#ffffff', borderBottomColor: '#cccccc' }}>
+    <Header noShadow={true} style={{ marginTop: 5, backgroundColor: colors.white, borderBottomColor: '#cccccc' }}>
       <Left>
         <Button
           transparent
           onPress={() => navigation.goBack()}>
-          <Icon name="arrow-back" style={{ color: '#e0742b' }} />
+          <Icon name="arrow-back" style={{ color: colors.orange }} />
         </Button>
       </Left>
       <Body>
@@ -54,8 +56,8 @@ TagView.navigationOptions = ({ navigation }) => ({
       <Right>
         <Button
           transparent
-          onPress={() => navigation.navigate("DrawerOpen")}>
-          <Icon name="add" style={{ color: '#e0742b' }} />
+          onPress={() => navigation.navigate('DrawerOpen')}>
+          <Icon name="more" ios="ios-more" android="md-more" style={{ color: colors.orange }} />
         </Button>
       </Right>
     </Header>

@@ -15,6 +15,8 @@ import {
   Title
 } from 'native-base'
 
+import { colors } from '../config/theme'
+
 export default class HomeView extends Component {
   constructor(props) {
     super(props)
@@ -28,7 +30,7 @@ export default class HomeView extends Component {
   render() {
     return (
       <Container>
-        <Content padder style={{ backgroundColor: '#ffffff' }}>
+        <Content padder style={{ backgroundColor: colors.white }}>
 
           
 
@@ -40,16 +42,16 @@ export default class HomeView extends Component {
 
 HomeView.navigationOptions = ({ navigation }) => ({
   header: (
-    <Header noShadow={true} style={{ marginTop: 5, backgroundColor: '#ffffff', borderBottomColor: '#cccccc' }}>
+    <Header noShadow={true} style={{ marginTop: 5, backgroundColor: colors.white, borderBottomColor: '#cccccc' }}>
       <Left>
         <Button
           transparent
-          onPress={() => navigation.navigate("DrawerOpen")}>
-          <Icon name="menu" style={{ color: '#e0742b' }} />
+          onPress={() => navigation.goBack()}>
+          <Icon name="arrow-back" style={{ color: colors.orange }} />
         </Button>
       </Left>
       <Body>
-        <Title>Home</Title>
+        <Title>Select a tag</Title>
       </Body>
       <Right>
         

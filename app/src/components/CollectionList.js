@@ -27,7 +27,7 @@ export default class CollectionList extends Component {
     const { tags } = this.props
     return (
       <List>
-        <Separator style={{ backgroundColor: "#ffffff" }}>
+        <Separator style={{ backgroundColor: colors.white }}>
           <Text>TAGS</Text>
         </Separator>
         {tags.map(t => {

@@ -3,7 +3,7 @@ export const colors = {
   'dark'    : '#666666',
   'orange'  : '#E0742B',
   'teal'    : '#424242',
-  'white'   : '#FAFAF1'
+  'white'   : '#FAFAFA'
 }
 
 export const thumbnails = {

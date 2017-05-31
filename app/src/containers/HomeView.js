@@ -16,9 +16,10 @@ import {
 } from 'native-base'
 import moment from 'moment'
 
-import CollectionList from '../../components/CollectionList'
-import Logger from '../../components/Logger'
-import { convertToCSV } from '../../utils'
+import CollectionList from '../components/CollectionList'
+import Logger from '../components/Logger.js'
+import { colors } from '../config/theme'
+import { convertToCSV } from '../utils'
 import tags from '../config/data'
 
 let recordedTags = []
@@ -97,7 +98,7 @@ export default class HomeView extends Component {
   render() {
     return (
       <Container>
-        <Content padder style={{ backgroundColor: '#ffffff' }}>
+        <Content padder style={{ backgroundColor: colors.white }}>
 
           <CollectionList tags={tags} navigation={this.props.navigation} />
 
@@ -114,12 +115,12 @@ export default class HomeView extends Component {
 
 HomeView.navigationOptions = ({ navigation }) => ({
   header: (
-    <Header noShadow={true} style={{ marginTop: 5, backgroundColor: '#ffffff', borderBottomColor: '#cccccc' }}>
+    <Header noShadow={true} style={{ marginTop: 5, backgroundColor: colors.white, borderBottomColor: '#cccccc' }}>
       <Left>
         <Button
           transparent
           onPress={() => navigation.navigate('DrawerOpen')}>
-          <Icon name="menu" style={{ color: '#e0742b' }} />
+          <Icon name="menu" style={{ color: colors.orange }} />
         </Button>
       </Left>
       <Body>
@@ -129,7 +130,7 @@ HomeView.navigationOptions = ({ navigation }) => ({
         <Button
           transparent
           onPress={() => navigation.navigate('AddTagView')}>
-          <Icon name="add" style={{ color: '#e0742b' }} />
+          <Icon name="add" style={{ color: colors.orange }} />
         </Button>
       </Right>
     </Header>

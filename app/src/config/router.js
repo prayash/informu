@@ -1,11 +1,9 @@
 import React from 'react'
 import { DrawerNavigator, StackNavigator, TabNavigator } from 'react-navigation'
 
-import MainScreenNavigator from '../containers/ChatScreen/index.js'
-import ProfileScreen from '../containers/ProfileScreen'
-import AddTagView from '../containers/AddTagView/AddTagView.js'
-import HomeView from '../containers/HomeView/HomeView.js'
-import TagView from '../containers/TagView/TagView.js'
+import AddTagView from '../containers/AddTagView'
+import HomeView from '../containers/HomeView'
+import TagView from '../containers/TagView'
 import SideBar from '../components/SideBar'
 
 const HomeRoute = StackNavigator({
@@ -14,13 +12,12 @@ const HomeRoute = StackNavigator({
   AddTagView: { screen: AddTagView }
 })
 
-const routes = ["Home", "Settings", "Logout"]
+const routes = ['Home', 'Settings', 'Logout']
 const Router = DrawerNavigator(
   {
     Home: { screen: HomeRoute },
-    Logout: { screen: MainScreenNavigator },
-    Settings: { screen: ProfileScreen },
-    Tag: { screen: TagView }
+    Logout: { screen: HomeRoute },
+    Settings: { screen: HomeRoute }
   },
   {
     drawerPosition: 'left',

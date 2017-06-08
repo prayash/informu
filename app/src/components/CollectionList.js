@@ -46,7 +46,7 @@ export default class CollectionList extends Component {
                     <Text note>Location: {t.location}</Text>
                     <Text note>Last seen {t.lastSeen}</Text>
                   </Body>
-                  <Icon name="chevron-right" ios="ios-arrow-forward" android="md-arrow-dropright" style={{ color: 'grey', opacity: 0.75 }}/>
+                  <Icon name="chevron-right" ios="ios-arrow-forward" android="md-arrow-dropright" style={{ fontSize: 18, color: 'grey', opacity: 0.75 }}/>
                 </ListItem>
               </View>
             )}

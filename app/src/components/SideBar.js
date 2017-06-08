@@ -13,7 +13,7 @@ import {
   View
 } from "native-base"
 
-import { sidebarIcons } from '../config/theme'
+import { colors, sidebarIcons } from '../config/theme'
 
 export default class SideBar extends Component {
   render() {
@@ -22,10 +22,10 @@ export default class SideBar extends Component {
     console.log(state.index)
     return (
       <Container>
-        <Content style={{ backgroundColor: '#2d2d2d' }}>
+        <Content style={{ backgroundColor: colors.grey }}>
           <View style={{ height: 75, paddingTop: 25, paddingLeft: 15 }}>
-            <Text style={{ fontWeight: '600', fontSize: 20, color: '#EBEBEB'}}>Prayash</Text>
-            <Text style={{ fontWeight: '100', color: '#EBEBEB'}}>prayash.thapa@informu.io</Text>
+            <Text style={{ fontWeight: '600', fontSize: 20, color: colors.light }}>Prayash</Text>
+            <Text style={{ fontWeight: '100', color: colors.light }}>prayash.thapa@informu.io</Text>
           </View>
           {/*<Image
             source={{
@@ -54,9 +54,9 @@ export default class SideBar extends Component {
                   button={true}
                   style={{ height: 50 }}
                   onPress={() => navigate(data)}>
-                  <Left><Icon name={sidebarIcons[data]} style={{ color: '#EBEBEB', fontWeight: '700' }} /></Left>
+                  <Left><Icon name={sidebarIcons[data]} style={{ color: colors.light, fontWeight: '700' }} /></Left>
                   <Body style={{ borderBottomWidth: 0 }}>
-                    <Text style={{ fontWeight: '100', color: '#EBEBEB'}}>{data}</Text>
+                    <Text style={{ fontWeight: '100', color: colors.light }}>{data}</Text>
                   </Body>
                 </ListItem>
               )

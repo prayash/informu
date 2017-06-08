@@ -1,5 +1,5 @@
 const tags = [{
-  name: 'Car',
+  name: 'Tag',
   color: 'orange',
   proximityUUID: 'E2C56DB5-DFFB-48D2-B060-D0F5A71096E0',
   major: '1111',

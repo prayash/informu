@@ -51,7 +51,7 @@ export default class HomeView extends Component {
           let beacon = data.beacons[0]
           let t = {
             timestamp: moment().format('LTS'),
-            device_name: 'Car',
+            device_name: 'Tag',
             uuid: beacon.uuid,
             major: beacon.major,
             minor: beacon.minor,
@@ -62,6 +62,7 @@ export default class HomeView extends Component {
           recordedTags.push(t)
         } else {
           console.log(recordedTags)
+          console.log(convertToCSV({ data: recordedTags }))
         }
 
         // data.region - The current region

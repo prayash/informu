@@ -39,9 +39,6 @@ class HomeController: DatasourceController, ManagerDelegate {
         collectionView?.delaysContentTouches = false
         
         Manager.sharedInstance.fetchTagsFromDatabase()
-        
-        // hack
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -56,12 +53,12 @@ class HomeController: DatasourceController, ManagerDelegate {
     func didUpdateDistance(proximity: CLProximity) {
         switch proximity {
         case .unknown:
-//            if homeDatasource.tags[0].name == "Backpack" {
+            if homeDatasource.tags[0].name != "Car" && homeDatasource.tags[0].name != "Passport" {
                 homeDatasource.tags[0].location = "Lost"
                 homeDatasource.tags[0].lastSeen = "A minute ago"
                 collectionView?.reloadData()
                 print("out of range")
-//            }
+            }
 //            let localNotification = UILocalNotification()
 //            localNotification.fireDate = Date()
 //            localNotification.applicationIconBadgeNumber = 0
@@ -70,29 +67,29 @@ class HomeController: DatasourceController, ManagerDelegate {
 //            UIApplication.shared.scheduleLocalNotification(localNotification)
             
         case .far:
-//            if homeDatasource.tags[0].name == "Backpack" {
+            if homeDatasource.tags[0].name != "Car" && homeDatasource.tags[0].name != "Passport" {
                 homeDatasource.tags[0].location = "Farther away"
                 homeDatasource.tags[0].lastSeen = "Few seconds ago"
                 collectionView?.reloadData()
                 print("farther away")
-//            }
+            }
             
             
         case .near:
-//            if homeDatasource.tags[0].name == "Backpack" {
+            if homeDatasource.tags[0].name != "Car" && homeDatasource.tags[0].name != "Passport" {
                 homeDatasource.tags[0].location = "Nearby"
                 homeDatasource.tags[0].lastSeen = "Few seconds ago"
                 collectionView?.reloadData()
                 print("nearby")
-//            }
+            }
             
         case .immediate:
-//            if homeDatasource.tags[0].name == "Backpack" {
+            if homeDatasource.tags[0].name != "Car" && homeDatasource.tags[0].name != "Passport" {
                 homeDatasource.tags[0].location = "Immediate"
                 homeDatasource.tags[0].lastSeen = "Few seconds ago"
                 collectionView?.reloadData()
                 print("immediate")
-//            }
+            }
         }
     }
     
